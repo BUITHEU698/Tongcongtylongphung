@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app1.apps.App1Config'
+    'app1.apps.App1Config',
+    # 'django_createsuperuser'
 ]
 
 MIDDLEWARE = [
