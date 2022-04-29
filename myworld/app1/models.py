@@ -7,5 +7,8 @@ from matplotlib.style import use
 class contacForm(models.Model):
     usename = models.CharField(max_length= 25)
     email = models.EmailField()
-    sub = models.CharField(max_length= 25)
-    body = models.TextField()
+    subject = models.CharField(max_length= 100)
+    message = models.TextField()
+    
+    def __str__(self) :
+        return self.email 
