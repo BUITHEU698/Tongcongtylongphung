@@ -41,7 +41,7 @@ class contact(View):
             if cf.is_valid():
                 # chuyen doi thong tin cua form thanh thong tin cua model
                 save_cf = contactModel(username=cf.cleaned_data['username'], email=cf.cleaned_data['email'],
-                                    subject=cf.cleaned_data['subject'], message=cf.cleaned_data['message'])
+                                       subject=cf.cleaned_data['subject'], message=cf.cleaned_data['message'])
                 # luu thong tin vaao model
                 save_cf.save()
                 return HttpResponse("save success")
@@ -60,4 +60,20 @@ def shop(request):
 
 def detail(request):
     template = loader.get_template('detail.html')
+    return HttpResponse(template.render())
+
+
+# --------------blog-------------
+def blog(request):
+    template = loader.get_template('blog.html')
+    return HttpResponse(template.render())
+
+
+def blog1(request):
+    template = loader.get_template('blog1.html')
+    return HttpResponse(template.render())
+
+
+def blog2(request):
+    template = loader.get_template('blog2.html')
     return HttpResponse(template.render())

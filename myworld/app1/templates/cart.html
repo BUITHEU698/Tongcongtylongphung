@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-cr
+{% extends 'base.html' %} {% block content %} cr
 <!-- Navbar Start -->
 <div></div>
 <div class="container-fluid">
@@ -75,7 +74,7 @@ cr
             <div class="nav-item dropdown">
               <a
                 href="#"
-                class="nav-link dropdown-toggle active"
+                class="nav-link dropdown-toggle"
                 data-toggle="dropdown"
                 >Pages</a
               >
@@ -88,6 +87,9 @@ cr
                 >
               </div>
             </div>
+
+            {% extends 'base.html' %} {% block blod %} {% endblock%}
+
             <a href="{% url 'app1:contact' %}" class="nav-item nav-link"
               >Contact</a
             >

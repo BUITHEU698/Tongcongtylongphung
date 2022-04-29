@@ -67,8 +67,12 @@
         >
           <div class="navbar-nav mr-auto py-0">
             <a href="{% url 'app1:index' %}" class="nav-item nav-link">Home</a>
-            <a href="{% url 'app1:shop' %}" class="nav-item nav-link active">Shop</a>
-            <a href="{% url 'app1:detail' %}" class="nav-item nav-link">Shop Detail</a>
+            <a href="{% url 'app1:shop' %}" class="nav-item nav-link active"
+              >Shop</a
+            >
+            <a href="{% url 'app1:detail' %}" class="nav-item nav-link"
+              >Shop Detail</a
+            >
             <div class="nav-item dropdown">
               <a
                 href="#"
@@ -77,11 +81,19 @@
                 >Pages</a
               >
               <div class="dropdown-menu rounded-0 m-0">
-                <a href="{% url 'app1:cart' %}" class="dropdown-item">Shopping Cart</a>
-                <a href="{% url 'app1:checkout' %}" class="dropdown-item">Checkout</a>
+                <a href="{% url 'app1:cart' %}" class="dropdown-item"
+                  >Shopping Cart</a
+                >
+                <a href="{% url 'app1:checkout' %}" class="dropdown-item"
+                  >Checkout</a
+                >
               </div>
             </div>
-            <a href="{% url 'app1:contact' %}" class="nav-item nav-link">Contact</a>
+            {% extends 'base.html' %} {% block blod %} {% endblock blod%}
+
+            <a href="{% url 'app1:contact' %}" class="nav-item nav-link"
+              >Contact</a
+            >
           </div>
           <div class="navbar-nav ml-auto py-0">
             <a href="" class="nav-item nav-link">Login</a>
@@ -626,4 +638,4 @@
 </div>
 <!-- Shop End -->
 
-{% endblock %}
+{% endblock content %}
