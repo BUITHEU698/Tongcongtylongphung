@@ -1,21 +1,24 @@
-from re import template
-from django.http import HttpRequest
 from django.shortcuts import render
-from matplotlib.style import context
 from django.http import HttpResponse
 from django.template import loader
-from .backend.contact import contacForm
+from .forms import contactForm
+from .models import contactModel 
 
+#--------------index-------------
 def index(request):
     template = loader.get_template('index.html')
     return HttpResponse(template.render())
     
 
+
+#--------------cart-------------
 def cart(request):
     template = loader.get_template('cart.html')
     return HttpResponse(template.render())
 
 
+
+#--------------checkout-------------
 def checkout(request):
     template = loader.get_template('checkout.html')
     return HttpResponse(template.render())
@@ -24,26 +27,29 @@ def checkout(request):
     
 #--------------contact-------------
 def contact(request):
-    context = {'cf':contacForm}
+    context = {'cf':contactForm}
     return render(request, 'contact.html', context)
-
-# def getContact(request):
-#     if request.method :
-#         cf = contacForm(request.POST)
-#         if cf.is_valid():
-#             cf.save()
-#             return HttpResponse("save success")
-#     else:
-#         return HttpResponse("not POST")
         
-        
+def saveContact (re1uest):
+    # kiem tra xem co phai phuong thuc post k
+    if request.method == "POST":
+        cf = contacForm(request.POST)
+        # Kiem tra dieu kien nhap trong input
+        if cf.is_valid():
+            #chuyen doi thong tin cua form thanh thong tin cua model
+            save_cf = contactModel(username) 
+            #luu thong tin vaao model 
+            cf.save()
+            return HttpResponse("save success")
+    else:
+        return HttpResponse("not POST")
     
 #--------------shop-------------    
- 
 def shop(request):
     template = loader.get_template('shop.html')
     return HttpResponse(template.render())
 
+#--------------detail-------------  
 def detail(request):
     template = loader.get_template('detail.html')
     return HttpResponse(template.render())
