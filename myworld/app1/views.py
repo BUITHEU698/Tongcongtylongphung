@@ -22,22 +22,23 @@ def checkout(request):
 
 
     
-
+#--------------contact-------------
 def contact(request):
     context = {'cf':contacForm}
     return render(request, 'contact.html', context)
-def getContact(request):
-    if request.method:
-        cf = contacForm(request.POST)
-        if cf.is_valid():
-            cf.save()
-            return HttpResponse("save success")
-    else:
-        return HttpResponse("not POST")
+
+# def getContact(request):
+#     if request.method :
+#         cf = contacForm(request.POST)
+#         if cf.is_valid():
+#             cf.save()
+#             return HttpResponse("save success")
+#     else:
+#         return HttpResponse("not POST")
         
         
     
-    
+#--------------shop-------------    
  
 def shop(request):
     template = loader.get_template('shop.html')

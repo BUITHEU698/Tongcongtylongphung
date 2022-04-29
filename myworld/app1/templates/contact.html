@@ -129,17 +129,15 @@
     <div class="col-lg-7 mb-5">
       <div class="contact-form">
         <div id="success"></div>
-        <form action ="{% url 'app1:getContact' %}" method = "post">
+{% comment %}        
+        <form action="{% url 'app1.getContact' %}" method="post">
           {% csrf_token %}
           {{cf.as_p}}
-          <input type = "submit">
-          </input>
+          <input type="submit">
         </form>
-        foe
-       <form action=""></form>
-       
-      c
-        {% comment %} <form name="sentMessage" id="contactForm" novalidate="novalidate">
+         {% endcomment %}
+      
+      <form name="sentMessage" id="contactForm" novalidate="novalidate">
           <div class="control-group">
             <input
               type="text"
@@ -193,7 +191,7 @@
               Send Message
             </button>
           </div>
-        </form> {% endcomment %}
+        </form>
       </div>
     </div>
     <div class="col-lg-5 mb-5">
