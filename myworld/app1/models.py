@@ -5,7 +5,7 @@ from matplotlib.style import use
 
 # Create your models here.
 class contacForm(models.Model):
-    usename = models.CharField(max_length= 25)
+    username = models.CharField(max_length= 25)
     email = models.EmailField()
     subject = models.CharField(max_length= 100)
     message = models.TextField()

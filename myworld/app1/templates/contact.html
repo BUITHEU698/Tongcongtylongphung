@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block header %}
+{% extends 'base.html' %} {% block content %}
 
 <!-- Navbar Start -->
 <div class="container-fluid">
@@ -129,7 +129,14 @@
     <div class="col-lg-7 mb-5">
       <div class="contact-form">
         <div id="success"></div>
-        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+        <form action ="{% url 'app1:getContact' %}" method = "post">
+          {% csrf_token %}
+          {{cf.as_p}}
+          <input type = "submit">
+          </input>
+        </form>
+        
+        {% comment %} <form name="sentMessage" id="contactForm" novalidate="novalidate">
           <div class="control-group">
             <input
               type="text"
@@ -183,7 +190,7 @@
               Send Message
             </button>
           </div>
-        </form>
+        </form> {% endcomment %}
       </div>
     </div>
     <div class="col-lg-5 mb-5">
