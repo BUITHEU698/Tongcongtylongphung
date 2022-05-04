@@ -1,4 +1,4 @@
-{% block blog%}
+{% extends 'base.html' %} {% block blog %}
 
 <div class="nav-item dropdown">
   <a href="blog" class="nav-link dropdown-toggle active" data-toggle="dropdown"
@@ -9,4 +9,4 @@
     <a href="{% url 'app1:blog2' %}" class="dropdown-item">blog2</a>
   </div>
 </div>
-{% endblock %}
+{% endblock blog  %}
