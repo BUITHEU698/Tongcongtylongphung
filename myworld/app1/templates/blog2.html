@@ -89,7 +89,18 @@
               </div>
             </div>
 
-            {% block blog %} {% endblock blog %}
+            <div class="nav-item dropdown">
+              <a
+                href="blog"
+                class="nav-link dropdown-toggle active"
+                data-toggle="dropdown"
+                >Blog</a
+              >
+              <div class="dropdown-menu rounded-0 m-0">
+                <a href="{% url 'app1:blog1' %}" class="dropdown-item">Blog1</a>
+                <a href="{% url 'app1:blog2' %}" class="dropdown-item">blog2</a>
+              </div>
+            </div>
 
             <a href="{% url 'app1:contact' %}" class="nav-item nav-link"
               >Contact</a
@@ -359,4 +370,4 @@
 </div>
 <!-- Checkout End -->
 
-{% endblock  content %}
+{% endblock content %}
