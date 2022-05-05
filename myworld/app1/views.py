@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .forms import contactForm
 from .models import contactModel
+from .models import postBlog
 from django.views import View
 
 # --------------index-------------
@@ -62,18 +63,21 @@ def detail(request):
     template = loader.get_template('detail.html')
     return HttpResponse(template.render())
 
-
 # --------------blog-------------
 def blog(request):
-    template = loader.get_template('blog.html')
-    return HttpResponse(template.render())
+    template = postBlog.objects.all()
+    return render(request, 'blog.html',{'blog':template})
 
+def blogDetail(request, id):
+    template = postBlog.objects.get(id=id)
+    return render(request, 'blogDetail.html', {'blogDetail': template})
 
-def blog1(request):
-    template = loader.get_template('blog1.html')
-    return HttpResponse(template.render())
+# def blog1(request):
+#     template = loader.get_template('blog1.html')
+#     return HttpResponse(template.render())
 
 
 def blog2(request):
     template = loader.get_template('blog2.html')
     return HttpResponse(template.render())
+

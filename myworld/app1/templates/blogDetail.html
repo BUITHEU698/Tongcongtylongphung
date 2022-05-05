@@ -1,6 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-
-{{blog1.body}}
+{% extends 'base.html' %} {% block content %} {{blogDetail.body}}
 <!-- Navbar Start -->
 <div class="container-fluid">
   <div class="row border-top px-xl-5">
@@ -97,8 +95,12 @@
                 >Blog</a
               >
               <div class="dropdown-menu rounded-0 m-0">
-                <a href="{% url 'app1:blog1' %}" class="dropdown-item">Blog1</a>
+                {% for item in blog %}
+                  <a href=" {% url 'app1:blogDetail' item.id  %}" class="dropdown-item" >{{item.title}}</a>
+                {% endfor %} 
+
                 <a href="{% url 'app1:blog2' %}" class="dropdown-item">blog2</a>
+               
               </div>
             </div>
 

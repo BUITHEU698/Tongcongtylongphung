@@ -1,12 +1,10 @@
-{% extends 'base.html' %} {% block blog %}
+{% extends 'base.html' %} {% block content %}
 
-<div class="nav-item dropdown">
-  <a href="blog" class="nav-link dropdown-toggle active" data-toggle="dropdown"
-    >Blog</a
-  >
-  <div class="dropdown-menu rounded-0 m-0">
-    <a href="{% url 'app1:blog1' %}" class="dropdown-item">Blog1</a>
-    <a href="{% url 'app1:blog2' %}" class="dropdown-item">blog2</a>
-  </div>
-</div>
-{% endblock blog  %}
+{% for item in blog  %}
+
+<h1>
+    <a href=" {% url 'app1:blogDetail' item.id  %}">{{item.title}}</a>
+</h1>
+{% endfor %}
+
+{% endblock %}
