@@ -1,15 +1,24 @@
 from django import forms
 
 
-
-#--------------contact-------------
+# --------------contact-------------
 class contactForm(forms.Form):
-    username = forms.CharField(max_length= 25)
+    username = forms.CharField(max_length=25)
     email = forms.EmailField()
-    subject = forms.CharField(max_length= 100)
-    message = forms.CharField(widget= forms.Textarea)
-    
-    
-    
-    
-#--------------contact-------------
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+
+
+# --------------memberForm-------------
+
+class memberForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    email = forms.EmailField(max_length = 30)
+    # phone = forms.CharField(max_length=11)
+    password = forms.CharField(max_length=20, widget = forms.PasswordInput)
+# --------------memberForm-------------
+
+
+class loginForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    password = forms.CharField(max_length=20, widget=forms.PasswordInput)

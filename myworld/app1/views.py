@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
+from .forms import memberForm
+from .forms import loginForm
 from .forms import contactForm
 from .models import contactModel
 from .models import postBlog
 from django.views import View
-
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------index-------------
 
 
@@ -64,9 +69,12 @@ def detail(request):
     return HttpResponse(template.render())
 
 # --------------blog-------------
+
+
 def blog(request):
     template = postBlog.objects.all()
-    return render(request, 'blog.html',{'blog':template})
+    return render(request, 'blog.html', {'blog': template})
+
 
 def blogDetail(request, id):
     template = postBlog.objects.get(id=id)
@@ -81,3 +89,54 @@ def blog2(request):
     template = loader.get_template('blog2.html')
     return HttpResponse(template.render())
 
+
+# --------------blog-------------
+class member(View):
+    def get(self, request):
+        template = memberForm
+        return render(request, 'signup.html', {'signup': template})
+
+    def post(self, request):
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+
+        user = User.objects.create_user(username, email, password)
+        user.save()
+        return HttpResponse('save sussic')
+
+# --------------blog-------------
+
+
+class loginUser (View):
+    def get(self, request):
+        template = loginForm
+        return render(request, 'login.html', {'login': template})
+
+    def post(self, request):
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return render(request, 'order.html')
+        else:
+            return HttpResponse('login fail')
+
+# --------------logOut-------------
+
+
+def logoutUser(request):
+    logout(request)
+    return render(request, 'index.html')
+
+
+# --------------order-------------
+
+
+class order(LoginRequiredMixin, View):
+    login_url = '/login'
+    def get(self, request):
+        return render(request, 'order.html')
+    
+    

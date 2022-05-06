@@ -14,4 +14,9 @@ urlpatterns = [
     path('blog', views.blog, name="blog"),
     path('<int:id>', views.blogDetail, name="blogDetail"),
     path('blog2', views.blog2, name="blog2"),
+    path('signup', views.member.as_view(), name="signup"),
+    path('login', views.loginUser.as_view(), name="login"),  
+    path('logout', views.logoutUser, name="logout"),
+    path('order', views.order.as_view(), name="order"),
 ]
+
