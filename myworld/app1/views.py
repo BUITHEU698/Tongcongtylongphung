@@ -19,6 +19,14 @@ def index(request):
     return HttpResponse(template.render())
 
 
+# --------------index-------------
+
+
+def sitemap(request):
+    template = loader.get_template('sitemap.xml')
+    return HttpResponse(template.render())
+
+
 # --------------cart-------------
 def cart(request):
     template = loader.get_template('cart.html')
