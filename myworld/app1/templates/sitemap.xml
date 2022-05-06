@@ -9,7 +9,38 @@
 
 <url>
   <loc>https://thuoclaolongphung.tk/</loc>
-  <lastmod>2022-05-04T16:35:35+00:00</lastmod>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://thuoclaolongphung.tk/cart</loc>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://thuoclaolongphung.tk/shop</loc>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://thuoclaolongphung.tk/detail</loc>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://thuoclaolongphung.tk/checkout</loc>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://thuoclaolongphung.tk/blog2</loc>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://thuoclaolongphung.tk/contact</loc>
+  <lastmod>2022-05-06T09:50:44+00:00</lastmod>
+  <priority>0.80</priority>
 </url>
 
 
