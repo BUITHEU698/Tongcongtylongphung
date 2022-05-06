@@ -19,6 +19,14 @@ def index(request):
     return HttpResponse(template.render())
 
 
+# --------------index-------------
+
+
+def sitemap(request):
+    template = loader.get_template('sitemap.xml')
+    return HttpResponse(template.render())
+
+
 # --------------cart-------------
 def cart(request):
     template = loader.get_template('cart.html')
@@ -116,7 +124,8 @@ class loginUser (View):
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        
+        user = authenticate(request, username= username , password=password)
         if user is not None:
             login(request, user)
             return render(request, 'order.html')

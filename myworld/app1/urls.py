@@ -5,6 +5,7 @@ app_name = 'app1'
 
 urlpatterns = [
     path('', views.index, name="index"),
+    path('sitemap', views.sitemap, name="sitemap"),
     path('cart', views.cart, name="cart"),
     path('checkout', views.checkout, name="checkout"),
     path('contact', views.contact.as_view(), name="contact"),
