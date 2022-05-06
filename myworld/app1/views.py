@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .forms import memberForm
@@ -128,7 +128,7 @@ class loginUser (View):
 
 def logoutUser(request):
     logout(request)
-    return render(request, 'index.html')
+    return redirect('app1:login')
 
 
 # --------------order-------------
