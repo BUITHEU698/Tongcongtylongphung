@@ -96,7 +96,9 @@
                 >Blog</a
               >
               <div class="dropdown-menu rounded-0 m-0">
-                {% comment %} <a href="{% url 'app1:blog1' %}" class="dropdown-item">Blog1</a> {% endcomment %}
+                {% comment %}
+                <a href="{% url 'app1:blog1' %}" class="dropdown-item">Blog1</a>
+                {% endcomment %}
                 <a href="{% url 'app1:blog2' %}" class="dropdown-item">blog2</a>
               </div>
             </div>
@@ -143,14 +145,20 @@
     <div class="col-lg-7 mb-5">
       <div class="contact-form">
         <div id="success"></div>
-        <form action="{% url 'app1:contact' %} " method="post" name="sentMessage" id="contactForm" novalidate="novalidate">
+        <form
+          action="{% url 'app1:contact' %} "
+          method="post"
+          name="sentMessage"
+          id="contactForm"
+          novalidate="novalidate"
+        >
           {% csrf_token %}
           <div class="control-group">
             <input
               type="text"
               class="form-control"
               id="name"
-              name ="username"
+              name="username"
               placeholder="Tên bạn"
               required="required"
               data-validation-required-message="Please enter your name"
@@ -160,7 +168,7 @@
           <div class="control-group">
             <input
               type="email"
-              name = "email"
+              name="email"
               class="form-control"
               id="email"
               placeholder="Email của bạn"
@@ -172,7 +180,7 @@
           <div class="control-group">
             <input
               type="text"
-              name = "subject"
+              name="subject"
               class="form-control"
               id="subject"
               placeholder="Chủ Đề"
@@ -183,7 +191,7 @@
           </div>
           <div class="control-group">
             <textarea
-              name = "message"
+              name="message"
               class="form-control"
               rows="6"
               id="message"
@@ -206,25 +214,34 @@
       </div>
     </div>
     <div class="col-lg-5 mb-5">
-      <h5 class="font-weight-semi-bold mb-3">Get In Touch</h5>
+      <h5 class="font-weight-semi-bold mb-3">Thuốc Lào Long Phụng</h5>
       <p>
-        
-        Chuyên cung cấp thuốc lào và điếu cày các loại. Đảm bảo hàng chất lượng cao giá rẻ ship hàng trên toàn quốc. 
-        Mọi thắc mắc xin liên hệ với chúng tôi theo thông tin dưới đây hoặc để lại thông tin của bạn. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.
+        Thuốc Lào Long Phụng - Chuyên cung cấp thuốc lào và điếu cày các loại. Đảm bảo hàng chất lượng
+        cao giá rẻ ship hàng trên toàn quốc. Mọi thắc mắc xin liên hệ với chúng
+        tôi theo thông tin dưới đây hoặc để lại thông tin của bạn. Chúng tôi sẽ
+        liên hệ với bạn sớm nhất có thể.
       </p>
       <div class="d-flex flex-column mb-3">
         <h5 class="font-weight-semi-bold mb-3">Thông Tin</h5>
         <p class="mb-2">
-          <i class="fa fa-map-marker-alt text-primary mr-3"></i>78/7 Tân Lập, Đông Hoà, Dĩ An, Bình Dương
+          <a
+            href="https://www.google.com/maps/place/Thu%E1%BB%91c+l%C3%A0o+Long+Ph%E1%BB%A5ng/@10.8741908,106.8081213,15z/data=!4m5!3m4!1s0x0:0x9d682842d9905f03!8m2!3d10.8741908!4d106.8081213"
+          >
+            <i class="fa fa-map-marker-alt text-primary mr-3"></i>78/7 Tân Lập,
+            Đông Hoà, Dĩ An, Bình Dương
+          </a>
         </p>
         <p class="mb-2">
-          <i class="fa fa-envelope text-primary mr-3"></i>buitheu698@gmail.com
+          <a href="mailto:buitheu698@gmail.com">
+            <i class="fa fa-envelope text-primary mr-3"></i>buitheu698@gmail.com
+          </a>
         </p>
         <p class="mb-2">
-          <i class="fa fa-phone-alt text-primary mr-3"></i>+036 8311 698
+          <a href="tel:0368311698">
+            <i class="fa fa-phone-alt text-primary mr-3"></i>+036 8311 698
+          </a>
         </p>
       </div>
-      
     </div>
   </div>
 </div>
