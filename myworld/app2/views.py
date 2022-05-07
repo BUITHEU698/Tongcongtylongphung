@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .forms import memberForm
+from .forms import loginForm
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -23,7 +24,7 @@ class member(View):
 
         user = User.objects.create_user(username, email, password)
         user.save()
-        return HttpResponse('save sussic')
+        return redirect('app2:login')
 
 # --------------blog-------------
 
@@ -64,3 +65,12 @@ class order(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, 'index.html')
+
+
+
+# --------------forget-paswork-------------
+
+
+def forgetPass(request):
+    template = loader.get_template('forgetPass.html')
+    return HttpResponse(template.render())

@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .forms import memberForm
-from .forms import loginForm
 from .forms import contactForm
 from .models import contactModel
 from .models import postBlog
@@ -92,64 +90,71 @@ def blogDetail(request, id):
 #     template = loader.get_template('blog1.html')
 #     return HttpResponse(template.render())
 
-
+def blog1(request):
+    template = loader.get_template('blog1.html')
+    return HttpResponse(template.render())
 def blog2(request):
     template = loader.get_template('blog2.html')
     return HttpResponse(template.render())
+def blog3(request):
+    template = loader.get_template('blog3.html')
+    return HttpResponse(template.render())
+def blog4(request):
+    template = loader.get_template('blog4.html')
+    return HttpResponse(template.render())
+
+# # --------------member-------------
+# class member(View):
+#     def get(self, request):
+#         template = memberForm
+#         return render(request, 'signup.html', {'signup': template})
+
+#     def post(self, request):
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         password = request.POST['password']
+
+#         user = User.objects.create_user(username, email, password)
+#         user.save()
+#         return HttpResponse('save sussic')
+
+# # --------------loginUser-------------
 
 
-# --------------blog-------------
-class member(View):
-    def get(self, request):
-        template = memberForm
-        return render(request, 'signup.html', {'signup': template})
+# class loginUser (View):
+#     def get(self, request):
+#         template = loginForm
+#         return render(request, 'login.html', {'login': template})
 
-    def post(self, request):
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
-
-        user = User.objects.create_user(username, email, password)
-        user.save()
-        return HttpResponse('save sussic')
-
-# --------------blog-------------
-
-
-class loginUser (View):
-    def get(self, request):
-        template = loginForm
-        return render(request, 'login.html', {'login': template})
-
-    def post(self, request):
-        username = request.POST['username']
-        password = request.POST['password']
-        try: 
-            user = authenticate(request, username=User.objects.get(
-                email=username), password=password)
-        except:
-            user = authenticate(request, username = username, password = password)
+#     def post(self, request):
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         try: 
+#             user = authenticate(request, username=User.objects.get(
+#                 email=username), password=password)
+#         except:
+#             user = authenticate(request, username = username, password = password)
             
-        if user is not None:
-            login(request, user)
-            return render(request, 'order.html')
-        else:
-            return HttpResponse('login fail')
+#         if user is not None:
+#             login(request, user)
+#             return render(request, 'order.html')
+#         else:
+#             return HttpResponse('login fail')
 
-# --------------logOut-------------
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('app1:login')
+# # --------------logOut-------------
 
 
-# --------------order-------------
+# def logoutUser(request):
+#     logout(request)
+#     return redirect('app1:login')
 
 
-class order(LoginRequiredMixin, View):
-    login_url = '/login'
-    def get(self, request):
-        return render(request, 'order.html')
+# # --------------order-------------
+
+
+# class order(LoginRequiredMixin, View):
+#     login_url = '/login'
+#     def get(self, request):
+#         return render(request, 'order.html')
     
     

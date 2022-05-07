@@ -14,9 +14,7 @@ class contactModel(models.Model):
     def __str__(self):
         return self.email
 
-# --------------postForm()-------------
-
-
+# --------------postBlog-------------
 class postBlog(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()

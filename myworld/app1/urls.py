@@ -14,10 +14,13 @@ urlpatterns = [
     path('detail', views.detail, name="detail"),
     path('blog', views.blog, name="blog"),
     path('<int:id>', views.blogDetail, name="blogDetail"),
+    path('blog1', views.blog1, name="blog1"),
     path('blog2', views.blog2, name="blog2"),
-    path('signup', views.member.as_view(), name="signup"),
-    path('login', views.loginUser.as_view(), name="login"),  
-    path('logout', views.logoutUser, name="logout"),
-    path('order', views.order.as_view(), name="order"),
-]
+    path('blog3', views.blog3, name="blog3"),
+    path('blog4', views.blog4, name="blog4"),
 
+    # path('signup', views.member.as_view(), name="signup"),
+    # path('login', views.loginUser.as_view(), name="login"),
+    # path('logout', views.logoutUser, name="logout"),
+    # path('order', views.order.as_view(), name="order"),
+]

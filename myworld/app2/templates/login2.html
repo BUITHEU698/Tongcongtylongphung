@@ -51,33 +51,33 @@
                         <div class="login-form">
                             <form action="" method="post">
                                 <div class="form-group">
-                                    <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <label>Địa chỉ email</label>
+                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Nhập email">
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <label>Mật Khẩu</label>
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Nhập password">
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember">Remember Me
+                                        <input type="checkbox" name="remember">Ghi nhớ tìa khoản
                                     </label>
                                     <label>
-                                        <a href="#">Forgotten Password?</a>
+                                        <a href="{% url 'app2:forgetPass' %}">Quên mật khẩu?</a>
                                     </label>
                                 </div>
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
+                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Đăng Nhập</button>
                                 <div class="social-login-content">
                                     <div class="social-button">
-                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                                        <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
+                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">Đăng nhập bằng tài khoản facebook</button>
+                                        <button class="au-btn au-btn--block au-btn--blue2">Đăng nhập bằng tài khoản twitter</button>
                                     </div>
                                 </div>
                             </form>
                             <div class="register-link">
                                 <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
+                                    Bạn chưa có tài khoản?
+                                    <a href="{% url 'app2:signup' %}">Đăng ký ngay</a>
                                 </p>
                             </div>
                         </div>
