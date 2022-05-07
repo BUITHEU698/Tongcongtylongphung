@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 04, 2022 lúc 06:41 PM
+-- Thời gian đã tạo: Th5 07, 2022 lúc 03:24 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -46,15 +46,23 @@ INSERT INTO `app1_contactmodel` (`id`, `username`, `email`, `subject`, `message`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `app1_possform`
+-- Cấu trúc bảng cho bảng `app1_postblog`
 --
 
-CREATE TABLE `app1_possform` (
+CREATE TABLE `app1_postblog` (
   `id` bigint(20) NOT NULL,
   `title` varchar(255) NOT NULL,
   `body` longtext NOT NULL,
   `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `app1_postblog`
+--
+
+INSERT INTO `app1_postblog` (`id`, `title`, `body`, `created_at`) VALUES
+(1, 'Bao cao doanh thu', 'vvvv', '2022-05-04 17:32:36.989176'),
+(2, 'hahah', 'hah', '2022-05-04 17:32:50.587174');
 
 -- --------------------------------------------------------
 
@@ -128,7 +136,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (29, 'Can add poss form', 8, 'add_possform'),
 (30, 'Can change poss form', 8, 'change_possform'),
 (31, 'Can delete poss form', 8, 'delete_possform'),
-(32, 'Can view poss form', 8, 'view_possform');
+(32, 'Can view poss form', 8, 'view_possform'),
+(33, 'Can add post blog', 8, 'add_postblog'),
+(34, 'Can change post blog', 8, 'change_postblog'),
+(35, 'Can delete post blog', 8, 'delete_postblog'),
+(36, 'Can view post blog', 8, 'view_postblog');
 
 -- --------------------------------------------------------
 
@@ -155,7 +167,9 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$320000$Q5yzYOaralObfK9A5yz9Hu$YosAQj3IK6pC0YZw0hdVpeKaKhUmPNU7b/TneoGIEKI=', '2022-04-29 14:56:38.404861', 1, 'buitheu', '', '', '19522254@gm.uit.edu.vn', 1, 1, '2022-04-29 14:56:26.758371');
+(1, 'pbkdf2_sha256$320000$Q5yzYOaralObfK9A5yz9Hu$YosAQj3IK6pC0YZw0hdVpeKaKhUmPNU7b/TneoGIEKI=', '2022-05-06 10:26:00.291724', 1, 'buitheu', '', '', '19522254@gm.uit.edu.vn', 1, 1, '2022-04-29 14:56:26.758371'),
+(2, 'pbkdf2_sha256$320000$d8qTbdo7ib35wVYark8GV8$eD19PyxdQhFQi9k5L9nEY2Fo27eBlyKLsFRTX39pPF0=', NULL, 0, 'bui thi theu', '', '', '19522254@gm.uit.edu.vn', 0, 1, '2022-05-06 04:39:59.731536'),
+(4, 'pbkdf2_sha256$320000$MvYkn6SuWp3DNIbRvHFWFb$wHBp6bwCLtxSin/T+JpPCGggp7hVkL+9fUNBi/tUabc=', NULL, 0, 'buitheu698', '', '', 'buitheu698@gmail.com', 0, 1, '2022-05-06 05:30:28.444063');
 
 -- --------------------------------------------------------
 
@@ -198,6 +212,14 @@ CREATE TABLE `django_admin_log` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(1, '2022-05-04 17:32:36.993174', '1', 'Bao cao doanh thu', 1, '[{\"added\": {}}]', 8, 1),
+(2, '2022-05-04 17:32:50.591174', '2', 'hahah', 1, '[{\"added\": {}}]', 8, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -217,7 +239,7 @@ CREATE TABLE `django_content_type` (
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
 (7, 'app1', 'contactmodel'),
-(8, 'app1', 'possform'),
+(8, 'app1', 'postblog'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
@@ -265,7 +287,8 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (21, 'auth', '0011_update_proxy_permissions', '2022-04-29 14:55:51.136055'),
 (22, 'auth', '0012_alter_user_first_name_max_length', '2022-04-29 14:55:51.182013'),
 (23, 'sessions', '0001_initial', '2022-04-29 14:55:51.266934'),
-(24, 'app1', '0006_possform', '2022-05-04 16:31:43.936064');
+(24, 'app1', '0006_possform', '2022-05-04 16:31:43.936064'),
+(25, 'app1', '0007_rename_possform_postblog', '2022-05-04 17:44:13.455226');
 
 -- --------------------------------------------------------
 
@@ -280,13 +303,6 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `django_session`
---
-
-INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('57oas64vmspxq9wrq0eul0kpuxepoaon', '.eJxVjDsOwjAQBe_iGlm7cfCHkj5nsNafxQFkS3FSIe4OkVJA-2bmvYSnbS1-63nxcxIXgeL0uwWKj1x3kO5Ub03GVtdlDnJX5EG7nFrKz-vh_h0U6uVbW0cAA-gYz6gzG6NRucCsB8iAipHZBeLAVkdga1ihC8iKHEYL4yjeH9wSN9Q:1nkS2w:uO9L0svhQHVQJhNQBr0XtfclLdi78bAIRfP05L47cNU', '2022-05-13 14:56:38.407778');
-
---
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -297,9 +313,9 @@ ALTER TABLE `app1_contactmodel`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `app1_possform`
+-- Chỉ mục cho bảng `app1_postblog`
 --
-ALTER TABLE `app1_possform`
+ALTER TABLE `app1_postblog`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -386,10 +402,10 @@ ALTER TABLE `app1_contactmodel`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `app1_possform`
+-- AUTO_INCREMENT cho bảng `app1_postblog`
 --
-ALTER TABLE `app1_possform`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `app1_postblog`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `auth_group`
@@ -407,13 +423,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT cho bảng `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `auth_user_groups`
@@ -431,7 +447,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT cho bảng `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `django_content_type`
@@ -443,7 +459,7 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT cho bảng `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
