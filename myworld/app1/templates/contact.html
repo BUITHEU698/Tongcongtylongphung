@@ -122,39 +122,36 @@
     class="d-flex flex-column align-items-center justify-content-center"
     style="min-height: 300px"
   >
-    <h1 class="font-weight-semi-bold text-uppercase mb-3">Contact Us</h1>
+    <h1 class="font-weight-semi-bold text-uppercase mb-3">Liên Hệ</h1>
     <div class="d-inline-flex">
       <p class="m-0"><a href="">Home</a></p>
       <p class="m-0 px-2">-</p>
-      <p class="m-0">Contact</p>
+      <p class="m-0">Liên Hệ</p>
     </div>
   </div>
 </div>
 
 <!-- Contact Start -->
 
-<form action="{% url 'app1:contact' %} " method="post">
-  {% csrf_token %} {{cf.as_p}}
-  <input type="submit" />
-</form>
-
 <div class="container-fluid pt-5">
   <div class="text-center mb-4">
     <h2 class="section-title px-5">
-      <span class="px-2">Contact For Any Queries</span>
+      <span class="px-2">Liên Hệ Với CHúng Tôi</span>
     </h2>
   </div>
   <div class="row px-xl-5">
     <div class="col-lg-7 mb-5">
       <div class="contact-form">
         <div id="success"></div>
-        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+        <form action="{% url 'app1:contact' %} " method="post" name="sentMessage" id="contactForm" novalidate="novalidate">
+          {% csrf_token %}
           <div class="control-group">
             <input
               type="text"
               class="form-control"
               id="name"
-              placeholder="Your Name"
+              name ="username"
+              placeholder="Tên bạn"
               required="required"
               data-validation-required-message="Please enter your name"
             />
@@ -163,9 +160,10 @@
           <div class="control-group">
             <input
               type="email"
+              name = "email"
               class="form-control"
               id="email"
-              placeholder="Your Email"
+              placeholder="Email của bạn"
               required="required"
               data-validation-required-message="Please enter your email"
             />
@@ -174,9 +172,10 @@
           <div class="control-group">
             <input
               type="text"
+              name = "subject"
               class="form-control"
               id="subject"
-              placeholder="Subject"
+              placeholder="Chủ Đề"
               required="required"
               data-validation-required-message="Please enter a subject"
             />
@@ -184,10 +183,11 @@
           </div>
           <div class="control-group">
             <textarea
+              name = "message"
               class="form-control"
               rows="6"
               id="message"
-              placeholder="Message"
+              placeholder="Thông Điệu"
               required="required"
               data-validation-required-message="Please enter your message"
             ></textarea>
@@ -199,7 +199,7 @@
               type="submit"
               id="sendMessageButton"
             >
-              Send Message
+              Gửi Thư
             </button>
           </div>
         </form>
@@ -208,36 +208,23 @@
     <div class="col-lg-5 mb-5">
       <h5 class="font-weight-semi-bold mb-3">Get In Touch</h5>
       <p>
-        Justo sed diam ut sed amet duo amet lorem amet stet sea ipsum, sed duo
-        amet et. Est elitr dolor elitr erat sit sit. Dolor diam et erat clita
-        ipsum justo sed.
+        
+        Chuyên cung cấp thuốc lào và điếu cày các loại. Đảm bảo hàng chất lượng cao giá rẻ ship hàng trên toàn quốc. 
+        Mọi thắc mắc xin liên hệ với chúng tôi theo thông tin dưới đây hoặc để lại thông tin của bạn. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.
       </p>
       <div class="d-flex flex-column mb-3">
-        <h5 class="font-weight-semi-bold mb-3">Store 1</h5>
+        <h5 class="font-weight-semi-bold mb-3">Thông Tin</h5>
         <p class="mb-2">
-          <i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New
-          York, USA
+          <i class="fa fa-map-marker-alt text-primary mr-3"></i>78/7 Tân Lập, Đông Hoà, Dĩ An, Bình Dương
         </p>
         <p class="mb-2">
-          <i class="fa fa-envelope text-primary mr-3"></i>info@example.com
+          <i class="fa fa-envelope text-primary mr-3"></i>buitheu698@gmail.com
         </p>
         <p class="mb-2">
-          <i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890
+          <i class="fa fa-phone-alt text-primary mr-3"></i>+036 8311 698
         </p>
       </div>
-      <div class="d-flex flex-column">
-        <h5 class="font-weight-semi-bold mb-3">Store 2</h5>
-        <p class="mb-2">
-          <i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New
-          York, USA
-        </p>
-        <p class="mb-2">
-          <i class="fa fa-envelope text-primary mr-3"></i>info@example.com
-        </p>
-        <p class="mb-0">
-          <i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890
-        </p>
-      </div>
+      
     </div>
   </div>
 </div>
