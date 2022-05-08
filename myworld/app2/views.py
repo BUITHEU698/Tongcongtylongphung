@@ -35,13 +35,12 @@ class loginUser (View):
         return render(request, 'login2.html', {'login': template})
 
     def post(self, request):
-        username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
         try:
-            user = authenticate(request, username=User.objects.get(
-                email=username), password=password)
+            user = authenticate(request, email = email, password=password)
         except:
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(request, username=email, password=password)
 
         if user is not None:
             login(request, user)
@@ -73,4 +72,13 @@ class order(LoginRequiredMixin, View):
 
 def forgetPass(request):
     template = loader.get_template('forgetPass.html')
+    return HttpResponse(template.render())
+
+
+
+# --------------index-------------
+
+
+def index(request):
+    template = loader.get_template('index.html')
     return HttpResponse(template.render())
