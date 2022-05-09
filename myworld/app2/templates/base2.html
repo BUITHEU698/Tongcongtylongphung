@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
 
     <link href="{% static  'css/sb-admin-2.css' %}" rel="stylesheet" />
+    <link href="{% static  'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" />
 
 </head>
 
@@ -71,14 +72,19 @@
     <link href="{% static  'vendor/jquery-easing/jquery.easing.min.js' %}" rel="stylesheet" />
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    {% comment %} <script src="js/sb-admin-2.min.js"></script> {% endcomment %}
+
+    <link href="{% static  'js/sb-admin-2.min.js' %}" rel="stylesheet" />
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    {% comment %} <script src="vendor/chart.js/Chart.min.js"></script> {% endcomment %}
+    <link href="{% static  'vendor/chart.js/Chart.min.js' %}" rel="stylesheet" />
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <link href="{% static  'js/demo/chart-area-demo.js' %}" rel="stylesheet" />
+    <link href="{% static  'js/demo/chart-pie-demo.js' %}" rel="stylesheet" />
+    {% comment %} <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> {% endcomment %}
 
 </body>
 
