@@ -10,7 +10,9 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Dashboard</title>
-
+    
+<!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
     <!-- Custom fonts for this template-->
     <link href="{% static  'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" />
     <link
@@ -60,32 +62,34 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    {% comment %} <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+   <script src="{% static  'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static  'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <link href="{% static  'vendor/jquery/jquery.min.js' %}" rel="stylesheet" />
-    <link href="{% static  'vendor/bootstrap/js/bootstrap.bundle.min.js' %}" rel="stylesheet" />
+    
 
     <!-- Core plugin JavaScript-->
-    {% comment %} <script src="vendor/jquery-easing/jquery.easing.min.js"></script> {% endcomment %}
+    <script src="{% static  'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-    <link href="{% static  'vendor/jquery-easing/jquery.easing.min.js' %}" rel="stylesheet" />
+   
 
     <!-- Custom scripts for all pages-->
-    {% comment %} <script src="js/sb-admin-2.min.js"></script> {% endcomment %}
+    <script src="{% static  'js/sb-admin-2.min.js' %}"></script>
 
-    <link href="{% static  'js/sb-admin-2.min.js' %}" rel="stylesheet" />
+   
 
     <!-- Page level plugins -->
-    {% comment %} <script src="vendor/chart.js/Chart.min.js"></script> {% endcomment %}
-    <link href="{% static  'vendor/chart.js/Chart.min.js' %}" rel="stylesheet" />
-
+    <script src="{% static  'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src=" {% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %} "></script>
     <!-- Page level custom scripts -->
-    <link href="{% static  'js/demo/chart-area-demo.js' %}" rel="stylesheet" />
-    <link href="{% static  'js/demo/chart-pie-demo.js' %}" rel="stylesheet" />
-    {% comment %} <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> {% endcomment %}
-
+ 
+   <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static  'js/demo/chart-pie-demo.js' %}"></script>
+    <script src=" {% static 'js/demo/datatables-demo.js' %} "></script>
+ 
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
+  
 </body>
 
 </html>
