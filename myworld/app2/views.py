@@ -32,7 +32,7 @@ class member(View):
 class loginUser (View):
     def get(self, request):
         template = loginForm
-        return render(request, 'login2.html', {'login': template})
+        return render(request, 'login.html', {'login': template})
 
     def post(self, request):
         username = request.POST['username']
@@ -67,7 +67,7 @@ class order(LoginRequiredMixin, View):
 
 
 def forgetPass(request):
-    template = loader.get_template('forgetPass.html')
+    template = loader.get_template('forgot-password.html')
     return HttpResponse(template.render())
 
 
@@ -79,41 +79,64 @@ def index(request):
     return HttpResponse(template.render())
 
 
-# --------------calendar-------------
-def calendar(request):
-    template = loader.get_template('calendar.html')
+
+# --------------blank.html-------------
+
+
+def blank(request):
+    template = loader.get_template('blank.html')
     return HttpResponse(template.render())
 
 
-# --------------chart-------------
-def chart(request):
-    template = loader.get_template('chart.html')
+
+
+# --------------buttons-------------
+def buttons(request):
+    template = loader.get_template('buttons.html')
     return HttpResponse(template.render())
 
 
-
-# --------------inbox-------------
-def inbox(request):
-    template = loader.get_template('inbox.html')
+# --------------cards-------------
+def cards(request):
+    template = loader.get_template('cards.html')
     return HttpResponse(template.render())
 
 
-# --------------map-------------
-def map(request):
-    template = loader.get_template('map.html')
+# --------------charts-------------
+def charts(request):
+    template = loader.get_template('charts.html')
+    return HttpResponse(template.render())
+# --------------tables-------------
+
+
+def tables(request):
+    template = loader.get_template('tables.html')
     return HttpResponse(template.render())
 
-# --------------switch-------------
-def switch(request):
-    template = loader.get_template('switch.html')
+# --------------utilities_animation-------------
+
+
+def utilities_animation(request):
+    template = loader.get_template('utilities_animation.html')
     return HttpResponse(template.render())
 
-# --------------tab-------------
-def tab(request):
-    template = loader.get_template('tab.html')
+# --------------utilities_border-------------
+
+
+def utilities_border(request):
+    template = loader.get_template('utilities_border.html')
     return HttpResponse(template.render())
 
-# --------------table-------------
-def table(request):
-    template = loader.get_template('table.html')
+# --------------utilities_color.html-------------
+
+
+def utilities_color(request):
+    template = loader.get_template('utilities_color.html')
+    return HttpResponse(template.render())
+
+# --------------utilities_other.html-------------
+
+
+def utilities_other(request):
+    template = loader.get_template('utilities_other.html')
     return HttpResponse(template.render())
