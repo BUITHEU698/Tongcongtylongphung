@@ -90,9 +90,19 @@ def blank(request):
 
 
 
-# --------------buttons-------------
-def buttons(request):
-    template = loader.get_template('buttons.html')
+# --------------products-------------
+def more_products(request):
+    template = loader.get_template('more_products.html')
+    return HttpResponse(template.render())
+
+def list_products(request):
+    template = loader.get_template('list_products.html')
+    return HttpResponse(template.render())
+def more_product_portfolio(request):
+    template = loader.get_template('more_product_portfolio.html')
+    return HttpResponse(template.render())
+def list_product_portfolio(request):
+    template = loader.get_template('list_product_portfolio.html')
     return HttpResponse(template.render())
 
 
