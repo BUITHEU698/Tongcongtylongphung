@@ -35,18 +35,15 @@ class loginUser (View):
         return render(request, 'login2.html', {'login': template})
 
     def post(self, request):
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
-        try:
-            user = authenticate(request, email = email, password=password)
-        except:
-            user = authenticate(request, username=email, password=password)
-
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'index.html')
+            return redirect('app2:index')
+
         else:
-            return HttpResponse('login fail')
+            return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
 # --------------logOut-------------
 
@@ -66,7 +63,6 @@ class order(LoginRequiredMixin, View):
         return render(request, 'index.html')
 
 
-
 # --------------forget-paswork-------------
 
 
@@ -75,10 +71,49 @@ def forgetPass(request):
     return HttpResponse(template.render())
 
 
-
 # --------------index-------------
 
 
 def index(request):
-    template = loader.get_template('index.html')
+    template = loader.get_template('index2.html')
+    return HttpResponse(template.render())
+
+
+# --------------calendar-------------
+def calendar(request):
+    template = loader.get_template('calendar.html')
+    return HttpResponse(template.render())
+
+
+# --------------chart-------------
+def chart(request):
+    template = loader.get_template('chart.html')
+    return HttpResponse(template.render())
+
+
+
+# --------------inbox-------------
+def inbox(request):
+    template = loader.get_template('inbox.html')
+    return HttpResponse(template.render())
+
+
+# --------------map-------------
+def map(request):
+    template = loader.get_template('map.html')
+    return HttpResponse(template.render())
+
+# --------------switch-------------
+def switch(request):
+    template = loader.get_template('switch.html')
+    return HttpResponse(template.render())
+
+# --------------tab-------------
+def tab(request):
+    template = loader.get_template('tab.html')
+    return HttpResponse(template.render())
+
+# --------------table-------------
+def table(request):
+    template = loader.get_template('table.html')
     return HttpResponse(template.render())
