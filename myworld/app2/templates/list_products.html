@@ -9,7 +9,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'app2:index' %}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -21,9 +21,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{% url 'app2:index' %}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Tổng quan</span></a>
             </li>
 
             <!-- Divider -->
@@ -46,9 +46,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Quản lý sản phẩm :</h6>
                         <a class="collapse-item " href="{% url 'app2:more_products' %}">Thêm Sản Phẩm</a>
-                        <a class="collapse-item active" href="{% url 'app2:list_products' %}">Danh sản sản phẩm</a>
-                        <a class="collapse-item" href="{% url 'app2:more_product_portfolio' %}">Thêm sanh mục sản phẩm</a>
-                        <a class="collapse-item" href="{% url 'app2:list_product_portfolio' %}">Danh sản sản phẩm</a>
+                        <a class="collapse-item active" href="{% url 'app2:list_products' %}">Danh sách sản phẩm</a>
+                        <a class="collapse-item" href="{% url 'app2:more_product_portfolio' %}">Thêm danh mục </a>
+                        <a class="collapse-item" href="{% url 'app2:list_product_portfolio' %}">Danh mục sản phẩm</a>
                     </div>
                 </div>
             </li>
