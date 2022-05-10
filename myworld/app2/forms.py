@@ -15,9 +15,15 @@ class loginForm(forms.Form):
     password = forms.CharField(max_length=20, widget=forms.PasswordInput)
 
 
-class productPortfolio(forms.Form):
+FRUIT_CHOICES = [
+    ('1', 'Ẩn'),
+    ('2', 'Hiện'),
+]
+
+class PortfolioForm (forms.Form):
     portfolioName = forms.CharField(max_length=200)
-    portfolioTimePub = forms.DateTimeField()
-    portfolioBody = forms.TextField()
+    portfolioBody = forms.CharField(widget=forms.Textarea)
     portfolioImg = forms.FileField()
+    portfolioPub = forms.CharField(label='Hiển Thị', widget=forms.RadioSelect(choices=FRUIT_CHOICES))
+    portfolioTimePub = forms.DateTimeField()
      

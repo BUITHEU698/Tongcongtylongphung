@@ -12,7 +12,8 @@ urlpatterns = [
     path('blank', views.blank, name="blank"),
     path('more_products', views.more_products, name="more_products"),
     path('list_products', views.list_products, name="list_products"),
-    path('more_product_portfolio', views.more_product_portfolio, name="more_product_portfolio"),
+    path('more_product_portfolio', views.more_product_portfolio.as_view(),
+         name="more_product_portfolio"),
     path('list_product_portfolio', views.list_product_portfolio, name="list_product_portfolio"),
 
     path('cards', views.cards, name="cards"),
