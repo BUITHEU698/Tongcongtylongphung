@@ -32,22 +32,18 @@ class member(View):
 class loginUser (View):
     def get(self, request):
         template = loginForm
-        return render(request, 'login2.html', {'login': template})
+        return render(request, 'login.html', {'login': template})
 
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
-        try:
-            user = authenticate(request, username=User.objects.get(
-                email=username), password=password)
-        except:
-            user = authenticate(request, username=username, password=password)
-
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'index.html')
+            return redirect('app2:index')
+
         else:
-            return HttpResponse('login fail')
+            return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
 # --------------logOut-------------
 
@@ -67,10 +63,90 @@ class order(LoginRequiredMixin, View):
         return render(request, 'index.html')
 
 
-
 # --------------forget-paswork-------------
 
 
 def forgetPass(request):
-    template = loader.get_template('forgetPass.html')
+    template = loader.get_template('forgot-password.html')
+    return HttpResponse(template.render())
+
+
+# --------------index-------------
+
+
+def index(request):
+    template = loader.get_template('index2.html')
+    return HttpResponse(template.render())
+
+
+
+# --------------blank.html-------------
+
+
+def blank(request):
+    template = loader.get_template('blank.html')
+    return HttpResponse(template.render())
+
+
+
+
+# --------------products-------------
+def more_products(request):
+    template = loader.get_template('more_products.html')
+    return HttpResponse(template.render())
+
+def list_products(request):
+    template = loader.get_template('list_products.html')
+    return HttpResponse(template.render())
+def more_product_portfolio(request):
+    template = loader.get_template('more_product_portfolio.html')
+    return HttpResponse(template.render())
+def list_product_portfolio(request):
+    template = loader.get_template('list_product_portfolio.html')
+    return HttpResponse(template.render())
+
+
+# --------------cards-------------
+def cards(request):
+    template = loader.get_template('cards.html')
+    return HttpResponse(template.render())
+
+
+# --------------charts-------------
+def charts(request):
+    template = loader.get_template('charts.html')
+    return HttpResponse(template.render())
+# --------------tables-------------
+
+
+def tables(request):
+    template = loader.get_template('tables.html')
+    return HttpResponse(template.render())
+
+# --------------utilities_animation-------------
+
+
+def utilities_animation(request):
+    template = loader.get_template('utilities_animation.html')
+    return HttpResponse(template.render())
+
+# --------------utilities_border-------------
+
+
+def utilities_border(request):
+    template = loader.get_template('utilities_border.html')
+    return HttpResponse(template.render())
+
+# --------------utilities_color.html-------------
+
+
+def utilities_color(request):
+    template = loader.get_template('utilities_color.html')
+    return HttpResponse(template.render())
+
+# --------------utilities_other.html-------------
+
+
+def utilities_other(request):
+    template = loader.get_template('utilities_other.html')
     return HttpResponse(template.render())
