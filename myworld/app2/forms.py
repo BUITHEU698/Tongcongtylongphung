@@ -13,3 +13,11 @@ class memberForm(forms.Form):
 class loginForm(forms.Form):
     email = forms.CharField(max_length=30)
     password = forms.CharField(max_length=20, widget=forms.PasswordInput)
+
+
+class productPortfolio(forms.Form):
+    portfolioName = forms.CharField(max_length=200)
+    portfolioTimePub = forms.DateTimeField()
+    portfolioBody = forms.TextField()
+    portfolioImg = forms.FileField()
+     
