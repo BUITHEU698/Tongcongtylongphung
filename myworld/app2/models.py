@@ -16,7 +16,7 @@ class PortfolioModel(models.Model):
         ('1', 'Ẩn'),
         ('2', 'Hiện'),
     ]
-    portfolioName = models.CharField('Tên danh sách',max_length=200)
+    portfolioName = models.CharField('Tên danh sách',max_length=200, blank= False, null = False)
     portfolioBody = models.TextField('Mô tả danh sách')
     portfolioPub = models.CharField('Hiển thị',
         max_length=250,  default="2", choices=CHOICES)

@@ -125,8 +125,8 @@ class more_product_portfolio(View):
                 # luu thong tin vaao model
                 save_pp.save()
                 return HttpResponse("save success")
-        else:
-            return HttpResponse("not POST")
+            else:
+                return HttpResponse("not POST")
 
 # --------------shop-------------
 
