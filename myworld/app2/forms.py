@@ -1,9 +1,7 @@
-from pyexpat import model
 from django import forms
 from .models import PortfolioModel
 
 # --------------memberForm-------------
-
 
 class memberForm(forms.Form):
     username = forms.CharField(max_length=30)
@@ -18,7 +16,9 @@ class loginForm(forms.Form):
     password = forms.CharField(max_length=20, widget=forms.PasswordInput)
 
 
+
 class PortfolioForm (forms.ModelForm):
     class Meta:
         model = PortfolioModel
         fields = {'portfolioName','portfolioBody','portfolioPub','portfolioTimePub','portfolioImg' }
+

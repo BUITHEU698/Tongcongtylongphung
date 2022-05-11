@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 11, 2022 lúc 06:49 PM
+-- Thời gian đã tạo: Th5 07, 2022 lúc 03:24 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -40,7 +40,8 @@ CREATE TABLE `app1_contactmodel` (
 --
 
 INSERT INTO `app1_contactmodel` (`id`, `username`, `email`, `subject`, `message`) VALUES
-(1, 'buitheu', '19522254@gm.uit.edu.vn', 'Tỏ Tình', 'dasdas');
+(1, 'buitheu', '19522254@gm.uit.edu.vn', 'Tỏ Tình', 'Yeu noc nha'),
+(2, 'buitheu', '19522254@gm.uit.edu.vn', 'sad', 'gfd');
 
 -- --------------------------------------------------------
 
@@ -55,26 +56,13 @@ CREATE TABLE `app1_postblog` (
   `created_at` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `app2_portfoliomodel`
+-- Đang đổ dữ liệu cho bảng `app1_postblog`
 --
 
-CREATE TABLE `app2_portfoliomodel` (
-  `id` bigint(20) NOT NULL,
-  `portfolioImg` varchar(100) NOT NULL,
-  `portfolioBody` longtext NOT NULL,
-  `portfolioName` varchar(200) NOT NULL,
-  `portfolioPub` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `app2_portfoliomodel`
---
-
-INSERT INTO `app2_portfoliomodel` (`id`, `portfolioImg`, `portfolioBody`, `portfolioName`, `portfolioPub`) VALUES
-(1, '1', '1', '1', '1');
+INSERT INTO `app1_postblog` (`id`, `title`, `body`, `created_at`) VALUES
+(1, 'Bao cao doanh thu', 'vvvv', '2022-05-04 17:32:36.989176'),
+(2, 'hahah', 'hah', '2022-05-04 17:32:50.587174');
 
 -- --------------------------------------------------------
 
@@ -133,30 +121,26 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (14, 'Can change user', 4, 'change_user'),
 (15, 'Can delete user', 4, 'delete_user'),
 (16, 'Can view user', 4, 'view_user'),
-(17, 'Can add site', 5, 'add_site'),
-(18, 'Can change site', 5, 'change_site'),
-(19, 'Can delete site', 5, 'delete_site'),
-(20, 'Can view site', 5, 'view_site'),
-(21, 'Can add content type', 6, 'add_contenttype'),
-(22, 'Can change content type', 6, 'change_contenttype'),
-(23, 'Can delete content type', 6, 'delete_contenttype'),
-(24, 'Can view content type', 6, 'view_contenttype'),
-(25, 'Can add session', 7, 'add_session'),
-(26, 'Can change session', 7, 'change_session'),
-(27, 'Can delete session', 7, 'delete_session'),
-(28, 'Can view session', 7, 'view_session'),
-(29, 'Can add contact model', 8, 'add_contactmodel'),
-(30, 'Can change contact model', 8, 'change_contactmodel'),
-(31, 'Can delete contact model', 8, 'delete_contactmodel'),
-(32, 'Can view contact model', 8, 'view_contactmodel'),
-(33, 'Can add post blog', 9, 'add_postblog'),
-(34, 'Can change post blog', 9, 'change_postblog'),
-(35, 'Can delete post blog', 9, 'delete_postblog'),
-(36, 'Can view post blog', 9, 'view_postblog'),
-(37, 'Can add portfolio model', 10, 'add_portfoliomodel'),
-(38, 'Can change portfolio model', 10, 'change_portfoliomodel'),
-(39, 'Can delete portfolio model', 10, 'delete_portfoliomodel'),
-(40, 'Can view portfolio model', 10, 'view_portfoliomodel');
+(17, 'Can add content type', 5, 'add_contenttype'),
+(18, 'Can change content type', 5, 'change_contenttype'),
+(19, 'Can delete content type', 5, 'delete_contenttype'),
+(20, 'Can view content type', 5, 'view_contenttype'),
+(21, 'Can add session', 6, 'add_session'),
+(22, 'Can change session', 6, 'change_session'),
+(23, 'Can delete session', 6, 'delete_session'),
+(24, 'Can view session', 6, 'view_session'),
+(25, 'Can add contact model', 7, 'add_contactmodel'),
+(26, 'Can change contact model', 7, 'change_contactmodel'),
+(27, 'Can delete contact model', 7, 'delete_contactmodel'),
+(28, 'Can view contact model', 7, 'view_contactmodel'),
+(29, 'Can add poss form', 8, 'add_possform'),
+(30, 'Can change poss form', 8, 'change_possform'),
+(31, 'Can delete poss form', 8, 'delete_possform'),
+(32, 'Can view poss form', 8, 'view_possform'),
+(33, 'Can add post blog', 8, 'add_postblog'),
+(34, 'Can change post blog', 8, 'change_postblog'),
+(35, 'Can delete post blog', 8, 'delete_postblog'),
+(36, 'Can view post blog', 8, 'view_postblog');
 
 -- --------------------------------------------------------
 
@@ -183,7 +167,9 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$320000$uLr7umh1bkyXPjtlpXl7R5$JhWv/POacI5WpVM1Z7xf+lmX7lnENu5axlZGQu8lXdE=', '2022-05-10 19:01:08.182809', 1, 'buitheu', '', '', '19522254@ms.uit.edu.vn', 1, 1, '2022-05-10 17:03:20.259941');
+(1, 'pbkdf2_sha256$320000$Q5yzYOaralObfK9A5yz9Hu$YosAQj3IK6pC0YZw0hdVpeKaKhUmPNU7b/TneoGIEKI=', '2022-05-06 10:26:00.291724', 1, 'buitheu', '', '', '19522254@gm.uit.edu.vn', 1, 1, '2022-04-29 14:56:26.758371'),
+(2, 'pbkdf2_sha256$320000$d8qTbdo7ib35wVYark8GV8$eD19PyxdQhFQi9k5L9nEY2Fo27eBlyKLsFRTX39pPF0=', NULL, 0, 'bui thi theu', '', '', '19522254@gm.uit.edu.vn', 0, 1, '2022-05-06 04:39:59.731536'),
+(4, 'pbkdf2_sha256$320000$MvYkn6SuWp3DNIbRvHFWFb$wHBp6bwCLtxSin/T+JpPCGggp7hVkL+9fUNBi/tUabc=', NULL, 0, 'buitheu698', '', '', 'buitheu698@gmail.com', 0, 1, '2022-05-06 05:30:28.444063');
 
 -- --------------------------------------------------------
 
@@ -231,7 +217,8 @@ CREATE TABLE `django_admin_log` (
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2022-05-10 17:55:38.563156', '1', 'qaefrewaf', 1, '[{\"added\": {}}]', 10, 1);
+(1, '2022-05-04 17:32:36.993174', '1', 'Bao cao doanh thu', 1, '[{\"added\": {}}]', 8, 1),
+(2, '2022-05-04 17:32:50.591174', '2', 'hahah', 1, '[{\"added\": {}}]', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -251,15 +238,13 @@ CREATE TABLE `django_content_type` (
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (1, 'admin', 'logentry'),
-(8, 'app1', 'contactmodel'),
-(9, 'app1', 'postblog'),
-(10, 'app2', 'portfoliomodel'),
+(7, 'app1', 'contactmodel'),
+(8, 'app1', 'postblog'),
 (3, 'auth', 'group'),
 (2, 'auth', 'permission'),
 (4, 'auth', 'user'),
-(6, 'contenttypes', 'contenttype'),
-(7, 'sessions', 'session'),
-(5, 'sites', 'site');
+(5, 'contenttypes', 'contenttype'),
+(6, 'sessions', 'session');
 
 -- --------------------------------------------------------
 
@@ -279,56 +264,31 @@ CREATE TABLE `django_migrations` (
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2022-05-10 17:00:23.849748'),
-(2, 'auth', '0001_initial', '2022-05-10 17:00:24.369494'),
-(3, 'admin', '0001_initial', '2022-05-10 17:00:24.488692'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2022-05-10 17:00:24.501680'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2022-05-10 17:00:24.511672'),
-(6, 'app1', '0001_initial', '2022-05-10 17:00:24.540645'),
-(7, 'app1', '0002_rename_usename_contacform_username', '2022-05-10 17:00:24.556629'),
-(8, 'app1', '0003_rename_contacform_contactmodel', '2022-05-10 17:00:24.581606'),
-(9, 'app1', '0004_rename_contactmodel_contactform', '2022-05-10 17:00:24.605583'),
-(10, 'app1', '0005_rename_contactform_contactmodel', '2022-05-10 17:00:24.630564'),
-(11, 'app1', '0006_possform', '2022-05-10 17:00:24.654538'),
-(12, 'app1', '0007_rename_possform_postblog', '2022-05-10 17:00:24.679779'),
-(13, 'app2', '0001_initial', '2022-05-10 17:00:24.709753'),
-(14, 'contenttypes', '0002_remove_content_type_name', '2022-05-10 17:00:24.829317'),
-(15, 'auth', '0002_alter_permission_name_max_length', '2022-05-10 17:00:24.878269'),
-(16, 'auth', '0003_alter_user_email_max_length', '2022-05-10 17:00:24.901245'),
-(17, 'auth', '0004_alter_user_username_opts', '2022-05-10 17:00:24.914234'),
-(18, 'auth', '0005_alter_user_last_login_null', '2022-05-10 17:00:24.981067'),
-(19, 'auth', '0006_require_contenttypes_0002', '2022-05-10 17:00:24.998051'),
-(20, 'auth', '0007_alter_validators_add_error_messages', '2022-05-10 17:00:25.012036'),
-(21, 'auth', '0008_alter_user_username_max_length', '2022-05-10 17:00:25.041011'),
-(22, 'auth', '0009_alter_user_last_name_max_length', '2022-05-10 17:00:25.070983'),
-(23, 'auth', '0010_alter_group_name_max_length', '2022-05-10 17:00:25.107948'),
-(24, 'auth', '0011_update_proxy_permissions', '2022-05-10 17:00:25.131926'),
-(25, 'auth', '0012_alter_user_first_name_max_length', '2022-05-10 17:00:25.198864'),
-(26, 'sessions', '0001_initial', '2022-05-10 17:00:25.259806'),
-(27, 'sites', '0001_initial', '2022-05-10 17:00:25.303766'),
-(28, 'sites', '0002_alter_domain_unique', '2022-05-10 17:00:25.327744'),
-(29, 'app2', '0002_portfoliomodel_portfoliopub', '2022-05-10 17:46:43.749174'),
-(30, 'app2', '0003_alter_portfoliomodel_portfoliopub', '2022-05-10 17:51:10.245667'),
-(31, 'app2', '0004_alter_portfoliomodel_portfoliopub', '2022-05-11 16:45:49.036740'),
-(32, 'app2', '0005_auto_20220511_1414', '2022-05-11 16:45:49.419382'),
-(33, 'app2', '0006_auto_20220511_1417', '2022-05-11 16:45:49.648170'),
-(34, 'app2', '0007_alter_portfoliomodel_portfoliotimepub', '2022-05-11 16:45:49.669151'),
-(35, 'app2', '0008_auto_20220511_1421', '2022-05-11 16:45:49.720104'),
-(36, 'app2', '0009_auto_20220511_1750', '2022-05-11 16:45:49.859973'),
-(37, 'app2', '0010_auto_20220511_1822', '2022-05-11 16:45:50.092757'),
-(38, 'app2', '0011_portfoliomodel_portfoliobody', '2022-05-11 16:45:50.259601'),
-(39, 'app2', '0012_portfoliomodel_portfoliopub', '2022-05-11 16:45:50.356512'),
-(40, 'app2', '0013_portfoliomodel_portfoliotimepub', '2022-05-11 16:45:50.452420'),
-(41, 'app2', '0014_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.533345'),
-(42, 'app2', '0015_remove_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.582302'),
-(43, 'app2', '0016_alter_portfoliomodel_portfoliotimepub', '2022-05-11 16:45:50.599287'),
-(44, 'app2', '0017_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.676215'),
-(45, 'app2', '0018_remove_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.725167'),
-(46, 'app2', '0019_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.806092'),
-(47, 'app2', '0020_alter_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.822077'),
-(48, 'app2', '0021_remove_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.870032'),
-(49, 'app2', '0022_portfoliomodel_portfolioimg', '2022-05-11 16:45:50.953956'),
-(50, 'app2', '0023_auto_20220511_2229', '2022-05-11 16:45:51.108810');
+(1, 'contenttypes', '0001_initial', '2022-04-29 14:55:49.470032'),
+(2, 'auth', '0001_initial', '2022-04-29 14:55:50.241884'),
+(3, 'admin', '0001_initial', '2022-04-29 14:55:50.396739'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2022-04-29 14:55:50.413724'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2022-04-29 14:55:50.435705'),
+(6, 'app1', '0001_initial', '2022-04-29 14:55:50.474668'),
+(7, 'app1', '0002_rename_usename_contacform_username', '2022-04-29 14:55:50.503643'),
+(8, 'app1', '0003_rename_contacform_contactmodel', '2022-04-29 14:55:50.537610'),
+(9, 'app1', '0004_rename_contactmodel_contactform', '2022-04-29 14:55:50.578573'),
+(10, 'app1', '0005_rename_contactform_contactmodel', '2022-04-29 14:55:50.621533'),
+(11, 'contenttypes', '0002_remove_content_type_name', '2022-04-29 14:55:50.768395'),
+(12, 'auth', '0002_alter_permission_name_max_length', '2022-04-29 14:55:50.841329'),
+(13, 'auth', '0003_alter_user_email_max_length', '2022-04-29 14:55:50.877298'),
+(14, 'auth', '0004_alter_user_username_opts', '2022-04-29 14:55:50.896281'),
+(15, 'auth', '0005_alter_user_last_login_null', '2022-04-29 14:55:50.968213'),
+(16, 'auth', '0006_require_contenttypes_0002', '2022-04-29 14:55:50.974206'),
+(17, 'auth', '0007_alter_validators_add_error_messages', '2022-04-29 14:55:50.990192'),
+(18, 'auth', '0008_alter_user_username_max_length', '2022-04-29 14:55:51.022162'),
+(19, 'auth', '0009_alter_user_last_name_max_length', '2022-04-29 14:55:51.054131'),
+(20, 'auth', '0010_alter_group_name_max_length', '2022-04-29 14:55:51.104086'),
+(21, 'auth', '0011_update_proxy_permissions', '2022-04-29 14:55:51.136055'),
+(22, 'auth', '0012_alter_user_first_name_max_length', '2022-04-29 14:55:51.182013'),
+(23, 'sessions', '0001_initial', '2022-04-29 14:55:51.266934'),
+(24, 'app1', '0006_possform', '2022-05-04 16:31:43.936064'),
+(25, 'app1', '0007_rename_possform_postblog', '2022-05-04 17:44:13.455226');
 
 -- --------------------------------------------------------
 
@@ -341,32 +301,6 @@ CREATE TABLE `django_session` (
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `django_session`
---
-
-INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('xxgbg2tglf9ui8exgvyiwgu0q1qjba4i', '.eJxVjEEOwiAQRe_C2pApFOi4dO8ZyMCMUjU0Ke3KeHfbpAvd_vfef6tI61Li2mSOI6uz6tTpd0uUn1J3wA-q90nnqS7zmPSu6IM2fZ1YXpfD_Tso1MpWAydkBiAmCeQcGptcn0wOBi0KoxXIoQMPvUlh8MFs8iAWA9HNZ1CfL-bpN5U:1noV6a:ddJhEsEE0U5kkPqxhLzVkwAhCO8Y1fLiKH9eWfo0ICg', '2022-05-24 19:01:08.187804');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `django_site`
---
-
-CREATE TABLE `django_site` (
-  `id` int(11) NOT NULL,
-  `domain` varchar(100) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `django_site`
---
-
-INSERT INTO `django_site` (`id`, `domain`, `name`) VALUES
-(1, 'example.com', 'example.com');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -382,12 +316,6 @@ ALTER TABLE `app1_contactmodel`
 -- Chỉ mục cho bảng `app1_postblog`
 --
 ALTER TABLE `app1_postblog`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `app2_portfoliomodel`
---
-ALTER TABLE `app2_portfoliomodel`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -464,13 +392,6 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
--- Chỉ mục cho bảng `django_site`
---
-ALTER TABLE `django_site`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `django_site_domain_a2e37b91_uniq` (`domain`);
-
---
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
 
@@ -478,19 +399,13 @@ ALTER TABLE `django_site`
 -- AUTO_INCREMENT cho bảng `app1_contactmodel`
 --
 ALTER TABLE `app1_contactmodel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `app1_postblog`
 --
 ALTER TABLE `app1_postblog`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `app2_portfoliomodel`
---
-ALTER TABLE `app2_portfoliomodel`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `auth_group`
@@ -508,13 +423,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT cho bảng `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `auth_user_groups`
@@ -532,25 +447,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT cho bảng `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT cho bảng `django_site`
---
-ALTER TABLE `django_site`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
