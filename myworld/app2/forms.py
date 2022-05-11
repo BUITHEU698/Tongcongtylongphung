@@ -1,4 +1,5 @@
 from django import forms
+from .models import PortfolioModel
 
 # --------------memberForm-------------
 
@@ -15,15 +16,12 @@ class loginForm(forms.Form):
     password = forms.CharField(max_length=20, widget=forms.PasswordInput)
 
 
-FRUIT_CHOICES = [
-    ('1', 'Ẩn'),
-    ('2', 'Hiện'),
-]
 
 class PortfolioForm (forms.Form):
     portfolioName = forms.CharField(max_length=200)
     portfolioBody = forms.CharField(widget=forms.Textarea)
-    portfolioImg = forms.FileField()
-    portfolioPub = forms.CharField(label='Hiển Thị', widget=forms.RadioSelect(choices=FRUIT_CHOICES))
+    portfolioPub = forms.ChoiceField(
+        label='Hiển Thị', widget=forms.RadioSelect, choices=PortfolioModel.CHOICES)
     portfolioTimePub = forms.DateTimeField()
+    portfolioImg = forms.FileField()
      

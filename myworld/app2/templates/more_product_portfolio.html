@@ -469,7 +469,13 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <form action="" method="post">
+          <form  
+            action="{% url 'app2:more_product_portfolio' %} "
+            method="post"
+            id="PortfolioForm"
+            novalidate="novalidate"
+          >
+           {% csrf_token %}
             <!-- Page Heading -->
             <h1 class="h3 mb-4 text-gray-800">Thêm danh mục</h1>
 
@@ -479,7 +485,7 @@
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                      Tên danh mục
+                      Thông tin
                     </h6>
                   </div>
                   <div class="card-body">
@@ -490,9 +496,9 @@
                       type="text"
                       class="form-control"
                       id="validationCustom01"
-                      value=""
+                      name ="portfolioName"
                       placeholder="Nhập tên danh mục"
-                      required
+                      required="required"
                     />
                   </div>
                   <div class="card-body">
@@ -504,6 +510,7 @@
                       class="form-control"
                       id="exampleFormControlTextarea1"
                       value=""
+                      name="portfolioBody"
                       placeholder="Nhập mô tả"
                       required
                     ></textarea>
@@ -511,7 +518,7 @@
                 </div>
 
                 <!-- Brand Buttons -->
-                <div class="card shadow mb-4">
+                {% comment %} <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
                       Xem trước kết quả tìm kiếm
@@ -560,9 +567,8 @@
                       required
                     />
                   </div>
-                </div>
+                </div> {% endcomment %}
               </div>
-
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
@@ -575,7 +581,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="exampleRadios"
+                        name="portfolioPub"
                         id="exampleRadios1"
                         value="option1"
                         checked
@@ -588,7 +594,7 @@
                       <input
                         class="form-check-input"
                         type="radio"
-                        name="exampleRadios"
+                        name="portfolioPub"
                         id="exampleRadios2"
                         value="option2"
                       />
@@ -614,10 +620,10 @@
                         <input
                           type="datetime-local"
                           id="meeting-time"
-                          name="meeting-time"
+                          name="portfolioTimePub"
                           value="2018-06-12T19:30"
                           min="2018-06-07T00:00"
-                          max="2018-06-14T00:00"
+                          max="2026-06-14T00:00"
                         />
                       </div>
                     </div>
@@ -632,17 +638,17 @@
                   </div>
                   <div class="card-body">
                         <label for="formFile" class="form-label">Upload Ảnh</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" name="portfolioImg" type="file" id="formFile">
                       </div>
                   </div>
                 </div>
               </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
             </div>
-             <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-          </form>
+          </form> 
         </div>
         <!-- /.container-fluid -->
       </div>
