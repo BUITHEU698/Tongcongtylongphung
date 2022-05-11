@@ -21,4 +21,4 @@ class loginForm(forms.Form):
 class PortfolioForm (forms.ModelForm):
     class Meta:
         model = PortfolioModel
-        fields = {'portfolioName','portfolioBody','portfolioPub', 'portfolioTimePub', 'portfolioImg', }
+        fields = {'portfolioName' }
