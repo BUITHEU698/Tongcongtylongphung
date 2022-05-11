@@ -1,10 +1,13 @@
 
 import email
 from pyexpat import model
+from venv import create
 from django.db import models
 from django.urls import reverse
 from matplotlib.style import use
-
+from numpy import quantile
+from app2.models import ProductsModel
+from django.contrib.auth.models import AbstractUser
 
 # --------------contact-------------
 class contactModel(models.Model):
@@ -26,3 +29,29 @@ class postBlog(models.Model):
         return self.title
     def get_absolute_url(self):
         return reverse('detail',args=[self.id,])
+    
+class UserModel (models.Model):
+    username = models.CharField('Tên người dùng', max_length=25)
+    email = models.EmailField('Email')
+    phoneNumber = models.CharField('Số điện thoại', default= 0, max_length= 11)
+    address = models.CharField('Địa chỉ', max_length= 255)
+
+class CartModel (models.Model):
+    user = models.ForeignKey(UserModel, on_delete= models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
+
+class CartItemModel (models.Model):
+    cart = models.ForeignKey(CartModel, on_delete= models.CASCADE)
+    products = models.ForeignKey(ProductsModel, on_delete= models.CASCADE)
+    quantile = models.IntegerField('Số lượng', default=0)
+
+
+
+class OrderModel (models.Model):
+    user = models.ForeignKey(UserModel, on_delete= models.CASCADE)
+    cart = models.ForeignKey(CartModel, on_delete= models.CASCADE)
+    ShipAddress = models.CharField('Địa chỉ ship', max_length= 255)
+    order_description = models.TextField(default='')
+    completed = models.BooleanField(default= False)
