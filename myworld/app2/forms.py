@@ -22,6 +22,6 @@ class PortfolioForm (forms.Form):
     portfolioBody = forms.CharField(widget=forms.Textarea)
     portfolioPub = forms.ChoiceField(
         label='Hiển Thị', widget=forms.RadioSelect, choices=PortfolioModel.CHOICES)
-    portfolioTimePub = forms.DateTimeField()
+    portfolioTimePub = forms.DateTimeField(label="", required=False)
     portfolioImg = forms.FileField()
      

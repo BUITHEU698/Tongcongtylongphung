@@ -4,6 +4,7 @@ from django.template import loader
 from .forms import memberForm
 from .forms import loginForm
 from .forms import PortfolioForm
+from .models import PortfolioModel
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout

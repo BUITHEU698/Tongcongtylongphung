@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 import email
 from pyexpat import model
@@ -15,12 +16,12 @@ class PortfolioModel(models.Model):
         ('1', 'Ẩn'),
         ('2', 'Hiện'),
     ]
-    portfolioName = models.CharField(max_length=200)
-    portfolioBody = models.TextField()
-    portfolioPub = models.CharField(
-        max_length=250,  default="1", choices=CHOICES)
-    portfolioTimePub = models.DateTimeField()
-    portfolioImg = models.FileField()
+    portfolioName = models.CharField('Tên danh sách',max_length=200)
+    portfolioBody = models.TextField('Mô tả danh sách')
+    portfolioPub = models.CharField('Hiển thị',
+        max_length=250,  default="2", choices=CHOICES)
+    portfolioTimePub = models.DateTimeField('Thời gian hiển thị', default=timezone.now)
+    portfolioImg = models.FileField('Ảnh minh họa')
     
     def __str__(self):
         return self.portfolioName
