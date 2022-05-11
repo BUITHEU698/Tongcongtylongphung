@@ -478,15 +478,17 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">
-                DataTables Example
+                Danh mục sản phẩm 
+                <a class="btn btn-primary float-right" href="{% url 'app2:more_product_portfolio' %}" role="button">Thêm danh mục</a>
               </h6>
+              
             </div>
             <div class="card-body">
 
               
               <form name="form">
                 
-                <div class="table-responsive">
+                <div class="table-responsive table-striped table table-hover">
                   <table
                     class="table table-bordered"
                     id="dataTable"
@@ -495,39 +497,53 @@
                   >
                     <thead>
                       <tr>
-                        <th>  <input type="checkbox" name="CheckAll" onclick="SelectAll()" /> All</th>
+                        <th>  <input type="checkbox" name="CheckAll" onclick="SelectAll()" /> All   &ensp;  &ensp;
+                        
+                          <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
+                               Xóa
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa thư mục</h5>
+                                
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+                                  <button type="button" class="btn  btn-danger">Xóa</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                        </th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
                         <th>Số lượng</th>
                         <th>Ngày đăng</th>
+                        <th>Tình trạng</th>
                       </tr>
                     </thead>           
                     <tbody>
                     
+                    {% for x in listPortfolio %}
+                      
                     <tr>
+                      
                       <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>Office Manager</td>
-                      <td><img src="..." class="rounded mx-auto d-block" alt="..."></td>
+                      <td>{{x.portfolioName}}</td>
+                      <td><img style="height: 100px;" src="/media/{{x.portfolioImg}}"  class="rounded d-block" alt="..."></td>
                       <td>37</td>
-                      <td>2008/12/11</td>
+                      <td>{{x.portfolioTimePub}}</td>
+
+                      <td>{{x.portfolioPub}}</td>
                       
                     </tr>
-                    <tr>
-                      <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>Office Manager</td>
-                      <td><img src="..." class="rounded mx-auto d-block" alt="..."></td>
-                      <td>37</td>
-                      <td>2008/12/11</td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>Office Manager</td>
-                      <td><img src="..." class="rounded mx-auto d-block" alt="..."></td>
-                      <td>37</td>
-                      <td>2008/12/11</td>
-                      
-                    </tr>
+                    {% endfor %}
+                   
                  
                   
                     </tbody>

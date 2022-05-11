@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import memberForm
 from .forms import loginForm
@@ -8,6 +8,7 @@ from .models import PortfolioModel
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------login-------------
@@ -125,13 +126,16 @@ class more_product_portfolio(View):
         else:
             return HttpResponse("not POST")
 
-# --------------shop-------------
 
 def list_product_portfolio(request):
     template = loader.get_template('list_product_portfolio.html')
-    return HttpResponse(template.render())
+    context = {'listPortfolio': PortfolioModel.objects.all()}
+    return HttpResponse(template.render(context, request))
 
-
+def delete_portfolio (request, id):
+    portfolio = PortfolioModel.objects.get(id=id)
+    portfolio.delete()
+    return HttpResponseRedirect(reverse('index'))
 # --------------cards-------------
 def cards(request):
     template = loader.get_template('cards.html')
