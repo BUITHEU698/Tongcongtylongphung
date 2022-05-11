@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="{% url 'app2:more_product_portfolio' %} "  enctype ="multipart/form-data"  method="post">
+      {% csrf_token %} <br>
+      {% comment %} <input type="text" name="portfolioName" id=""> <br>
+
+      {{cf.portfolioBody}}<br>
+      {{cf.portfolioPub}}<br>
+     
+      <div class="card card-body">
+        <input
+          type="datetime-local"
+          id="meeting-time"
+          name="portfolioTimePub"
+          min="2018-06-07T00:00"
+          max="2026-06-14T00:00"
+        />
+      </div> {% endcomment %}
+      {{cf}}<br>
+      <button type="submit">submit</button>
+    </form>
+  </body>
+</html>

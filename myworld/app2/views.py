@@ -109,25 +109,21 @@ def list_products(request):
 
 class more_product_portfolio(View):
     def get(self, request):
-        context = {'pp': PortfolioForm}
+        context = {'cf': PortfolioForm}
         return render(request, 'more_product_portfolio.html', context)
 
     def post(self, request):
         # kiem tra xem co phai phuong thuc post k
         if request.method == "POST":
-            # gan thong tin cua contactForm nhap tu ban phim vao trong bien PortfolioForm
-            pp = PortfolioForm(request.POST)
-            # Kiem tra dieu kien nhap trong input: neu dieu kien dung
-            if pp.is_valid():
-                # chuyen doi thong tin cua form thanh thong tin cua model
-                save_pp = PortfolioModel(portfolioName=pp.cleaned_data['portfolioName'], portfolioBody=pp.cleaned_data['portfolioBody'],
-                                         portfolioPub=pp.cleaned_data['portfolioPub'], portfolioTimePub=pp.cleaned_data['portfolioTimePub'], portfolioImg=pp.cleaned_data['portfolioImg'])
-                # luu thong tin vaao model
-                save_pp.save()
+            f = PortfolioForm(request.POST, request.FILES)
+            if f.is_valid():
+    
+                f.save()
                 return HttpResponse("save success")
             else:
-                return HttpResponse("not POST")
-
+                return HttpResponse("no save success")
+        else:
+            return HttpResponse("not POST")
 # --------------shop-------------
 
 def list_product_portfolio(request):
