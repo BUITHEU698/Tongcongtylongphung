@@ -5,6 +5,7 @@ app_name = 'app2'
 urlpatterns = [
     path('signup', views.member.as_view(), name="signup"),
     path('', views.loginUser.as_view(), name="login"),
+    path('forgetPass', views.forgetPass, name="forgetPass"),
     path('index', views.index, name="index"),
     path('blank', views.blank, name="blank"),
     path('more_products', views.more_products.as_view(), name="more_products"),

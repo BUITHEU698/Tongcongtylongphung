@@ -1,5 +1,6 @@
+from audioop import reverse
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import UserForm, contactForm
 from .models import UserModel, contactModel
@@ -125,11 +126,6 @@ def blog4(request):
     return HttpResponse(template.render())
 
 
-class userLogin (View):
-    def get(self, request):
-        template = UserForm
-        return render(request, 'userlogin.html', {'login': template})
-
 
 class userLogin(View):
     def get(self, request):
@@ -151,7 +147,7 @@ def logoutUser(request):
 
 
 class order(LoginRequiredMixin, View):
-    login_url = '/login'
+    login_url = '/userLogin'
 
     def get(self, request):
         return render(request, 'index.html')
@@ -159,6 +155,22 @@ class order(LoginRequiredMixin, View):
 
 # --------------forget-paswork-------------
 
+class register(View):
+    def get(self, request):
+        context = {
+                        'register': UserModel.objects.all(),
+                   }
+        return render(request, 'register.html', context)
+    def post(self, request):
+        if request.method == "POST":
+            f = UserForm(request.POST, request.FILES)
+            if f.is_valid():
+                f.save()
+                return HttpResponseRedirect(reverse('app2:userLogin'))
+            else:
+                return HttpResponse("no save success")
+        else:
+            return HttpResponse("not POST")
 
 def forgetPass(request):
     template = loader.get_template('forgot-password.html')

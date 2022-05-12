@@ -20,7 +20,7 @@ urlpatterns = [
     path('blog4', views.blog4, name="blog4"),
     path('userLogin', views.userLogin.as_view(), name="userLogin"),
     path('logout', views.logoutUser, name="logout"),
-    path('register', views.order.as_view(), name="register"),
+    path('register', views.register.as_view(), name="register"),
     path('forgetPass', views.forgetPass, name="forgetPass"),
  
 
