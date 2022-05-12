@@ -15,10 +15,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------index-------------
 
+
+
 class index(View):
     def get(self, request):
-        context = {'listPortfolio':  PortfolioForm,
-                   'listproducts': ProductsForm}
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listproducts': ProductsModel.objects.all(),
+        }
         return render(request, 'index.html', context)
 
 
