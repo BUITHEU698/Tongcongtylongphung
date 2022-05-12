@@ -4,7 +4,7 @@ from .import views
 app_name = 'app1'
 
 urlpatterns = [
-    path('', views.index, name="index"),
+    path('', views.index.as_view(), name="index"),
     path('sitemap', views.sitemap, name="sitemap"),
     path('cart', views.cart, name="cart"),
     path('checkout', views.checkout, name="checkout"),

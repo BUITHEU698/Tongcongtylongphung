@@ -521,7 +521,7 @@
 
                     <div class="card-body">
                         <label for="formFile" class="form-label">Upload Ảnh</label>
-                        <input class="form-control" name ="productsImg" type="file" id="formFile" />
+                        <input class="form-control" name ="productsImg" type="file"  required id="formFile" />
                     </div>
                     </div>
 
@@ -600,6 +600,7 @@
                         <input
                           class="form-check-input"
                           type="radio"
+                          checked
                           name="productsPub"
                           id="exampleRadios2"
                           value="1"
@@ -638,9 +639,9 @@
                             type="datetime-local"
                             id="meeting-time"
                             name="productsTimePub"
-                           
                             min="2018-06-07T00:00"
                             max="2026-06-14T00:00"
+                            required
                           />
                         </div> 
                         
@@ -675,6 +676,7 @@
                                 <label for="inputCity" class="form-label">Khối lượng một sản phẩm</label>
                                 <input
                                 type="number"
+                                required
                                 name ="weight"
                                 class="form-control"
                                 id="inputCity"

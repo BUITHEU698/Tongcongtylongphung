@@ -4,6 +4,10 @@ from django.template import loader
 from .forms import contactForm
 from .models import contactModel
 from .models import postBlog
+from app2.models import ProductsModel
+from app2.models import PortfolioModel
+from app2.forms import PortfolioForm
+from app2.forms import ProductsForm
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -11,10 +15,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------index-------------
 
+class index(View):
+    def get(self, request):
+        context = {'listPortfolio':  PortfolioForm,
+                   'listproducts': ProductsForm}
+        return render(request, 'index.html', context)
 
-def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+
 
 
 # --------------index-------------

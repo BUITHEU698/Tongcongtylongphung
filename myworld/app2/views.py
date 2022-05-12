@@ -106,7 +106,8 @@ class more_products(View):
             if f.is_valid():
 
                 f.save()
-                return HttpResponse("save success")
+
+                return HttpResponseRedirect(reverse('app2:list_products'))
             else:
                 return HttpResponse("no save success")
         else:
@@ -124,15 +125,15 @@ class list_products(View):
 # --------------portfolio-------------
 class updata_product_portfolio(View):
     def get(self, request, id):
-        context = { 
-                   'myPortfolio':  PortfolioModel.objects.get(id=id),
-                   }
+        context = {
+            'myPortfolio':  PortfolioModel.objects.get(id=id),
+        }
         return render(request, 'updata_product_portfolio.html', context)
 
     def updaterecord(self, request, id):
         context = {
             'myPortfolio':  PortfolioModel.objects.get(id=id),
-            }
+        }
         if request.method == "POST":
             f = PortfolioForm(request.POST, request.FILES)
             if f.is_valid():
@@ -143,9 +144,6 @@ class updata_product_portfolio(View):
                 return HttpResponse("no update success")
         else:
             return HttpResponse("not POST")
-    
-
-
 
 
 class more_product_portfolio(View):
@@ -157,22 +155,20 @@ class more_product_portfolio(View):
         if request.method == "POST":
             f = PortfolioForm(request.POST, request.FILES)
             if f.is_valid():
-
                 f.save()
-                return HttpResponse("save success")
+                return HttpResponseRedirect(reverse('app2:list_product_portfolio'))
             else:
                 return HttpResponse("no save success")
         else:
             return HttpResponse("not POST")
-        
+
+
 class list_product_portfolio(View):
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
         }
         return render(request, 'list_product_portfolio.html', context)
-
-
 
 
 # --------------charts-------------
