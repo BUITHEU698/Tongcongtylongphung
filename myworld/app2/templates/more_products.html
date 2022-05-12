@@ -687,14 +687,12 @@
                             <select class="form-select" id="autoSizingSelect">
                               <option selected>Choose...</option>
                               
-                              {% for x in list_product_portfolio %}
+                              {% for x in product_portfolio %}
                                 <option value="1">{{x.portfolioName}}</option>
                               {% endfor %}
                                 
                                 
-                            
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+      
                             </select>
                         </div>
                     </div>
@@ -733,7 +731,7 @@
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary">
                 Save changes
               </button>
             </div>
