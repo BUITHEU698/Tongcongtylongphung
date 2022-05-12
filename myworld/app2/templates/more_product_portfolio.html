@@ -60,8 +60,8 @@
               >Thêm Sản Phẩm</a
             >
             <a class="collapse-item" href="{% url 'app2:list_products' %}"
-              >Danh sách sản phẩm </a
-            >
+              >Danh sách sản phẩm
+            </a>
             <a
               class="collapse-item active"
               href="{% url 'app2:more_product_portfolio' %}"
@@ -469,227 +469,277 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <form  action="{% url 'app2:more_product_portfolio' %} "  enctype ="multipart/form-data"  method="post">
-     
+          <form
+            action="{% url 'app2:more_product_portfolio' %} "
+            enctype="multipart/form-data"
+            method="post"
+          >
             {% csrf_token %}
-        
-             <!-- Page Heading -->
-             <h1 class="h3 mb-4 text-gray-800">Thêm danh mục</h1>
- 
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">Thêm danh mục</h1>
+
             <div class="row">
-               <div class="col-lg-8">
-                 <!-- Circle Buttons -->
-                 <div class="card shadow mb-4">
-                   <div class="card-header py-3">
-                     <h6 class="m-0 font-weight-bold text-primary">
-                       Thông tin
-                     </h6>
-                   </div>
-                   <div class="card-body">
-                     <label for="validationCustom01" class="form-label"
-                       >Tên danh mục</label
-                     >
-                     <input
-                       type="text"
-                       class="form-control"
-                       id="validationCustom01"
-                       name ="portfolioName"
-                       placeholder="Nhập tên danh mục"
-                       data-validation-required-message="Vui lònh nhập tên danh mục"
-                       required="required"
-                     />
-                   </div>
-                 <div class="card-body">
-                     <label for="validationCustom02" class="form-label"
-                       >Mô tả</label
-                     >
- 
-                     <textarea
-                       class="form-control"
-                       id="exampleFormControlTextarea1"
-                       value=""
-                       name="portfolioBody"
-                       placeholder="Nhập mô tả"
-                       required
-                     ></textarea>
-                   </div>
-                 </div>
- 
-                 <!-- Brand Buttons -->
-                 {% comment %} <div class="card shadow mb-4">
-                   <div class="card-header py-3">
-                     <h6 class="m-0 font-weight-bold text-primary">
-                       Xem trước kết quả tìm kiếm
-                     </h6>
-                   </div>
-                   <div class="card-body">
-                     Xin hãy nhập Tiêu đề và Mô tả để xem trước kết quả tìm kiếm
-                     của danh mục này
-                   </div>
-                   <div class="card-body">
-                     <label for="validationCustom01" class="form-label"
-                       >Tên danh mục</label
-                     >
-                     <input
-                       type="text"
-                       class="form-control"
-                       id="validationCustom01"
-                       value=""
-                       placeholder="Nhập tên danh mục"
-                       required
-                     />
-                   </div>
-                   <div class="card-body">
-                     <label for="validationCustom02" class="form-label"
-                       >Mô tả</label
-                     >
- 
-                     <textarea
-                       class="form-control"
-                       id="exampleFormControlTextarea1"
-                       value=""
-                       placeholder="Nhập mô tả"
-                       required
-                     ></textarea>
-                   </div>
-                   <div class="card-body">
-                     <label for="validationCustom01" class="form-label"
-                       >Đường dẫn</label
-                     >
-                     <input
-                       type="text"
-                       class="form-control"
-                       id="validationCustom01"
-                       value=""
-                       placeholder="Nhập đường dẫn tìm kiếm danh mục ..."
-                       required
-                     />
-                   </div>
-                 </div> {% endcomment %}
-               </div>
+              <div class="col-lg-8">
+                <!-- Circle Buttons -->
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin</h6>
+                  </div>
+                  <div class="card-body">
+                    <label for="validationCustom01" class="form-label"
+                      >Tên danh mục</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom01"
+                      name="portfolioName"
+                      placeholder="Nhập tên danh mục"
+                      data-validation-required-message="Vui lònh nhập tên danh mục"
+                      required="required"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <label for="validationCustom02" class="form-label"
+                      >Mô tả</label
+                    >
+
+                    <textarea
+                      class="form-control"
+                      id="exampleFormControlTextarea1"
+                      value=""
+                      name="portfolioBody"
+                      placeholder="Nhập mô tả"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+
+                <!-- Brand Buttons -->
+                {% comment %}
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Xem trước kết quả tìm kiếm
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    Xin hãy nhập Tiêu đề và Mô tả để xem trước kết quả tìm kiếm
+                    của danh mục này
+                  </div>
+                  <div class="card-body">
+                    <label for="validationCustom01" class="form-label"
+                      >Tên danh mục</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom01"
+                      value=""
+                      placeholder="Nhập tên danh mục"
+                      required
+                    />
+                  </div>
+                  <div class="card-body">
+                    <label for="validationCustom02" class="form-label"
+                      >Mô tả</label
+                    >
+
+                    <textarea
+                      class="form-control"
+                      id="exampleFormControlTextarea1"
+                      value=""
+                      placeholder="Nhập mô tả"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="card-body">
+                    <label for="validationCustom01" class="form-label"
+                      >Đường dẫn</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="validationCustom01"
+                      value=""
+                      placeholder="Nhập đường dẫn tìm kiếm danh mục ..."
+                      required
+                    />
+                  </div>
+                </div>
+                {% endcomment %}
+              </div>
               <div class="col-lg-4">
-                 <div class="card shadow mb-4">
-                   <div class="card-header py-3">
-                     <h6 class="m-0 font-weight-bold text-primary">
-                       Trạng thái
-                     </h6>
-                   </div>
-                   <div class="card-body">
-                     {% comment %} <div class="form-check">
-                       <input
-                         class="form-check-input"
-                         type="radio"
-                         name="portfolioPub"
-                         id="exampleRadios2"
-                         value="option2"
-                       />
-                       <label class="form-check-label" for="exampleRadios2">
-                         Hiển Thị
-                       </label>
-                     </div> 
-                     <div class="form-check">
-                       <input
-                         class="form-check-input"
-                         type="radio"
-                         name="portfolioPub"
-                         id="exampleRadios2"
-                         value="option2"
-                       />
-                       <label class="form-check-label" for="exampleRadios2">
-                         Ẩn
-                       </label>
-                     </div>  {% endcomment %}
-                     {{cf.portfolioPub}}<br>
-                     <p>
-                       <a
-                         class="link-danger"
-                         data-bs-toggle="collapse"
-                         href="#collapseExample"
-                         role="button"
-                         aria-expanded="false"
-                         aria-controls="collapseExample"
-                       >
-                         Đặt lịch hiển thị
-                       </a>
-                     </p>
-                     <div class="collapse" id="collapseExample">
-                     <div class="card card-body">
-                         <input
-                           type="datetime-local"
-                           id="meeting-time"
-                           name="portfolioTimePub"
-                          
-                           min="2018-06-07T00:00"
-                           max="2026-06-14T00:00"
-                         />
-                       </div> 
-                       
-                     </div>
-                   </div>
-                 </div>
-               {% comment %} {{cf.portfolioImg}} {% endcomment %}
-               <div class="card shadow mb-4">
-                   <div class="card-header py-3">
-                     <h6 class="m-0 font-weight-bold text-primary">
-                       Ảnh danh mục
-                     </h6>
-                   </div>
-                   <div class="card-body">
-                         <label for="formFile" class="form-label">Upload Ảnh</label>
-                         <input class="form-control" name="portfolioImg" type="file" id="formFile">
-                       </div>
-                   </div>
-                 </div> 
-               </div>   
-               <div class="modal-footer">
-                <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
-                    Xóa
-               </button>
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa sản phẩm</h5>
-                      
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                        <button type="button" class="btn  btn-danger">Xóa</button>
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Trạng thái
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    {% comment %}
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="portfolioPub"
+                        id="exampleRadios2"
+                        value="option2"
+                      />
+                      <label class="form-check-label" for="exampleRadios2">
+                        Hiển Thị
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="portfolioPub"
+                        id="exampleRadios2"
+                        value="option2"
+                      />
+                      <label class="form-check-label" for="exampleRadios2">
+                        Ẩn
+                      </label>
+                    </div>
+                    {% endcomment %} {{cf.portfolioPub}}<br />
+                    <p>
+                      <a
+                        class="link-danger"
+                        data-bs-toggle="collapse"
+                        href="#collapseExample"
+                        role="button"
+                        aria-expanded="false"
+                        aria-controls="collapseExample"
+                      >
+                        Đặt lịch hiển thị
+                      </a>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        <input
+                          type="datetime-local"
+                          id="meeting-time"
+                          name="portfolioTimePub"
+                          min="2018-06-07T00:00"
+                          max="2026-06-14T00:00"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
-                    Close
-                </button>
-                <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn lưu thay đổi</h5>
-                      
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua </button>
-                        <button type="submit" class="btn btn-primary"  data-dismiss="modal">Lưu</button>
-                      </div>
+                {% comment %} {{cf.portfolioImg}} {% endcomment %}
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                      Ảnh danh mục
+                    </h6>
+                  </div>
+                  <div class="card-body">
+                    <label for="formFile" class="form-label">Upload Ảnh</label>
+                    <input
+                      class="form-control"
+                      name="portfolioImg"
+                      type="file"
+                      id="formFile"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+              >
+                Xóa
+              </button>
+              <div
+                class="modal fade"
+                id="exampleModalCenter"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">
+                        Bạn chắc chắn muốn xóa sản phẩm
+                      </h5>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Quay lại
+                      </button>
+                      <button type="button" class="btn btn-danger">Xóa</button>
                     </div>
                   </div>
-                </div>   
-                <button type="submit" class="btn btn-primary">
-                  Lưu
-                </button>
+                </div>
               </div>
-           </form> 
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-toggle="modal"
+                data-target="#exampleModalCen"
+              >
+                Close
+              </button>
+              <div
+                class="modal fade"
+                id="exampleModalCen"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">
+                        Bạn có muốn lưu thay đổi
+                      </h5>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Bỏ qua
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        data-dismiss="modal"
+                      >
+                        Lưu
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+          </form>
         </div>
         <!-- /.container-fluid -->
       </div>
       <!-- End of Main Content -->
 
       <!-- Footer -->
-  
+
       <!-- End of Footer -->
     </div>
     <!-- End of Content Wrapper -->
     {% endblock %}
-
+  </div>
+</body>

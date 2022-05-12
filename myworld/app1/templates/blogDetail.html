@@ -96,11 +96,14 @@
               >
               <div class="dropdown-menu rounded-0 m-0">
                 {% for item in blog %}
-                  <a href=" {% url 'app1:blogDetail' item.id  %}" class="dropdown-item" >{{item.title}}</a>
-                {% endfor %} 
+                <a
+                  href=" {% url 'app1:blogDetail' item.id  %}"
+                  class="dropdown-item"
+                  >{{item.title}}</a
+                >
+                {% endfor %}
 
                 <a href="{% url 'app1:blog2' %}" class="dropdown-item">blog2</a>
-               
               </div>
             </div>
 

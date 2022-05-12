@@ -471,23 +471,23 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Danh sách danh mục sản phẩm </h1>
-         
-          
+          <h1 class="h3 mb-2 text-gray-800">Danh sách danh mục sản phẩm</h1>
+
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">
-                Danh mục sản phẩm 
-                <a class="btn btn-primary float-right" href="{% url 'app2:more_product_portfolio' %}" role="button">Thêm danh mục</a>
+                Danh mục sản phẩm
+                <a
+                  class="btn btn-primary float-right"
+                  href="{% url 'app2:more_product_portfolio' %}"
+                  role="button"
+                  >Thêm danh mục</a
+                >
               </h6>
-              
             </div>
             <div class="card-body">
-
-              
               <form name="form">
-                
                 <div class="table-responsive table-striped table table-hover">
                   <table
                     class="table table-bordered"
@@ -497,28 +497,59 @@
                   >
                     <thead>
                       <tr>
-                        <th>  <input type="checkbox" name="CheckAll" onclick="SelectAll()" /> All   &ensp;  &ensp;
-                        
-                          <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
-                               Xóa
+                        <th>
+                          <input
+                            type="checkbox"
+                            name="CheckAll"
+                            onclick="SelectAll()"
+                          />
+                          All &ensp; &ensp;
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            data-toggle="modal"
+                            data-target="#exampleModalCenter"
+                          >
+                            Xóa
                           </button>
-                          
+
                           <!-- Modal -->
-                          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div
+                            class="modal fade"
+                            id="exampleModalCenter"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true"
+                          >
+                            <div
+                              class="modal-dialog modal-dialog-centered"
+                              role="document"
+                            >
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa danh mục</h5>
-                                
+                                  <h5
+                                    class="modal-title"
+                                    id="exampleModalLongTitle"
+                                  >
+                                    Bạn chắc chắn muốn xóa danh mục
+                                  </h5>
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                                  <button type="button" class="btn  btn-danger">Xóa</button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                  >
+                                    Quay lại
+                                  </button>
+                                  <button type="button" class="btn btn-danger">
+                                    Xóa
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        
                         </th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
@@ -526,43 +557,46 @@
                         <th>Ngày đăng</th>
                         <th>Tình trạng</th>
                       </tr>
-                    </thead>           
+                    </thead>
                     <tbody>
-                    
-                    {% for x in listPortfolio %}
-                      
-                    <tr>
-                      
-                      <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>{{x.portfolioName}}</td>
-                      <td><img style="height: 100px;" src="/media/{{x.portfolioImg}}"  class="rounded d-block" alt="..."></td>
-                      <td>37</td>
-                      <td>{{x.portfolioTimePub}}</td>
+                      {% for x in listPortfolio %}
 
-                      <td>{{x.portfolioPub}}</td>
-                      
-                    </tr>
-                    {% endfor %}
-                   
-                 
-                  
+                      <tr>
+                        <td>
+                          <input
+                            type="checkbox"
+                            name="CheckBox"
+                            value="checkbox1"
+                          />
+                        </td>
+                        <td>{{x.portfolioName}}</td>
+                        <td>
+                          <img
+                            style="height: 100px"
+                            src="/media/{{x.portfolioImg}}"
+                            class="rounded d-block"
+                            alt="..."
+                          />
+                        </td>
+                        <td>37</td>
+                        <td>{{x.portfolioTimePub}}</td>
+
+                        <td>{{x.portfolioPub}}</td>
+                      </tr>
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>
-
-
               </form>
-             
-               
-     
+
               <script>
                 function SelectAll() {
                   var a = document.form,
-                    b = a.elements['CheckBox'],
+                    b = a.elements["CheckBox"],
                     c = b.length,
                     d,
-                    e = a.elements['CheckAll'];
-                  for (d=0; d<c; d++) {
+                    e = a.elements["CheckAll"];
+                  for (d = 0; d < c; d++) {
                     if (e.checked == true) {
                       b[d].checked = true;
                     } else {
@@ -570,8 +604,6 @@
                     }
                   }
                 }
-                
-              
               </script>
             </div>
           </div>
@@ -585,3 +617,5 @@
     <!-- End of Content Wrapper -->
 
     {% endblock %}
+  </div>
+</body>
