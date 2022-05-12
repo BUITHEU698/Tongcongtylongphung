@@ -93,23 +93,59 @@ def blank(request):
 
 
 # --------------products-------------
-def more_products(request):
-    template = loader.get_template('more_products.html')
-    return HttpResponse(template.render())
+class more_products(View):
+    def get(self, request):
+        context = {'cp': ProductsForm,
+                   'listPortfolio': PortfolioModel.objects.all(),
+                   }
+        return render(request, 'more_products.html', context)
+
+    def post(self, request):
+        if request.method == "POST":
+            f = ProductsForm(request.POST, request.FILES)
+            if f.is_valid():
+
+                f.save()
+                return HttpResponse("save success")
+            else:
+                return HttpResponse("no save success")
+        else:
+            return HttpResponse("not POST")
 
 
-def list_products(request):
-    template = loader.get_template('list_products.html')
-    context = {'listProducts': ProductsModel.objects.all()}
-    return HttpResponse(template.render(context, request))
-  
+class list_products(View):
+    def get(self, request):
+        context = {
+            'list_products': ProductsModel.objects.all(),
+        }
+        return render(request, 'list_products.html', context)
 
 
-# def more_product_portfolio(request):
-#     template = loader.get_template('more_product_portfolio.html')
-#     return HttpResponse(template.render())
+# --------------portfolio-------------
+class updata_product_portfolio(View):
+    def get(self, request, id):
+        context = { 
+                   'myPortfolio':  PortfolioModel.objects.get(id=id),
+                   }
+        return render(request, 'updata_product_portfolio.html', context)
 
-# # --------------shop-------------
+    def updaterecord(self, request, id):
+        context = {
+            'myPortfolio':  PortfolioModel.objects.get(id=id),
+            }
+        if request.method == "POST":
+            f = PortfolioForm(request.POST, request.FILES)
+            if f.is_valid():
+                myPortfolio = f
+                myPortfolio.save()
+                return HttpResponse("update success")
+            else:
+                return HttpResponse("no update success")
+        else:
+            return HttpResponse("not POST")
+    
+
+
 
 
 class more_product_portfolio(View):
@@ -118,11 +154,10 @@ class more_product_portfolio(View):
         return render(request, 'more_product_portfolio.html', context)
 
     def post(self, request):
-        # kiem tra xem co phai phuong thuc post k
         if request.method == "POST":
             f = PortfolioForm(request.POST, request.FILES)
             if f.is_valid():
-    
+
                 f.save()
                 return HttpResponse("save success")
             else:
@@ -130,43 +165,18 @@ class more_product_portfolio(View):
         else:
             return HttpResponse("not POST")
         
-        
-        
-class more_products(View):
+class list_product_portfolio(View):
     def get(self, request):
-        context = {'cp': ProductsForm,
-                   'listPortfolio': PortfolioModel.objects.all(),
-                    }
-        return render(request, 'more_products.html', context)
-
-    def post(self, request):
-        # kiem tra xem co phai phuong thuc post k
-        if request.method == "POST":
-            f = ProductsForm(request.POST, request.FILES)
-            if f.is_valid():
-    
-                f.save()
-                return HttpResponse("save success")
-            else:
-                return HttpResponse("no save success")
-        else:
-            return HttpResponse("not POST")
-   
-  
- 
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+        }
+        return render(request, 'list_product_portfolio.html', context)
 
 
 
-def list_product_portfolio(request):
-    template = loader.get_template('list_product_portfolio.html')
-    context = {'listPortfolio': PortfolioModel.objects.all()}
-    return HttpResponse(template.render(context, request))
 
-def delete_portfolio (request, id):
-    portfolio = PortfolioModel.objects.get(id=id)
-    portfolio.delete()
-    return HttpResponseRedirect(reverse('index'))
-# --------------cards-------------
+# --------------charts-------------
+
 def cards(request):
     template = loader.get_template('cards.html')
     return HttpResponse(template.render())
@@ -206,9 +216,7 @@ def utilities_color(request):
 
 # --------------utilities_other.html-------------
 
+
 def utilities_other(request):
     template = loader.get_template('utilities_other.html')
     return HttpResponse(template.render())
-
-
-

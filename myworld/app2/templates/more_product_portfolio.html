@@ -515,60 +515,6 @@
                     ></textarea>
                   </div>
                 </div>
-
-                <!-- Brand Buttons -->
-                {% comment %}
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Xem trước kết quả tìm kiếm
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    Xin hãy nhập Tiêu đề và Mô tả để xem trước kết quả tìm kiếm
-                    của danh mục này
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom01" class="form-label"
-                      >Tên danh mục</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationCustom01"
-                      value=""
-                      placeholder="Nhập tên danh mục"
-                      required
-                    />
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom02" class="form-label"
-                      >Mô tả</label
-                    >
-
-                    <textarea
-                      class="form-control"
-                      id="exampleFormControlTextarea1"
-                      value=""
-                      placeholder="Nhập mô tả"
-                      required
-                    ></textarea>
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom01" class="form-label"
-                      >Đường dẫn</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationCustom01"
-                      value=""
-                      placeholder="Nhập đường dẫn tìm kiếm danh mục ..."
-                      required
-                    />
-                  </div>
-                </div>
-                {% endcomment %}
               </div>
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
@@ -578,32 +524,30 @@
                     </h6>
                   </div>
                   <div class="card-body">
-                    {% comment %}
                     <div class="form-check">
                       <input
                         class="form-check-input"
                         type="radio"
                         name="portfolioPub"
                         id="exampleRadios2"
-                        value="option2"
+                        value="1"
                       />
                       <label class="form-check-label" for="exampleRadios2">
                         Hiển Thị
                       </label>
-                    </div>
-                    <div class="form-check">
+                      <br />
                       <input
                         class="form-check-input"
                         type="radio"
                         name="portfolioPub"
                         id="exampleRadios2"
-                        value="option2"
+                        value="2"
                       />
                       <label class="form-check-label" for="exampleRadios2">
                         Ẩn
                       </label>
                     </div>
-                    {% endcomment %} {{cf.portfolioPub}}<br />
+
                     <p>
                       <a
                         class="link-danger"
