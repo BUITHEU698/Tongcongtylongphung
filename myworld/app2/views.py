@@ -6,6 +6,7 @@ from .forms import loginForm
 from .forms import PortfolioForm
 from .forms import ProductsForm
 from .models import PortfolioModel
+from .models import ProductsModel
 from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -99,7 +100,9 @@ def more_products(request):
 
 def list_products(request):
     template = loader.get_template('list_products.html')
-    return HttpResponse(template.render())
+    context = {'listProducts': ProductsModel.objects.all()}
+    return HttpResponse(template.render(context, request))
+  
 
 
 # def more_product_portfolio(request):
@@ -132,7 +135,8 @@ class more_product_portfolio(View):
 class more_products(View):
     def get(self, request):
         context = {'cp': ProductsForm,
-                   'product_portfolio': PortfolioModel.objects.all(),}
+                   'listPortfolio': PortfolioModel.objects.all(),
+                    }
         return render(request, 'more_products.html', context)
 
     def post(self, request):
