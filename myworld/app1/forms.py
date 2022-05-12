@@ -15,7 +15,10 @@ class UserForm (forms.ModelForm):
     class Meta:
         model = UserModel
         fields = {'userName','email','phoneNumber','password' ,'resetpassword'}
-        
+        widgets = {
+        'password': forms.PasswordInput(),
+        'resetpassword': forms.PasswordInput()
+            }
         
 
 # # --------------memberForm-------------
