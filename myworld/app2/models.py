@@ -41,6 +41,6 @@ class ProductsModel(models.Model):
     productsPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
     productsTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False )
     portfolioModel = models.ForeignKey(PortfolioModel, on_delete= models.CASCADE)
-    weight = models.FloatField('Khối luộng sản phẩm', default= 0)
+    weight = models.FloatField('Khối lượng sản phẩm', default= 0)
     def __str__(self):
         return self.productsName

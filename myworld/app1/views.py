@@ -74,9 +74,16 @@ class contact(View):
 # --------------shop-------------
 
 
-def shop(request):
-    template = loader.get_template('shop.html')
-    return HttpResponse(template.render())
+
+
+class shop(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listproducts': ProductsModel.objects.all(),
+        }
+        return render(request, 'shop.html', context)
+
 
 # --------------detail-------------
 
