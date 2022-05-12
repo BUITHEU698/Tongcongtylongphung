@@ -17,6 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
+
 class index(View):
     def get(self, request):
         context = {
@@ -24,7 +25,6 @@ class index(View):
             'listproducts': ProductsModel.objects.all(),
         }
         return render(request, 'index.html', context)
-
 
 
 
