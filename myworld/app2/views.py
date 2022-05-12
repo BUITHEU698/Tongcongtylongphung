@@ -131,8 +131,7 @@ class more_product_portfolio(View):
         
 class more_products(View):
     def get(self, request):
-        context = {'cp': ProductsForm,
-                   'listPortfolio': PortfolioModel.objects.all()}
+        context = {'cp': ProductsForm}
         return render(request, 'more_products.html', context)
 
     def post(self, request):
@@ -148,6 +147,10 @@ class more_products(View):
         else:
             return HttpResponse("not POST")
    
+    def product_portfolio(request):
+        template = loader.get_template('more_products.html')
+        context = {'list_product_portfolio': PortfolioModel.objects.all()}
+        return HttpResponse(template.render(context, request))
 
  
 

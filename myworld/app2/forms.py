@@ -27,6 +27,6 @@ class PortfolioForm (forms.ModelForm):
 class ProductsForm (forms.ModelForm):
     class Meta:
         model = ProductsModel
-        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsTimePub',}
-        # fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsTimePub','portfolioModel','weight' }
+        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsTimePub','portfolioModel','weight' }
+
 
