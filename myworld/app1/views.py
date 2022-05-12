@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from .forms import UserForm, contactForm
-from .models import contactModel
+from .models import UserModel, contactModel
 from .models import postBlog
 from app2.models import ProductsModel
 from app2.models import PortfolioModel
@@ -10,12 +10,10 @@ from app2.forms import PortfolioForm
 from app2.forms import ProductsForm
 from django.views import View
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------index-------------
-
-
 
 
 class index(View):
@@ -27,7 +25,6 @@ class index(View):
         return render(request, 'index.html', context)
 
 
-
 # --------------index-------------
 
 
@@ -37,6 +34,7 @@ def sitemap(request):
 
 
 # --------------cart-------------
+@decorators.login_required(login_url='/userLogin/')
 def cart(request):
     template = loader.get_template('cart.html')
     return HttpResponse(template.render())
@@ -74,8 +72,6 @@ class contact(View):
 # --------------shop-------------
 
 
-
-
 class shop(View):
     def get(self, request):
         context = {
@@ -108,43 +104,65 @@ def blogDetail(request, id):
 #     template = loader.get_template('blog1.html')
 #     return HttpResponse(template.render())
 
+
 def blog1(request):
     template = loader.get_template('blog1.html')
     return HttpResponse(template.render())
+
+
 def blog2(request):
     template = loader.get_template('blog2.html')
     return HttpResponse(template.render())
+
+
 def blog3(request):
     template = loader.get_template('blog3.html')
     return HttpResponse(template.render())
+
+
 def blog4(request):
     template = loader.get_template('blog4.html')
     return HttpResponse(template.render())
-
-# # --------------member-------------
-# class member(View):
-#     def get(self, request):
-#         template = memberForm
-#         return render(request, 'signup.html', {'signup': template})
-
-#     def post(self, request):
-#         username = request.POST['username']
-#         email = request.POST['email']
-#         password = request.POST['password']
-
-#         user = User.objects.create_user(username, email, password)
-#         user.save()
-#         return HttpResponse('save sussic')
-
-# # --------------loginUser-------------
-
-
 
 
 class userLogin (View):
     def get(self, request):
         template = UserForm
         return render(request, 'userlogin.html', {'login': template})
+
+
+class userLogin(View):
+    def get(self, request):
+        context = {
+                        'UserModel': UserModel.objects.all(),
+                   }
+        return render(request, 'userLogin.html', context)
+    
+    
+# --------------logOut-------------
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('app2:login')
+
+
+# --------------order-------------
+
+
+class order(LoginRequiredMixin, View):
+    login_url = '/login'
+
+    def get(self, request):
+        return render(request, 'index.html')
+
+
+# --------------forget-paswork-------------
+
+
+def forgetPass(request):
+    template = loader.get_template('forgot-password.html')
+    return HttpResponse(template.render())
 
 #     def post(self, request):
 #         username = request.POST['username']
@@ -160,15 +178,13 @@ class userLogin (View):
 
 # def logoutUser(request):
 #     logout(request)
-#     return redirect('app1:login')
+#     return redirect('app1:userLogin')
 
 
 # # --------------order-------------
 
 
 # class order(LoginRequiredMixin, View):
-#     login_url = '/login'
+#     login_url = '/userLogin'
 #     def get(self, request):
-#         return render(request, 'order.html')
-    
-    
+#         return render(request, 'cart.html')

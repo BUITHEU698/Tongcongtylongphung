@@ -14,7 +14,9 @@ class contactForm(forms.Form):
 class UserForm (forms.ModelForm):
     class Meta:
         model = UserModel
-        fields = {'username','email','phoneNumber','address', }
+        fields = {'userName','email','phoneNumber','password' ,'resetpassword'}
+        
+        
 
 # # --------------memberForm-------------
 

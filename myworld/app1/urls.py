@@ -18,7 +18,10 @@ urlpatterns = [
     path('blog2', views.blog2, name="blog2"),
     path('blog3', views.blog3, name="blog3"),
     path('blog4', views.blog4, name="blog4"),
-    path('userLogin', views.userLogin, name="userLogin"),
+    path('userLogin', views.userLogin.as_view(), name="userLogin"),
+    path('logout', views.logoutUser, name="logout"),
+    path('register', views.order.as_view(), name="register"),
+    path('forgetPass', views.forgetPass, name="forgetPass"),
  
 
     # path('signup', views.member.as_view(), name="signup"),

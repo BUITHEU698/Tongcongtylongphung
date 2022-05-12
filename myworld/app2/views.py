@@ -50,30 +50,6 @@ class loginUser (View):
         else:
             return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
-# --------------logOut-------------
-
-
-def logoutUser(request):
-    logout(request)
-    return redirect('app2:login')
-
-
-# --------------order-------------
-
-
-class order(LoginRequiredMixin, View):
-    login_url = '/login'
-
-    def get(self, request):
-        return render(request, 'index.html')
-
-
-# --------------forget-paswork-------------
-
-
-def forgetPass(request):
-    template = loader.get_template('forgot-password.html')
-    return HttpResponse(template.render())
 
 
 # --------------index-------------
