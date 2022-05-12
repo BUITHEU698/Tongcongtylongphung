@@ -1,5 +1,6 @@
 from django import forms
 from .models import PortfolioModel
+from .models import ProductsModel
 
 # --------------memberForm-------------
 
@@ -21,4 +22,11 @@ class PortfolioForm (forms.ModelForm):
     class Meta:
         model = PortfolioModel
         fields = {'portfolioName','portfolioBody','portfolioPub','portfolioTimePub','portfolioImg' }
+
+
+class ProductsForm (forms.ModelForm):
+    class Meta:
+        model = ProductsModel
+        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsTimePub','portfolioModel','weight' }
+
 

@@ -8,6 +8,7 @@ from matplotlib.style import use
 from numpy import quantile
 from app2.models import ProductsModel
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 # --------------contact-------------
 class contactModel(models.Model):

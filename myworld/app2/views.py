@@ -4,6 +4,7 @@ from django.template import loader
 from .forms import memberForm
 from .forms import loginForm
 from .forms import PortfolioForm
+from .forms import ProductsForm
 from .models import PortfolioModel
 from django.views import View
 from django.contrib.auth.models import User
@@ -125,6 +126,34 @@ class more_product_portfolio(View):
                 return HttpResponse("no save success")
         else:
             return HttpResponse("not POST")
+        
+        
+        
+class more_products(View):
+    def get(self, request):
+        context = {'cp': ProductsForm}
+        return render(request, 'more_products.html', context)
+
+    def post(self, request):
+        # kiem tra xem co phai phuong thuc post k
+        if request.method == "POST":
+            f = ProductsForm(request.POST, request.FILES)
+            if f.is_valid():
+    
+                f.save()
+                return HttpResponse("save success")
+            else:
+                return HttpResponse("no save success")
+        else:
+            return HttpResponse("not POST")
+   
+    def product_portfolio(request):
+        template = loader.get_template('more_products.html')
+        context = {'list_product_portfolio': PortfolioModel.objects.all()}
+        return HttpResponse(template.render(context, request))
+
+ 
+
 
 
 def list_product_portfolio(request):

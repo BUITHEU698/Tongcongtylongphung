@@ -19,7 +19,7 @@ class PortfolioModel(models.Model):
     portfolioName = models.CharField('Tên danh sách',max_length=200, blank= False, null = False)
     portfolioBody = models.TextField('Mô tả danh sách',blank= False, null = False)
     portfolioPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
-    portfolioTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False, default= timezone.now)
+    portfolioTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False )
     portfolioImg = models.FileField()
     
     def __str__(self):
@@ -39,7 +39,7 @@ class ProductsModel(models.Model):
     productsPriceOther = models.IntegerField('Giá so sánh', default= 0)
     inventory = models.IntegerField('Hàng tồn kho', default= 0)
     productsPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
-    productsTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False , default= timezone.now)
+    productsTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False )
     portfolioModel = models.ForeignKey(PortfolioModel, on_delete= models.CASCADE)
     weight = models.FloatField('Khối luộng sản phẩm', default= 0)
     def __str__(self):

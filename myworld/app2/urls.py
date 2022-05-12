@@ -10,7 +10,7 @@ urlpatterns = [
     path('forgetPass', views.forgetPass, name="forgetPass"),
     path('index', views.index, name="index"),
     path('blank', views.blank, name="blank"),
-    path('more_products', views.more_products, name="more_products"),
+    path('more_products', views.more_products.as_view(), name="more_products"),
     path('list_products', views.list_products, name="list_products"),
     path('more_product_portfolio', views.more_product_portfolio.as_view(),
          name="more_product_portfolio"),
