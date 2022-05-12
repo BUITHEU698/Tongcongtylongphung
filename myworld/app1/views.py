@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
-from .forms import contactForm
+from .forms import UserForm, contactForm
 from .models import contactModel
 from .models import postBlog
 from app2.models import ProductsModel
@@ -139,27 +139,23 @@ def blog4(request):
 # # --------------loginUser-------------
 
 
-# class loginUser (View):
-#     def get(self, request):
-#         template = loginForm
-#         return render(request, 'login.html', {'login': template})
+
+
+class userLogin (View):
+    def get(self, request):
+        template = UserForm
+        return render(request, 'userlogin.html', {'login': template})
 
 #     def post(self, request):
 #         username = request.POST['username']
 #         password = request.POST['password']
-#         try: 
-#             user = authenticate(request, username=User.objects.get(
-#                 email=username), password=password)
-#         except:
-#             user = authenticate(request, username = username, password = password)
-            
+#         user = authenticate(request, username=username, password=password)
 #         if user is not None:
 #             login(request, user)
-#             return render(request, 'order.html')
-#         else:
-#             return HttpResponse('login fail')
+#             return redirect('app2:index')
 
-# # --------------logOut-------------
+#         else:
+#             return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
 
 # def logoutUser(request):

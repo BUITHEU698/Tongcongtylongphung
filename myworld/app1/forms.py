@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import UserModel
 
 # --------------contact-------------
 class contactForm(forms.Form):
@@ -10,6 +10,11 @@ class contactForm(forms.Form):
 
 
 
+
+class UserForm (forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = {'username','email','phoneNumber','address', }
 
 # # --------------memberForm-------------
 

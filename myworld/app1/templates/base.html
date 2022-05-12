@@ -30,6 +30,8 @@
     <link href="{% static  'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet" />
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static  'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static  'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" />
+    <link href="{% static  '../../../' %}" rel="stylesheet" />
   </head>
 
   <body>
@@ -270,6 +272,11 @@
 
     <!-- Template Javascript -->
     {% comment %} <script src="js/main.js"></script> {% endcomment %}
-    <script src="{% static  'js/main.js' %}"></script>
+    <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>
+    <script src="{% static  'js/demo/chart-pie-demo.js' %}"></script>
+    <script src=" {% static 'js/demo/datatables-demo.js' %} "></script>
+    <script src=" {% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %} "></script>
+    <script src="{% static  'vendor/chart.js/Chart.min.js' %}"></script>
   </body>
 </html>
