@@ -132,15 +132,6 @@ def logoutUser(request):
     return redirect('app2:login')
 
 
-# --------------order-------------
-
-
-# class order(LoginRequiredMixin, View):
-#     login_url = '/userLogin'
-
-#     def get(self, request):
-#         return render(request, 'index.html')
-
 
     
 class register(View):
