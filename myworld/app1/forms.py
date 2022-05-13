@@ -31,6 +31,11 @@ class UserForm (forms.ModelForm):
 # # --------------memberForm-------------
 
 
-# class loginForm(forms.Form):
-#     username = forms.CharField(max_length=30)
-#     password = forms.CharField(max_length=20, widget=forms.PasswordInput)
+class loginForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = {'userName','password' ,}
+        widgets = {
+        'password': forms.PasswordInput(),
+       
+            }

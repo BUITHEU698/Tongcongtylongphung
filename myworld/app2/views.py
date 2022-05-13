@@ -16,22 +16,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------login-------------
 
 
-# --------------member-------------
-class member(View):
-    def get(self, request):
-        template = memberForm
-        return render(request, 'register.html', {'signup': template})
+# # --------------member-------------
+# class member(View):
+#     def get(self, request):
+#         template = memberForm
+#         return render(request, 'register.html', {'signup': template})
 
-    def post(self, request):
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
+#     def post(self, request):
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         password = request.POST['password']
 
-        user = User.objects.create_user(username, email, password)
-        user.save()
-        return redirect('app2:login')
+#         user = User.objects.create_user(username, email, password)
+#         user.save()
+#         return redirect('app2:login')
 
-# --------------loginUser-------------
+# # --------------loginUser-------------
 
 
 class loginUser (View):

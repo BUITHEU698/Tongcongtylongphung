@@ -32,11 +32,13 @@ class postBlog(models.Model):
         return reverse('detail',args=[self.id,])
     
 class UserModel (models.Model):
-    userName = models.CharField('LastName',default='Name',  max_length=25)
+    userName = models.CharField('UserName',default='',  max_length=25)
     email = models.EmailField( 'Email',default='')
     phoneNumber = models.CharField('Số điện thoại', default= 0, max_length= 11)
     password = models.CharField('password', default='',max_length=30)
     resetpassword = models.CharField('resetpassword',default='', max_length=30)
+    def __str__(self):
+        return self.userName
 
 class CartModel (models.Model):
     user = models.ForeignKey(UserModel, on_delete= models.CASCADE)
