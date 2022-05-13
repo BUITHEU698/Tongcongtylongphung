@@ -10,12 +10,12 @@
       <!-- Sidebar - Brand -->
       <a
         class="sidebar-brand d-flex align-items-center justify-content-center"
-        href="{% url 'app2:index' %}"
+        href="index.html"
       >
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Long phụng</div>
+        <div class="sidebar-brand-text mx-3">Long phụng</div>
       </a>
 
       <!-- Divider -->
@@ -56,17 +56,19 @@
         >
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Quản lý sản phẩm :</h6>
-            <a class="collapse-item" href="{% url 'app2:more_products' %}"
+            <a
+              class="collapse-item active"
+              href="{% url 'app2:more_products' %}"
               >Thêm Sản Phẩm</a
             >
             <a class="collapse-item" href="{% url 'app2:list_products' %}"
-              >Danh sách sản phẩm
-            </a>
+              >Danh sách sản phẩm</a
+            >
             <a
-              class="collapse-item active"
+              class="collapse-item"
               href="{% url 'app2:more_product_portfolio' %}"
-              >Thêm danh mục
-            </a>
+              >Thêm danh mục</a
+            >
             <a
               class="collapse-item"
               href="{% url 'app2:list_product_portfolio' %}"
@@ -87,7 +89,7 @@
           aria-controls="collapseUtilities"
         >
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Đơn hàng</span>
+          <span>Khuyến mãi</span>
         </a>
         <div
           id="collapseUtilities"
@@ -96,12 +98,13 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Quản lý đơn hàng:</h6>
-            <a class="collapse-item" href="#">Danh sách đơn hàng</a>
-            <a class="collapse-item" href="#">Đơn hàng nháp</a>
-            <a class="collapse-item" href="#"
-              >Đơn hàng chưa hoàn thành</a
+            <h6 class="collapse-header"> Quản lý mã khuyến mãi</h6>
+            <a class="collapse-item" href="utilities-color.html">Colors</a>
+            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="utilities-animation.html"
+              >Animations</a
             >
+            <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
       </li>
@@ -110,7 +113,7 @@
       <hr class="sidebar-divider" />
 
       <!-- Heading -->
-      <div class="sidebar-heading">Khác</div>
+      <div class="sidebar-heading">Khac</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -132,31 +135,36 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Khuyến mãi:</h6>
-            <a class="collapse-item" href="#">Mã khuyến mãi</a>
-            <a class="collapse-item" href="#">Chương trình khuyến mãi</a>
-  
+            <h6 class="collapse-header"></h6>
+            <a class="collapse-item" href="login.html">Login</a>
+            <a class="collapse-item" href="register.html">Register</a>
+            <a class="collapse-item" href="forgot-password.html"
+              >Forgot Password</a
+            >
             <div class="collapse-divider"></div>
-           
+            <h6 class="collapse-header">Other Pages:</h6>
+            <a class="collapse-item" href="404.html">404 Page</a>
+            <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Khách hàng</span></a
-        >
-      </li>
+
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Khach hàng</span></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Thống kê</span></a
         >
       </li>
 
       <!-- Nav Item - Tables -->
-
+     
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />
@@ -228,7 +236,6 @@
                   <div class="input-group">
                     <input
                       type="text"
-                    
                       class="form-control bg-light border-0 small"
                       placeholder="Search for..."
                       aria-label="Search"
@@ -465,214 +472,263 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <form
-            action="{% url 'app2:more_product_portfolio' %} "
-            enctype="multipart/form-data"
-            method="post"
-          >
-            {% csrf_token %}
-
+          <form action="{% url 'app2:updata_product' myProduct.id  %}"  enctype ="multipart/form-data"  method="post">
             <!-- Page Heading -->
-            <h1 class="h3 mb-4 text-gray-800">Thêm danh mục</h1>
-
+            <h1 class="h3 mb-4 text-gray-800">Thêm mới sản phẩm</h1>
+            {% csrf_token %}
             <div class="row">
-              <div class="col-lg-8">
-                <!-- Circle Buttons -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Thông tin</h6>
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom01" class="form-label"
-                      >Tên danh mục</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationCustom01"
-                      name="portfolioName"
-                      placeholder="Nhập tên danh mục"
-                      data-validation-required-message="Vui lònh nhập tên danh mục"
-                      required="required"
-                    />
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom02" class="form-label"
-                      >Mô tả</label
-                    >
+                <div class="col-lg-8">
+                    <!-- Circle Buttons -->
+                    <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Thông tin</h6>
+                    </div>
+                    <div class="card-body">
+                        <label for="validationCustom01" class="form-label"
+                        >Tên sản phẩm</label
+                        >
+                        <input
+                        type="text"
+                        name ="productsName"
+                        class="form-control"
+                        id="validationCustom01"
+                        value="{{myProduct.productsName}}"
+                        required
+                        />
+                    </div>
+                    <div class="card-body">
+                        <label for="validationCustom02" class="form-label"
+                        >Nội dung</label
+                        >
 
-                    <textarea
-                      class="form-control"
-                      id="exampleFormControlTextarea1"
-                      value=""
-                      name="portfolioBody"
-                      placeholder="Nhập mô tả"
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4">
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Trạng thái
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="portfolioPub"
-                        id="exampleRadios2"
-                        value="1"
-                        checked
-                      />
-                      <label class="form-check-label" for="exampleRadios2">
-                        Hiển Thị
-                      </label>
-                      <br />
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                      
-                        name="portfolioPub"
-                        id="exampleRadios2"
-                        value="2"
-                      />
-                      <label class="form-check-label" for="exampleRadios2">
-                        Ẩn
-                      </label>
+                        <textarea
+                        name = "productsBody"
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        required
+                        >{{myProduct.productsBody}}</textarea>
+                    </div>
                     </div>
 
-                    <p>
-                      <a
-                        class="link-danger"
-                        data-bs-toggle="collapse"
-                        href="#collapseExample"
-                        role="button"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-                      >
-                        Đặt lịch hiển thị
-                      </a>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                      <div class="card card-body">
+                    <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                        Ảnh sản phẩm
+                        </h6>
+                    </div>
+
+                    <div class="card-body">
+                        <label for="formFile" class="form-label">Upload Ảnh</label>
+                        <input class="form-control" name ="productsImg" type="file"  required id="formFile" />
+                    </div>
+                    </div>
+
+                    <div class="card shadow mb-4">
+                      <div class="card-header py-3">
+                          <h6 class="m-0 font-weight-bold text-primary">
+                          Giá sản phẩm
+                          </h6>
+                      </div>
+                      <div class="card-body row">
+                          <div class="card-body col-lg-6">
+                          <label for="validationCustom01" class="form-label"
+                              >Giá</label
+                          >
+                          <input
+                              type="number"
+                              name = "productsPrice"
+                              class="form-control"
+                              id="validationCustom01"
+                              value="{{myProduct.productsPrice}}"
+                              placeholder="đ"
+                              required
+                          />
+                          </div>
+                          <div class="card-body col-lg-6">
+                          <label for="validationCustom01" class="form-label"
+                              >Giá so sánh</label
+                          >
+                          <input
+                              type="number"
+                              name = "productsPriceOther"
+                              class="form-control"
+                              id="validationCustom01 "
+                              value="{{myProduct.productsPriceOther}}"
+                              placeholder="đ"
+                              required
+                          />
+                          </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                        Tồn kho
+                        </h6>
+                    </div>
+                    <div class="card-body ">
+                    <div class="card-body ">
+                        <label for="validationCustom01" class="form-label"
+                            >Số lượng tồn kho</label
+                        >
                         <input
-                          required
-                          type="datetime-local"
-                          id="meeting-time"
-                          name="portfolioTimePub"
-                          min="2018-06-07T00:00"
-                          max="2026-06-14T00:00"
+                            type="number"
+                            name = "inventory"
+                            class="form-control"
+                            id="validationCustom01"
+                            value="{{myProduct.inventory}}"
+                            placeholder=""
+                            id="inputCity"
+                            required
                         />
+                        </div>
+                        
+                    </div>
+                  </div>
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">
+                        Trạng thái
+                      </h6>
+                    </div>
+                    <div class="card-body">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          checked
+                          name="productsPub"
+                          id="exampleRadios2"
+                          value="1"
+                        />
+                        <label class="form-check-label" for="exampleRadios2">
+                          Hiển Thị
+                        </label>
+                        <br />
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="productsPub"
+                          id="exampleRadios2"
+                          value="2"
+                        />
+                        <label class="form-check-label" for="exampleRadios2">
+                          Ẩn
+                        </label>
+                      </div>
+                     
+                      <p>
+                        <a
+                          class="link-danger"
+                          data-bs-toggle="collapse"
+                          href="#collapseExample"
+                          role="button"
+                          aria-expanded="false"
+                          aria-controls="collapseExample"
+                        >
+                          Đặt lịch hiển thị
+                        </a>
+                      </p>
+                      <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                          <input
+                            type="datetime-local"
+                            id="meeting-time"
+                            name="productsTimePub"
+                            min="2018-06-07T00:00"
+                            max="2026-06-14T00:00"
+                            required
+                          />
+                        </div> 
+                        
                       </div>
                     </div>
                   </div>
+                    
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">
+                            Danh mục sản phẩm
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <label for="inputCity" class="form-label">Chọn danh mục phù hợp</label>
+                            <select class="form-select" value="1" name= "portfolioModel" id="autoSizingSelect">
+                              {% for x in listPortfolio %}
+                                <option value="{{x.id}}">{{x.id}}.{{x.portfolioName}}</option>
+                                
+                              {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">
+                            Khối lượng
+                            </h6>
+                        </div>
+                        <div class="card-body">                         
+                                <label for="inputCity" class="form-label">Khối lượng một sản phẩm</label>
+                                <input
+                                type="number"
+                                required
+                                name ="weight"
+                                value="{{myProduct.weight}}"
+                                class="form-control"
+                                id="inputCity"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    
+                  
+                
                 </div>
-                {% comment %} {{cf.portfolioImg}} {% endcomment %}
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Ảnh danh mục
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <label for="formFile" class="form-label">Upload Ảnh</label>
-                    <input
-                      class="form-control"
-                      name="portfolioImg"
-                      required
-                      type="file"
-                      id="formFile"
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-              >
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
                 Xóa
-              </button>
-              <div
-                class="modal fade"
-                id="exampleModalCenter"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn chắc chắn muốn xóa sản phẩm
-                      </h5>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Quay lại
-                      </button>
-                      <button type="button" class="btn btn-danger">Xóa</button>
-                    </div>
+           </button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa sản phẩm</h5>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
+                    <button type="button" class="btn  btn-danger">Xóa</button>
                   </div>
                 </div>
               </div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-toggle="modal"
-                data-target="#exampleModalCen"
-              >
-                Close
-              </button>
-              <div
-                class="modal fade"
-                id="exampleModalCen"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn có muốn lưu thay đổi
-                      </h5>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Bỏ qua
-                      </button>
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        data-dismiss="modal"
-                      >
-                        Lưu
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
+            <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
+                Close
+            </button>
+            <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn lưu thay đổi</h5>
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua </button>
+                    <button type="submit" class="btn btn-primary"  data-dismiss="modal">Lưu</button>
+                  </div>
+                </div>
+              </div>
+            </div>   
+            <button type="submit" class="btn btn-primary">
+              Lưu
+            </button>
+          </div>
           </form>
         </div>
         <!-- /.container-fluid -->
@@ -683,6 +739,7 @@
 
       <!-- End of Footer -->
     </div>
+    <!-- End of Content Wrapper -->
     <!-- End of Content Wrapper -->
     {% endblock %}
   </div>

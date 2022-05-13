@@ -52,10 +52,12 @@
                       class="user"
                     >
                       {% csrf_token %}
-                      <div class="form-group">
+                      {% comment %} {{userLogin.as_p}}
+                      {{user}} {% endcomment %}
+                    <div class="form-group">
                         <input
                           type="text"
-                          name="username"
+                          name="userName"   
                           class="form-control form-control-user"
                           id="exampleFirstName"
                           placeholder="Nhập tên tài khoản"
@@ -69,7 +71,7 @@
                           id="exampleInputPassword"
                           placeholder="Nhập Mật khẩu"
                         />
-                      </div>
+                      </div> 
                       <div class="form-group">
                         <div class="custom-control custom-checkbox small">
                           <input

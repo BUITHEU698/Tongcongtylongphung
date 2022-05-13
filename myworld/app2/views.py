@@ -16,22 +16,22 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------login-------------
 
 
-# --------------member-------------
-class member(View):
-    def get(self, request):
-        template = memberForm
-        return render(request, 'register.html', {'signup': template})
+# # --------------member-------------
+# class member(View):
+#     def get(self, request):
+#         template = memberForm
+#         return render(request, 'register.html', {'signup': template})
 
-    def post(self, request):
-        username = request.POST['username']
-        email = request.POST['email']
-        password = request.POST['password']
+#     def post(self, request):
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         password = request.POST['password']
 
-        user = User.objects.create_user(username, email, password)
-        user.save()
-        return redirect('app2:login')
+#         user = User.objects.create_user(username, email, password)
+#         user.save()
+#         return redirect('app2:login')
 
-# --------------loginUser-------------
+# # --------------loginUser-------------
 
 
 class loginUser (View):
@@ -121,6 +121,27 @@ class list_products(View):
         }
         return render(request, 'list_products.html', context)
 
+class updata_product(View):
+    def get(self, request, id):
+        context = {
+            'myProduct':  ProductsModel.objects.get(id=id),
+        }
+        return render(request, 'update_products.html', context)
+
+    def updaterecord(self, request, id):
+        context = {
+            'myProduct':  ProductsModel.objects.get(id=id),
+        }
+        if request.method == "POST":
+            f = PortfolioForm(request.POST, request.FILES)
+            if f.is_valid():
+                myProduct = f
+                myProduct.save()
+                return HttpResponse("update success")
+            else:
+                return HttpResponse("no update success")
+        else:
+            return HttpResponse("not POST")
 
 # --------------portfolio-------------
 class updata_product_portfolio(View):
@@ -144,6 +165,8 @@ class updata_product_portfolio(View):
                 return HttpResponse("no update success")
         else:
             return HttpResponse("not POST")
+
+
 
 
 class more_product_portfolio(View):
