@@ -1,20 +1,28 @@
+from ast import If
+from audioop import reverse
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .forms import contactForm
-from .models import contactModel
-from .models import postBlog
+from .forms import UserForm, contactForm, loginForm
+from .models import UserModel, contactModel, postBlog
+from app2.models import ProductsModel, PortfolioModel
+from app2.forms import PortfolioForm, ProductsForm
 from django.views import View
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 # --------------index-------------
 
 
-def index(request):
-    template = loader.get_template('index.html')
-    return HttpResponse(template.render())
+class index(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listproducts': ProductsModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+        }
+        return render(request, 'index.html', context)
 
 
 # --------------index-------------
@@ -26,6 +34,7 @@ def sitemap(request):
 
 
 # --------------cart-------------
+# @decorators.login_required(login_url='/userLogin/')
 def cart(request):
     template = loader.get_template('cart.html')
     return HttpResponse(template.render())
@@ -63,9 +72,14 @@ class contact(View):
 # --------------shop-------------
 
 
-def shop(request):
-    template = loader.get_template('shop.html')
-    return HttpResponse(template.render())
+class shop(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listproducts': ProductsModel.objects.all(),
+        }
+        return render(request, 'shop.html', context)
+
 
 # --------------detail-------------
 
@@ -86,75 +100,80 @@ def blogDetail(request, id):
     template = postBlog.objects.get(id=id)
     return render(request, 'blogDetail.html', {'blogDetail': template})
 
-# def blog1(request):
-#     template = loader.get_template('blog1.html')
-#     return HttpResponse(template.render())
+
 
 def blog1(request):
     template = loader.get_template('blog1.html')
     return HttpResponse(template.render())
+
+
 def blog2(request):
     template = loader.get_template('blog2.html')
     return HttpResponse(template.render())
+
+
 def blog3(request):
     template = loader.get_template('blog3.html')
     return HttpResponse(template.render())
+
+
 def blog4(request):
     template = loader.get_template('blog4.html')
     return HttpResponse(template.render())
 
-# # --------------member-------------
-# class member(View):
-#     def get(self, request):
-#         template = memberForm
-#         return render(request, 'signup.html', {'signup': template})
 
-#     def post(self, request):
-#         username = request.POST['username']
-#         email = request.POST['email']
-#         password = request.POST['password']
-
-#         user = User.objects.create_user(username, email, password)
-#         user.save()
-#         return HttpResponse('save sussic')
-
-# # --------------loginUser-------------
-
-
-# class loginUser (View):
-#     def get(self, request):
-#         template = loginForm
-#         return render(request, 'login.html', {'login': template})
-
-#     def post(self, request):
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         try: 
-#             user = authenticate(request, username=User.objects.get(
-#                 email=username), password=password)
-#         except:
-#             user = authenticate(request, username = username, password = password)
-            
-#         if user is not None:
-#             login(request, user)
-#             return render(request, 'order.html')
-#         else:
-#             return HttpResponse('login fail')
-
-# # --------------logOut-------------
-
-
-# def logoutUser(request):
-#     logout(request)
-#     return redirect('app1:login')
-
-
-# # --------------order-------------
-
-
-# class order(LoginRequiredMixin, View):
-#     login_url = '/login'
-#     def get(self, request):
-#         return render(request, 'order.html')
     
     
+# --------------logOut-------------
+
+
+def logoutUser(request):
+    logout(request)
+    return redirect('app2:login')
+
+
+
+    
+class register(View):
+    def get(self, request):
+        context = {'register': UserForm,}
+        return render(request, 'register.html', context)
+
+    def post(self, request):
+        if request.method == "POST":
+            f = UserForm(request.POST)
+            if f.is_valid():
+                f.save()
+                return redirect('app1:userLogin')
+            else:
+                return HttpResponse("no save success")
+        else:
+            return HttpResponse("not POST")
+
+class userLogin (View):
+    def get(self, request):
+        template = loginForm
+        return render(request, 'userlogin.html', {'userLogin': template})
+
+    def post(self, request):
+        if request.method == "POST":
+            userName = request.POST['userName']
+            password = request.POST['password']
+        
+            user = UserModel.objects.filter(userName=userName,password =password ).values()
+            context = {
+                    'user': user.count()
+                   }
+            if  user.count() ==1 :
+                return redirect('app1:index')
+            else:
+                return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
+        
+      
+
+def forgetPass(request):
+    template = loader.get_template('forgot-password.html')
+    return HttpResponse(template.render())
+
+
+

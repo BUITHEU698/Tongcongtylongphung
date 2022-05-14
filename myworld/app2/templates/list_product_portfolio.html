@@ -15,7 +15,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Long phụng </div>
       </a>
 
       <!-- Divider -->
@@ -33,7 +33,7 @@
       <hr class="sidebar-divider" />
 
       <!-- Heading -->
-      <div class="sidebar-heading">Interface</div>
+      <div class="sidebar-heading">Chính</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item active">
@@ -87,7 +87,7 @@
           aria-controls="collapseUtilities"
         >
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
+          <span>Khác</span>
         </a>
         <div
           id="collapseUtilities"
@@ -124,7 +124,7 @@
           aria-controls="collapsePages"
         >
           <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
+          <span>Khuyến mãi</span>
         </a>
         <div
           id="collapsePages"
@@ -133,35 +133,31 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html"
-              >Forgot Password</a
-            >
+            <h6 class="collapse-header">Mã khuyến mãi:</h6>
+            <a class="collapse-item" href="#">Login</a>
+            <a class="collapse-item" href="#">Register</a>
+          
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+           
           </div>
         </div>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Khách hàng</span></a
+        >
+      </li>
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a
+          <span>Thống kê</span></a
         >
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a
-        >
-      </li>
+  
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />
@@ -426,11 +422,11 @@
                 aria-expanded="false"
               >
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"
-                  >Douglas McGee</span
+                  >Thuốc lào Long Phụng</span
                 >
                 <img
                   class="img-profile rounded-circle"
-                  src="img/undraw_profile.svg"
+                  src="../media/img/favicon.ico" 
                 />
               </a>
               <!-- Dropdown - User Information -->
@@ -471,22 +467,24 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Danh sách danh mục sản phẩm </h1>
-         
-          
+          <h1 class="h3 mb-2 text-gray-800">Danh sách danh mục sản phẩm</h1>
+
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">
-                DataTables Example
+                Danh mục sản phẩm
+                <a
+                  class="btn btn-primary float-right"
+                  href="{% url 'app2:more_product_portfolio' %}"
+                  role="button"
+                  >Thêm danh mục</a
+                >
               </h6>
             </div>
             <div class="card-body">
-
-              
               <form name="form">
-                
-                <div class="table-responsive">
+                <div class="table-responsive table-striped table table-hover">
                   <table
                     class="table table-bordered"
                     id="dataTable"
@@ -495,58 +493,107 @@
                   >
                     <thead>
                       <tr>
-                        <th>  <input type="checkbox" name="CheckAll" onclick="SelectAll()" /> All</th>
+                        <th>
+                          <input
+                            type="checkbox"
+                            name="CheckAll"
+                            onclick="SelectAll()"
+                          />
+                          All &ensp; &ensp;
+                          <button
+                            type="button"
+                            class="btn btn-danger"
+                            data-toggle="modal"
+                            data-target="#exampleModalCenter"
+                          >
+                            Xóa
+                          </button>
+
+                          <!-- Modal -->
+                          <div
+                            class="modal fade"
+                            id="exampleModalCenter"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="exampleModalCenterTitle"
+                            aria-hidden="true"
+                          >
+                            <div
+                              class="modal-dialog modal-dialog-centered"
+                              role="document"
+                            >
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5
+                                    class="modal-title"
+                                    id="exampleModalLongTitle"
+                                  >
+                                    Bạn chắc chắn muốn xóa danh mục
+                                  </h5>
+                                </div>
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                  >
+                                    Quay lại
+                                  </button>
+                                  <button type="button" class="btn btn-danger">
+                                    Xóa
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
                         <th>Số lượng</th>
                         <th>Ngày đăng</th>
+                        <th>Tình trạng</th>
                       </tr>
-                    </thead>           
+                    </thead>
                     <tbody>
+                      {% for x in listPortfolio %}
+      
+                        <tr>
+                          <td>
+                            <input
+                              type="checkbox"
+                              name="CheckBox"
+                              value="checkbox1"
+                            />
+                          </td>
+                          <td>  <a  href="{% url 'app2:updata_product_portfolio'  x.id %}">{{x.portfolioName}} </a></td>
+                          <td>
+                            <img
+                              style="height: 100px"
+                              src="/media/{{x.portfolioImg}}"
+                              class="rounded d-block"
+                              alt="..."
+                            />
+                          </td>
+                          <td>37</td>
+                          <td>{{x.portfolioTimePub}}</td>
+
+                          <td>{{x.portfolioPub}}</td>
+                        </tr>
                     
-                    <tr>
-                      <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>Office Manager</td>
-                      <td><img src="..." class="rounded mx-auto d-block" alt="..."></td>
-                      <td>37</td>
-                      <td>2008/12/11</td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>Office Manager</td>
-                      <td><img src="..." class="rounded mx-auto d-block" alt="..."></td>
-                      <td>37</td>
-                      <td>2008/12/11</td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="CheckBox" value="checkbox1" /></td>
-                      <td>Office Manager</td>
-                      <td><img src="..." class="rounded mx-auto d-block" alt="..."></td>
-                      <td>37</td>
-                      <td>2008/12/11</td>
-                      
-                    </tr>
-                 
-                  
+                      {% endfor %}
                     </tbody>
                   </table>
                 </div>
-
-
               </form>
-             
-               
-     
+
               <script>
                 function SelectAll() {
                   var a = document.form,
-                    b = a.elements['CheckBox'],
+                    b = a.elements["CheckBox"],
                     c = b.length,
                     d,
-                    e = a.elements['CheckAll'];
-                  for (d=0; d<c; d++) {
+                    e = a.elements["CheckAll"];
+                  for (d = 0; d < c; d++) {
                     if (e.checked == true) {
                       b[d].checked = true;
                     } else {
@@ -554,8 +601,6 @@
                     }
                   }
                 }
-                
-              
               </script>
             </div>
           </div>
@@ -569,3 +614,5 @@
     <!-- End of Content Wrapper -->
 
     {% endblock %}
+  </div>
+</body>

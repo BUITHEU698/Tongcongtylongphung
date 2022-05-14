@@ -1,10 +1,7 @@
-{% comment %} {% extends 'base.html' %} {% block content %}
-
-{% for item in blog  %}
+{% comment %} {% extends 'base.html' %} {% block content %} {% for item in blog
+%}
 
 <h1>
-    <a href=" {% url 'app1:blogDetail' item.id  %}">{{item.title}}</a>
+  <a href=" {% url 'app1:blogDetail' item.id  %}">{{item.title}}</a>
 </h1>
-{% endfor %}
-
-{% endblock %} {% endcomment %}
+{% endfor %} {% endblock %} {% endcomment %}
