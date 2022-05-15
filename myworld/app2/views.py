@@ -120,6 +120,14 @@ class list_products(View):
             'list_products': ProductsModel.objects.all(),
         }
         return render(request, 'list_products.html', context)
+    def delete(self, request):
+        if request.method == "POST":
+            for item in list_products:
+                CheckBox = request.POST['CheckBox']
+                if CheckBox == 'cheked' :
+                    list_products.objects.filter(id=item.id).delete()
+                    return HttpResponse('Xóa thành công')
+
 
 class updata_product(View):
     def get(self, request, id):
@@ -127,6 +135,24 @@ class updata_product(View):
             'myProduct':  ProductsModel.objects.get(id=id),
         }
         return render(request, 'update_products.html', context)
+
+
+
+
+    def delete(self, request, id):
+        context = {
+            'myProduct':  ProductsModel.objects.get(id=id),
+        }
+        if request.method == "POST":
+            f = PortfolioForm(request.POST, request.FILES)
+            if f.is_valid():
+                myProduct = f
+                myProduct.save()
+                return HttpResponse("update success")
+            else:
+                return HttpResponse("no update success")
+        else:
+            return HttpResponse("not POST")
 
     def updaterecord(self, request, id):
         context = {

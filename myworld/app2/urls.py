@@ -15,7 +15,7 @@ urlpatterns = [
     path('updata_product_portfolio/<int:id>', views.updata_product_portfolio.as_view(),
          name="updata_product_portfolio"),
     
-      path('updata_product/<int:id>', views.updata_product.as_view(),
+     path('updata_product/<int:id>', views.updata_product.as_view(),
          name="updata_product"),
       
     path('list_product_portfolio', views.list_product_portfolio.as_view(), name="list_product_portfolio"),
