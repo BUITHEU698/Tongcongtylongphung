@@ -10,5 +10,8 @@
         "args": ["--extensionDevelopmentPath=${workspaceFolder}"]
       }
     ]
+  },
+  "emmet.includeLanguages": {
+    "django-html": "html"
   }
 }
