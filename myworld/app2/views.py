@@ -120,13 +120,13 @@ class list_products(View):
             'list_products': ProductsModel.objects.all(),
         }
         return render(request, 'list_products.html', context)
-    def delete(self, request):
+    def post(self, request):
         if request.method == "POST":
-            for item in list_products:
-                CheckBox = request.POST['CheckBox']
-                if CheckBox == 'cheked' :
-                    list_products.objects.filter(id=item.id).delete()
-                    return HttpResponse('Xóa thành công')
+            CheckBox = request.POST.getlist('CheckBox')
+            for item in CheckBox:
+                delete = ProductsModel.objects.get(id=item)
+                delete.delete()
+        return render(request, 'list_products.html')
 
 
 class updata_product(View):

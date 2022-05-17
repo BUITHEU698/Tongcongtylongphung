@@ -687,23 +687,6 @@
             </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
-                Xóa
-           </button>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa sản phẩm</h5>
-                  
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                    <button type="button" class="btn  btn-danger">Xóa</button>
-                  </div>
-                </div>
-              </div>
-            </div>
             <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
                 Close
             </button>
@@ -715,8 +698,8 @@
                   
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua </button>
-                    <button type="submit" class="btn btn-primary"  data-dismiss="modal">Lưu</button>
+                    <a type="button"  href="{% url 'app2:more_products' %}" class="btn btn-secondary" >Bỏ qua </a>
+                    <button type="submit" class="btn btn-primary" >Lưu</button>
                   </div>
                 </div>
               </div>
@@ -724,6 +707,7 @@
             <button type="submit" class="btn btn-primary">
               Lưu
             </button>
+           
           </div>
           </form>
         </div>
