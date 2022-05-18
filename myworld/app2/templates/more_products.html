@@ -587,72 +587,25 @@
                   </div>
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">
-                        Trạng thái
-                      </h6>
+                        <h6 class="m-0 font-weight-bold text-primary">
+                        Trạng Thái
+                        </h6>
                     </div>
-                    <div class="card-body">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          checked
-                          name="productsPub"
-                          id="ckb1"
-                          value="1"
-                          onclick="myFunction()"
-                        />
-                        <label class="form-check-label" for="ckb1">
-                          Hiển Thị
-                        </label>
-                        <br />
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="productsPub"
-                          id="ckb2"
-                          value="2"
-                          onclick="myFunction()"
-                        />
-                        <label class="form-check-label" for="ckb2">
-                          Ẩn
-                        </label>
-                      </div>
-                     
-              
-                      <div  style="display:none" id="checkBoxDate">
-                        <div class="card card-body">
-                            <input
-                              type="datetime-local"
-                              id="meeting_time"
-                              name="productsTimePub"
-                              min="2018-06-07T00:00"
-                              value ="2020-06-14T00:00"
-                              max="2026-06-14T00:00"
-                              required
-                            />
-                          </div> 
-                        
-                      </div>
-                      <script>
-                        function myFunction() {
-                          const d = new Date();
-                          meeting_time = document.getElementById("meeting_time")
-                         
-                          var checkBox2 = document.getElementById("ckb2");
-                          var checkBox1 = document.getElementById("ckb1");
-                          var checkBoxDate = document.getElementById("checkBoxDate");
-                          if (checkBox2.checked == true){
-                            checkBoxDate.style.display = "block";
-                          }
-                          if (checkBox1.checked == true){
-                            checkBoxDate.style.display = "none";
-                          }
-                        }
-                        </script>
+                    <div class="card-body">                         
+                            <label for="meeting_time" class="form-label">Ngày Hiển Thị</label>
+                              <div class="card card-body">
+                                  <input
+                                    type="datetime-local"
+                                    id="meeting_time"
+                                    name="productsTimePub"
+                                    min="2022-18-05T00:00"
+                                    max="2026-06-14T00:00"
+                                    
+                                  />
+                                </div> 
                     </div>
-                  </div>
-                    
+                </div>
+               
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

@@ -13,25 +13,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-# --------------login-------------
-
-
-# # --------------member-------------
-# class member(View):
-#     def get(self, request):
-#         template = memberForm
-#         return render(request, 'register.html', {'signup': template})
-
-#     def post(self, request):
-#         username = request.POST['username']
-#         email = request.POST['email']
-#         password = request.POST['password']
-
-#         user = User.objects.create_user(username, email, password)
-#         user.save()
-#         return redirect('app2:login')
-
-# # --------------loginUser-------------
 
 
 class loginUser (View):
@@ -49,26 +30,6 @@ class loginUser (View):
 
         else:
             return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
-
-# # --------------logOut-------------
-
-
-# def logoutUser(request):
-#     logout(request)
-#     return redirect('app2:login')
-
-
-# # --------------order-------------
-
-
-# class order(LoginRequiredMixin, View):
-#     login_url = '/login'
-
-#     def get(self, request):
-#         return render(request, 'index.html')
-
-
-# # --------------forget-paswork-------------
 
 
 def forgetPass(request):
@@ -104,9 +65,7 @@ class more_products(View):
         if request.method == "POST":
             f = ProductsForm(request.POST, request.FILES)
             if f.is_valid():
-
                 f.save()
-
                 return HttpResponseRedirect(reverse('app2:list_products'))
             else:
                 return HttpResponse("no save success")
@@ -118,6 +77,7 @@ class list_products(View):
     def get(self, request):
         context = {
             'list_products': ProductsModel.objects.all(),
+            
         }
         return render(request, 'list_products.html', context)
     def post(self, request):
@@ -126,22 +86,21 @@ class list_products(View):
             for item in CheckBox:
                 delete = ProductsModel.objects.get(id=item)
                 delete.delete()
-        return render(request, 'list_products.html')
+        return HttpResponseRedirect(reverse('app2:list_products'))
+        # return render(request, 'list_products.html')
 
 
 class updata_product(View):
     def get(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
+            'listPortfolio': PortfolioModel.objects.all(),
         }
         return render(request, 'update_products.html', context)
-
-
-
-
     def delete(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
+            'listPortfolio':PortfolioModel.objects.get(id=id),
         }
         if request.method == "POST":
             f = PortfolioForm(request.POST, request.FILES)

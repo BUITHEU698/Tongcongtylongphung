@@ -1,6 +1,8 @@
 from django import forms
 from .models import PortfolioModel
 from .models import ProductsModel
+from django.utils import timezone
+import datetime
 
 # --------------memberForm-------------
 
@@ -21,12 +23,16 @@ class loginForm(forms.Form):
 class PortfolioForm (forms.ModelForm):
     class Meta:
         model = PortfolioModel
-        fields = {'portfolioName','portfolioBody','portfolioPub','portfolioTimePub','portfolioImg' }
+        fields = {'portfolioName','portfolioBody','portfolioTimePub','portfolioImg' }
 
 
 class ProductsForm (forms.ModelForm):
     class Meta:
         model = ProductsModel
-        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsTimePub','portfolioModel','weight' }
+        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsTimePub','portfolioModel','weight' }
+        # widgets = {
+        # 'productsPrice':  forms.DateTimeField(initial=datetime.date.today) 
+        #     }
+        
 
 
