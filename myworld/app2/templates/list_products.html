@@ -557,7 +557,7 @@
                         <th>Giá Tham Chiếu</th>
                         <th>Tồn kho</th>
                         <th>Ngày đăng</th>
-                        <th>Danh mục sản phẩm</th>
+                        <th>Danh mục</th>
                         <th>Cân nặng</th>
                         <th>Tình trạng</th>
                       </tr>
@@ -589,7 +589,9 @@
                         <td>{{x.portfolioModel}}</td>
                         <td>{{x.weight}}</td>
                         <td>
-                          {% if timeNow.date >= x.productsTimePub.date and timeNow.time >= x.productsTimePub.time %}
+                          {% if timeNow.date > x.productsTimePub.date  %}
+                            Hiện
+                          {% elif  timeNow.date == x.productsTimePub.date and timeNow.time >= x.productsTimePub.time  %}
                             Hiện
                           {% else %}
                             Ẩn

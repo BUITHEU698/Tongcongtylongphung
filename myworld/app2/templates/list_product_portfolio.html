@@ -25,7 +25,7 @@
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a
+          <span>Tổng quan</span></a
         >
       </li>
 
@@ -87,7 +87,7 @@
           aria-controls="collapseUtilities"
         >
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Khác</span>
+          <span>Đơn hàng</span>
         </a>
         <div
           id="collapseUtilities"
@@ -111,7 +111,7 @@
       <hr class="sidebar-divider" />
 
       <!-- Heading -->
-      <div class="sidebar-heading">Addons</div>
+      <div class="sidebar-heading">Khác</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -552,7 +552,6 @@
                         </th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
-                        <th>Số lượng</th>
                         <th>Ngày đăng</th>
                         <th>Tình trạng</th>
                        
@@ -578,11 +577,12 @@
                               alt="..."
                             />
                           </td>
-                          <td>37</td>
+                        
                           <td>{{x.portfolioTimePub}}</td>
                           <td>
-                            {% if timeNow.date >= x.portfolioTimePub.date and timeNow.time >= x.portfolioTimePub.time %}
+                            {% if timeNow.date > x.portfolioTimePub.date %}
                               Hiện
+                            {% elif  timeNow.date == x.portfolioTimePub.date and timeNow.time >= x.portfolioTimePub.time  %}
                             {% else %}
                               Ẩn
                             {% endif %}

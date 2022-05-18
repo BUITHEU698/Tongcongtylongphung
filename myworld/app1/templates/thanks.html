@@ -108,116 +108,16 @@
   >
     <h1 class="font-weight-semi-bold text-uppercase mb-3">Liên Hệ</h1>
     <div class="d-inline-flex">
-      <p class="m-0"><a href="">Home</a></p>
-      <p class="m-0 px-2">-</p>
-      <p class="m-0">Liên Hệ</p>
+      <p class><a href="">Cảm ơn các bạn đã đồng hành cùng chúng tôi</a></p>
+    
+      <p class="m-0">Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất</p>
     </div>
   </div>
 </div>
 
 <!-- Contact Start -->
 
-<div class="container-fluid pt-5">
-  <div class="text-center mb-4">
-    <h2 class="section-title px-5">
-      <span class="px-2">Liên Hệ Với CHúng Tôi</span>
-    </h2>
-  </div>
-  <div class="row px-xl-5">
-    <div class="col-lg-7 mb-5">
-      <div class="contact-form">
-        <form
-          action="{% url 'app1:contact' %} "
-          method="post"
-        >
-          {% csrf_token %}
-          <div class="control-group">
-            <input
-              type="text"
-              class="form-control"
-              name="username"
-              placeholder="Tên bạn"
-              required="required"
-              data-validation-required-message="Please enter your name"
-            />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="control-group">
-            <input
-              type="email"
-              name="email"
-              class="form-control"
-              placeholder="Email của bạn"
-              required="required"
-              data-validation-required-message="Please enter your email"
-            />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="control-group">
-            <input
-              type="text"
-              name="subject"
-              class="form-control"
-              placeholder="Chủ Đề"
-              required="required"
-              data-validation-required-message="Please enter a subject"
-            />
-            <p class="help-block text-danger"></p>
-          </div>
-          <div class="control-group">
-            <textarea
-              name="message"
-              class="form-control"
-              rows="6"
-              placeholder="Thông Điệu"
-              required="required"
-              data-validation-required-message="Please enter your message"
-            ></textarea>
-            <p class="help-block text-danger"></p>
-          </div>
-          <div>
-            <button
-              class="btn btn-primary py-2 px-4"
-              type="submit"
-            >
-              Gửi Thư
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="col-lg-5 mb-5">
-      <h5 class="font-weight-semi-bold mb-3">Thuốc Lào Long Phụng</h5>
-      <p>
-        Thuốc Lào Long Phụng - Chuyên cung cấp thuốc lào và điếu cày các loại.
-        Đảm bảo hàng chất lượng cao giá rẻ ship hàng trên toàn quốc. Mọi thắc
-        mắc xin liên hệ với chúng tôi theo thông tin dưới đây hoặc để lại thông
-        tin của bạn. Chúng tôi sẽ liên hệ với bạn sớm nhất có thể.
-      </p>
-      <div class="d-flex flex-column mb-3">
-        <h5 class="font-weight-semi-bold mb-3">Thông Tin</h5>
-        <p class="mb-2">
-          <a
-            href="https://www.google.com/maps/place/Thu%E1%BB%91c+l%C3%A0o+Long+Ph%E1%BB%A5ng/@10.8741908,106.8081213,15z/data=!4m5!3m4!1s0x0:0x9d682842d9905f03!8m2!3d10.8741908!4d106.8081213"
-          >
-            <i class="fa fa-map-marker-alt text-primary mr-3"></i>78/7 Tân Lập,
-            Đông Hoà, Dĩ An, Bình Dương
-          </a>
-        </p>
-        <p class="mb-2">
-          <a href="mailto:buitheu698@gmail.com">
-            <i class="fa fa-envelope text-primary mr-3"></i>buitheu698@gmail.com
-          </a>
-        </p>
-        <p class="mb-2">
-          <a href="tel:0368311698">
-            <i class="fa fa-phone-alt text-primary mr-3"></i>+036 8311 698
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!-- Contact End -->
 

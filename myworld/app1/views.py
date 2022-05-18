@@ -50,7 +50,11 @@ def checkout(request):
 
 class contact(View):
     def get(self, request):
-        context = {'cf': contactForm}
+        
+        context = {'cf': contactForm,
+                    'listPortfolio': PortfolioModel.objects.all(),
+                   
+                   }
         return render(request, 'contact.html', context)
 
     def post(self, request):
@@ -65,10 +69,14 @@ class contact(View):
                                        subject=cf.cleaned_data['subject'], message=cf.cleaned_data['message'])
                 # luu thong tin vaao model
                 save_cf.save()
-                return HttpResponse("save success")
+                return render(request, 'thanks.html')
         else:
             return HttpResponse("not POST")
 
+
+def thanks(request):
+    template = loader.get_template('thanks.html')
+    return HttpResponse(template.render())
 # --------------shop-------------
 
 

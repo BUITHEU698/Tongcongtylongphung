@@ -431,9 +431,9 @@
                   >Thuốc lào Long Phụng</span
                 >
                 <img
-                  class="img-profile rounded-circle"
-                  src="../media/img/favicon.ico" 
-                />
+                class="img-profile rounded-circle"
+                src="../media/img/favicon.ico" 
+              />
               </a>
               <!-- Dropdown - User Information -->
               <div
@@ -480,55 +480,55 @@
                 <div class="col-lg-8">
                     <!-- Circle Buttons -->
                     <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Thông tin</h6>
-                    </div>
-                    <div class="card-body">
-                        <label for="validationCustom01" class="form-label"
-                        >Tên sản phẩm</label
-                        >
-                        <input
-                        type="text"
-                        name ="productsName"
-                        class="form-control"
-                        id="validationCustom01"
-                        value="{{myProduct.productsName}}"
-                        required
-                        />
-                    </div>
-                    <div class="card-body">
-                        <label for="validationCustom02" class="form-label"
-                        >Nội dung</label
-                        >
+                      <div class="card-header py-3">
+                          <h6 class="m-0 font-weight-bold text-primary">Thông tin</h6>
+                      </div>
+                      <div class="card-body">
+                          <label for="validationCustom01" class="form-label"
+                          >Tên sản phẩm</label
+                          >
+                          <input
+                          type="text"
+                          name ="productsName"
+                          class="form-control"
+                          id="validationCustom01"
+                          value="{{myProduct.productsName}}"
+                          required
+                          />
+                      </div>
+                      <div class="card-body">
+                          <label for="validationCustom02" class="form-label"
+                          >Nội dung</label
+                          >
 
-                        <textarea
-                        name = "productsBody"
-                        class="form-control"
-                        id="exampleFormControlTextarea1"
-                        required
-                        >{{myProduct.productsBody}}</textarea>
-                    </div>
+                          <textarea
+                          name = "productsBody"
+                          class="form-control"
+                          id="exampleFormControlTextarea1"
+                          required
+                          >{{myProduct.productsBody}}</textarea>
+                      </div>
                     </div>
 
                     <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                        Ảnh sản phẩm
-                        </h6>
-                    </div>
+                      <div class="card-header py-3">
+                          <h6 class="m-0 font-weight-bold text-primary">
+                          Ảnh sản phẩm
+                          </h6>
+                      </div>
 
-                    <div class="card-body">
-                      <labelfor="formFile" class="form-label">Ảnh đã chọn: <a href="/media/{{myProduct.productsImg}}">{{myProduct.productsImg}}</a></label>
-                      <img
-                      style="height: 100px"
-                      src="/media/{{myProduct.productsImg}}"
-                      class="rounded d-block"
-                      alt="..."
-                    />
-                      <br>
+                      <div class="card-body">
+                        <labelfor="formFile" class="form-label">Ảnh đã chọn: <a href="/media/{{myProduct.productsImg}}">{{myProduct.productsImg}}</a></label>
+                        <img
+                        style="height: 100px"
+                        src="/media/{{myProduct.productsImg}}"
+                        class="rounded d-block"
+                        alt="..."
+                      />
+                        <br>
                         <label for="formFile" class="form-label">Upload Ảnh mới: </label>
                         <input class="form-control" name ="productsImg" type="file"  id="formFile" /> 
-                    </div>
+                      </div>
                     </div>
 
                     <div class="card shadow mb-4">
@@ -609,7 +609,7 @@
                               type="datetime-local"
                               id="meeting_time"
                               name="productsTimePub"
-                              min="2020-01-25T00:00"
+                              min="myProductsTimePub"
                               max="2026-06-14T17:00"
                               value="{{myProductsTimePub}}"
                               
@@ -617,7 +617,7 @@
                           </div> 
               </div>
                 </div>                  
-                    <div class="card shadow mb-4">
+                    {% comment %} <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">
                             Danh mục sản phẩm
@@ -628,16 +628,15 @@
                             <select class="form-select"  name= "portfolioModel" id="autoSizingSelect">
                               {% for x in listPortfolio %}
                                 {% if myProduct.portfolioModel.id ==  x.id %}
-                                <option value="{{x.id}}">{{x.id}}.{{x.portfolioName}}</option>
-                                  {% comment %} <option  selected="selected" value="{{x.id}}">{{x.id}}.{{x.portfolioName}}</option>
+                                  <option  selected="selected" value="{{x.id}}">{{x.portfolioName}}</option>
                                 {% else %}
                                   <option value="{{x.id}}">{{x.id}}.{{x.portfolioName}}</option>
-                                {% endif %} {% endcomment %}
+                                {% endif %}
                                
                               {% endfor %}
                             </select>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">
@@ -664,23 +663,6 @@
             </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
-                Xóa
-           </button>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa sản phẩm</h5>
-                  
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                    <button type="button" class="btn  btn-danger">Xóa</button>
-                  </div>
-                </div>
-              </div>
-            </div>
             <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
                 Close
             </button>

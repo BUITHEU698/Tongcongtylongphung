@@ -429,7 +429,7 @@
                 >
                 <img
                   class="img-profile rounded-circle"
-                  src="../media/img/favicon.ico"
+                  src="../media/img/favicon.ico" 
                 />
               </a>
               <!-- Dropdown - User Information -->
@@ -531,113 +531,59 @@
                         type="datetime-local"
                         id="meeting_time"
                         name="portfolioTimePub"
-                        value = "myPortfolio.portfolioTimePub"
-                        min="2022-18-05T00:00"
+                        value = "{{myPortfolioTimePub}}"
+                        min="{{myPortfolioTimePub}}"
                         max="2026-06-14T00:00"
                         required
                       />
                     </div>
                   </div>
-                </div>
+                </div> 
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Ảnh danh mục
-                    </h6>
+                      <h6 class="m-0 font-weight-bold text-primary">
+                      Ảnh sản phẩm
+                      </h6>
                   </div>
+
                   <div class="card-body">
-                    <label for="formFile" class="form-label">Upload Ảnh</label>
-                    <input
-                      class="form-control"
-                      name="portfolioImg"
-                      validation="{{myPortfolio.portfolioImg}}"
-                      type="file"
-                      id="formFile"
-                    />
+                    <labelfor="formFile" class="form-label">Ảnh đã chọn: <a href="/media/{{myPortfolio.portfolioImg}}">{{myPortfolio.portfolioImg}}</a></label>
+                    <img
+                    style="height: 100px"
+                    src="/media/{{myPortfolio.portfolioImg}}"
+                    class="rounded d-block"
+                    alt="..."
+                  />
+                    <br>
+                    <label for="formFile" class="form-label">Upload Ảnh mới: </label>
+                    <input class="form-control" name ="portfolioImg" type="file"  id="formFile" /> 
                   </div>
                 </div>
+              
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-              >
-                Xóa
+            
+              <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
+                  Close
               </button>
-              <div
-                class="modal fade"
-                id="exampleModalCenter"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
+              <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn chắc chắn muốn xóa sản phẩm
-                      </h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn lưu thay đổi</h5>
+                    
                     </div>
                     <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Quay lại
-                      </button>
-                      <button type="button" class="btn btn-danger">Xóa</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua </button>
+                      <button type="submit" class="btn btn-primary"  data-dismiss="modal">Lưu</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-toggle="modal"
-                data-target="#exampleModalCen"
-              >
-                Close
+              </div>   
+              <button type="submit" class="btn btn-primary">
+                Lưu
               </button>
-              <div
-                class="modal fade"
-                id="exampleModalCen"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn có muốn lưu thay đổi
-                      </h5>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Bỏ qua
-                      </button>
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        data-dismiss="modal"
-                      >
-                        Lưu
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
           </form>
         </div>

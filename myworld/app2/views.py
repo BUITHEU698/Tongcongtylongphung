@@ -110,7 +110,7 @@ class updata_product(View):
             myProduct.productsPriceOther = request.POST['productsPriceOther']
             myProduct.inventory = request.POST['inventory']
             myProduct.productsTimePub = request.POST['productsTimePub']
-            myProduct.portfolioModel = request.POST['portfolioModel']
+            # myProduct.portfolioModel = request.POST['portfolioModel']
             myProduct.weight = request.POST['weight']
             myProduct.save()
         context = {
@@ -129,20 +129,20 @@ class updata_product_portfolio(View):
         }
         return render(request, 'updata_product_portfolio.html', context)
 
-    def updaterecord(self, request, id):
-        context = {
-            'myPortfolio':  PortfolioModel.objects.get(id=id),
-        }
+    def post(self, request, id):
+        myPortfolio =   PortfolioModel.objects.get(id=id)
         if request.method == "POST":
-            f = PortfolioForm(request.POST, request.FILES)
-            if f.is_valid():
-                myPortfolio = f
-                myPortfolio.save()
-                return HttpResponse("update success")
-            else:
-                return HttpResponse("no update success")
-        else:
-            return HttpResponse("not POST")
+            myPortfolio.portfolioName = request.POST['portfolioName']
+            myPortfolio.portfolioBody = request.POST['portfolioBody']
+            # myPortfolio.portfolioImg = request.POST['portfolioImg']
+            myPortfolio.portfolioTimePub = request.POST['portfolioTimePub']
+            myPortfolio.save()
+        context = {
+            'myPortfolio':  PortfolioModel.objects.get(id=id),      
+            'listPortfolio': PortfolioModel.objects.all(),
+            'myPortfolioTimePub' :  PortfolioModel.objects.get(id=id).portfolioTimePub.strftime('%Y-%m-%dT%H:%M')      
+        }
+        return render(request, 'updata_product_portfolio.html', context)
 
 
 class more_product_portfolio(View):
@@ -166,6 +166,7 @@ class more_product_portfolio(View):
 class list_product_portfolio(View):
     def get(self, request):     
         context = {
+            'listProducts': ProductsModel.objects.all(),
             'listPortfolio': PortfolioModel.objects.all(),
             'timeNow' : datetime.now(),
         }
