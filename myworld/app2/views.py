@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime
 
 
 class loginUser (View):
@@ -58,6 +59,7 @@ class more_products(View):
     def get(self, request):
         context = {'cp': ProductsForm,
                    'listPortfolio': PortfolioModel.objects.all(),
+                   'timeNow' : datetime.now().strftime('%Y-%m-%dT%H:%M')   
                    }
         return render(request, 'more_products.html', context)
 
@@ -87,20 +89,20 @@ class list_products(View):
                 delete = ProductsModel.objects.get(id=item)
                 delete.delete()
         return HttpResponseRedirect(reverse('app2:list_products'))
-        # return render(request, 'list_products.html')
-
 
 class updata_product(View):
     def get(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
             'listPortfolio': PortfolioModel.objects.all(),
+            'myProductsTimePub' :  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')   
         }
         return render(request, 'update_products.html', context)
     def delete(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
             'listPortfolio':PortfolioModel.objects.get(id=id),
+            
         }
         if request.method == "POST":
             f = PortfolioForm(request.POST, request.FILES)
@@ -156,7 +158,8 @@ class updata_product_portfolio(View):
 
 class more_product_portfolio(View):
     def get(self, request):
-        context = {'cf': PortfolioForm}
+        context = {'cf': PortfolioForm,
+                   'timeNow' : datetime.now().strftime('%Y-%m-%dT%H:%M')  }
         return render(request, 'more_product_portfolio.html', context)
 
     def post(self, request):
@@ -177,7 +180,13 @@ class list_product_portfolio(View):
             'listPortfolio': PortfolioModel.objects.all(),
         }
         return render(request, 'list_product_portfolio.html', context)
-
+    def post(self, request):
+            if request.method == "POST":
+                CheckBox = request.POST.getlist('CheckBox')
+                for item in CheckBox:
+                    delete = PortfolioModel.objects.get(id=item)
+                    delete.delete()
+            return HttpResponseRedirect(reverse('app2:list_product_portfolio'))
 
 # --------------charts-------------
 
