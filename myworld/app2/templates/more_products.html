@@ -623,28 +623,22 @@
                       <div  style="display:none" id="checkBoxDate">
                         <div class="card card-body">
                             <input
-                              type="date"
-                              id="meeting_date"
-                              name="productsDatePub"
-                              min="2018-06-07"
-                              value ="2020-06-14"
-                              max="2026-06-14"
+                              type="datetime-local"
+                              id="meeting_time"
+                              name="productsTimePub"
+                              min="2018-06-07T00:00"
+                              value ="2020-06-14T00:00"
+                              max="2026-06-14T00:00"
                               required
                             />
-                            <br>
-                            <input
-                            type="time"
-                            id="meeting_time"
-                            name="productsTimePub"
-                            value ="18:00"
-                            required
-                          />
                           </div> 
                         
                       </div>
                       <script>
                         function myFunction() {
-                          
+                          const d = new Date();
+                          meeting_time = document.getElementById("meeting_time")
+                         
                           var checkBox2 = document.getElementById("ckb2");
                           var checkBox1 = document.getElementById("ckb1");
                           var checkBoxDate = document.getElementById("checkBoxDate");

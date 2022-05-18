@@ -39,8 +39,7 @@ class ProductsModel(models.Model):
     productsPriceOther = models.FloatField('Giá so sánh', default= 0)
     inventory = models.FloatField('Hàng tồn kho', default= 0)
     productsPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
-    productsDatePub = models.DateField('Ngày hiển thị', default=timezone.now)
-    productsTimePub = models.TimeField('Giờ hiển thị',default=timezone.now)
+    productsTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False )
     portfolioModel = models.ForeignKey(PortfolioModel, on_delete= models.CASCADE)
     weight = models.FloatField('Khối lượng sản phẩm', default= 0)
     def __str__(self):
