@@ -79,6 +79,7 @@ class list_products(View):
     def get(self, request):
         context = {
             'list_products': ProductsModel.objects.all(),
+            'timeNow' : datetime.now(),
             
         }
         return render(request, 'list_products.html', context)
@@ -98,43 +99,33 @@ class updata_product(View):
             'myProductsTimePub' :  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')   
         }
         return render(request, 'update_products.html', context)
-    def delete(self, request, id):
+    
+    def post(self, request, id):
+        myProduct =   ProductsModel.objects.get(id=id)
+        if request.method == "POST":
+            myProduct.productsName = request.POST['productsName']
+            myProduct.productsBody = request.POST['productsBody']
+            # myProduct.productsImg = request.POST['productsImg']
+            myProduct.productsPrice = request.POST['productsPrice']
+            myProduct.productsPriceOther = request.POST['productsPriceOther']
+            myProduct.inventory = request.POST['inventory']
+            myProduct.productsTimePub = request.POST['productsTimePub']
+            myProduct.portfolioModel = request.POST['portfolioModel']
+            myProduct.weight = request.POST['weight']
+            myProduct.save()
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
-            'listPortfolio':PortfolioModel.objects.get(id=id),
-            
+            'listPortfolio': PortfolioModel.objects.all(),
+             'myProductsTimePub' :  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')   
         }
-        if request.method == "POST":
-            f = PortfolioForm(request.POST, request.FILES)
-            if f.is_valid():
-                myProduct = f
-                myProduct.save()
-                return HttpResponse("update success")
-            else:
-                return HttpResponse("no update success")
-        else:
-            return HttpResponse("not POST")
-
-    def updaterecord(self, request, id):
-        context = {
-            'myProduct':  ProductsModel.objects.get(id=id),
-        }
-        if request.method == "POST":
-            f = PortfolioForm(request.POST, request.FILES)
-            if f.is_valid():
-                myProduct = f
-                myProduct.save()
-                return HttpResponse("update success")
-            else:
-                return HttpResponse("no update success")
-        else:
-            return HttpResponse("not POST")
+        return render(request, 'update_products.html', context)
 
 # --------------portfolio-------------
 class updata_product_portfolio(View):
     def get(self, request, id):
         context = {
             'myPortfolio':  PortfolioModel.objects.get(id=id),
+            'myPortfolioTimePub' :  PortfolioModel.objects.get(id=id).portfolioTimePub.strftime('%Y-%m-%dT%H:%M')      
         }
         return render(request, 'updata_product_portfolio.html', context)
 
@@ -152,8 +143,6 @@ class updata_product_portfolio(View):
                 return HttpResponse("no update success")
         else:
             return HttpResponse("not POST")
-
-
 
 
 class more_product_portfolio(View):
@@ -175,10 +164,12 @@ class more_product_portfolio(View):
 
 
 class list_product_portfolio(View):
-    def get(self, request):
+    def get(self, request):     
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
+            'timeNow' : datetime.now(),
         }
+    
         return render(request, 'list_product_portfolio.html', context)
     def post(self, request):
             if request.method == "POST":
