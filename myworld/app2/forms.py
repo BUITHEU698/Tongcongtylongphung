@@ -21,12 +21,12 @@ class loginForm(forms.Form):
 class PortfolioForm (forms.ModelForm):
     class Meta:
         model = PortfolioModel
-        fields = {'portfolioName','portfolioBody','portfolioPub','portfolioTimePub','portfolioImg' }
+        fields = {'portfolioName','portfolioBody','portfolioPub',  'portfolioTimePub','portfolioImg' }
 
 
 class ProductsForm (forms.ModelForm):
     class Meta:
         model = ProductsModel
-        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsTimePub','portfolioModel','weight' }
+        fields = {'productsName','productsBody','productsImg','productsPrice','productsPriceOther','inventory','productsPub','productsDatePub','productsTimePub','portfolioModel','weight' }
 
 
