@@ -19,7 +19,7 @@
       >
       
       <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-         
+      
         {% for x in listPortfolio %}
          <a href="" class="nav-item nav-link">{{x.portfolioName}}</a>
         {% endfor %}
@@ -52,22 +52,7 @@
             <a href="{% url 'app1:index' %}" class="nav-item nav-link">Trang chủ</a>
             <a href="{% url 'app1:shop' %}" class="nav-item nav-link">Cửa hàng</a>
           
-            <div class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-toggle="dropdown"
-                >Trang</a
-              >
-              <div class="dropdown-menu rounded-0 m-0">
-                <a href="{% url 'app1:cart' %}" class="dropdown-item"
-                  >Giỏ hàng</a
-                >
-                <a href="{% url 'app1:checkout' %}" class="dropdown-item"
-                  >Checkout</a
-                >
-              </div>
-            </div>
+       
 
            
             <a href="{% url 'app1:blog' %}" class="nav-item nav-link"
@@ -120,7 +105,9 @@
           </tr>
         </thead>
         <tbody class="align-middle">
+         
           {% for x in cartItemModel  %}
+          
             {% if x.cart.id == myCart.id %}
               <tr>
                 <td class="align-middle">
@@ -162,8 +149,48 @@
       </table>
     </div>
     
+    <div class="col-lg-4">
+      {% comment %} <form class="mb-5" action="">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control p-4"
+            placeholder="Coupon Code"
+          />
+          <div class="input-group-append">
+            <button class="btn btn-primary">Apply Coupon</button>
+          </div>
+        </div>
+      </form> {% endcomment %}
+      <div class="card border-secondary mb-5">
+        <div class="card-header bg-secondary border-0">
+          <h4 class="font-weight-semi-bold m-0">Tổng cộng giỏ hàng</h4>
+        </div>
+        <div class="card-body">
+          <div class="d-flex justify-content-between mb-3 pt-1">
+            <h6 class="font-weight-medium">Tổng tiền</h6>
+            <h6 class="font-weight-medium">$150</h6>
+          </div>
+          <div class="d-flex justify-content-between">
+            <h6 class="font-weight-medium">Phí vận chuyển</h6>
+            <h6 class="font-weight-medium">$10</h6>
+          </div>
+        </div>
+        <div class="card-footer border-secondary bg-transparent">
+          <div class="d-flex justify-content-between mt-2">
+            <h5 class="font-weight-bold">Tổng tiền</h5>
+            <h5 class="font-weight-bold">$160</h5>
+          </div>
+          <button class="btn btn-block btn-primary my-3 py-3">
+             Mua hàng
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+  
 </div>
+
 <!-- Cart End -->
 
 {% endblock content %}

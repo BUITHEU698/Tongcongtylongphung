@@ -263,6 +263,7 @@ class cart(View):
         for item in cartModel:
             if item["user_id"] == USER['id']:
                 context = {'CartModel':  CartModel.objects.all(),
+                           'tongTien': 0,
                            'listPortfolio': PortfolioModel.objects.all(),
                            'listproducts': ProductsModel.objects.all(),
                            'listUser': UserModel.objects.all(),
