@@ -14,7 +14,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 # --------------index-------------
-
+global  USER 
+USER = 1
 class userLogin (View):
     def get(self, request):
         template = loginForm
@@ -29,7 +30,6 @@ class userLogin (View):
            
             if  user.count() ==1 :
                 for item in user:         
-                    global  USER 
                     USER = item
                 context = {
                     'USER': USER
@@ -39,7 +39,6 @@ class userLogin (View):
                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
         
       
-
 def forgetPass(request):
     template = loader.get_template('forgot-password.html')
     return HttpResponse(template.render())
@@ -67,9 +66,6 @@ def sitemap(request):
 
 # --------------cart-------------
 # @decorators.login_required(login_url='/userLogin/')
-def cart(request):
-    template = loader.get_template('cart.html')
-    return HttpResponse(template.render())
 
 
 # --------------checkout-------------
@@ -138,36 +134,63 @@ class detailProduct(View):
 
 # --------------blog-------------
 
+class blog(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
+            'USER': USER
+        }
+       
+        return render(request, 'blog.html', context)
+    
+class blog1(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
+            'USER': USER
+        }
+       
+        return render(request, 'blog1.html', context)
+    
+class blog2(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
+            'USER': USER
+        }
+       
+        return render(request, 'blog2.html', context)
 
-def blog(request):
-    template = postBlog.objects.all()
-    return render(request, 'blog.html', {'blog': template})
+class blog3(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
+            'USER': USER
+        }
+       
+        return render(request, 'blog3.html', context)
 
-
+class blog4(View):
+    def get(self, request):
+        context = {
+            'listPortfolio': PortfolioModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
+            'USER': USER
+        }
+       
+        return render(request, 'blog4.html', context)
 def blogDetail(request, id):
     template = postBlog.objects.get(id=id)
     return render(request, 'blogDetail.html', {'blogDetail': template})
-
-
-
-def blog1(request):
-    template = loader.get_template('blog1.html')
-    return HttpResponse(template.render())
-
-
-def blog2(request):
-    template = loader.get_template('blog2.html')
-    return HttpResponse(template.render())
-
-
-def blog3(request):
-    template = loader.get_template('blog3.html')
-    return HttpResponse(template.render())
-
-
-def blog4(request):
-    template = loader.get_template('blog4.html')
-    return HttpResponse(template.render())
 
 
     
