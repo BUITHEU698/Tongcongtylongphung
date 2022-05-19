@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"  />
     <title>Thuốc Lào Long Phụng</title>
     {% load static %}
 
@@ -259,17 +259,19 @@
         });
       
       }
-      function themQuantile(idtc) {
+      function tangQuantile(idtc, tg) {
         num = $("#quantile").val()
         if(!num){
           num = 1
         }
-        $.post( '/cart', {'id':idtc, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+        $.post( '/cart', {'id':idtc,'tg' : tg,  'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
           
         });
       
       }
+     
     </script>
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

@@ -130,8 +130,6 @@
           </tr>
         </thead>
         <tbody class="align-middle">
-         
-          {% csrf_token %}
           {% for x in cartItemModel  %}
             {% if x.cart.id == myCart.id %}
               <tr>
@@ -143,7 +141,7 @@
                 <td class="align-middle">
                   <div class="input-group quantity mx-auto" style="width: 100px">
                     <div class="input-group-btn">
-                      <button  onclick= "themQuantile({{x.id}})" class="btn btn-sm btn-primary btn-minus">
+                      <button  onclick= "tangQuantile({{x.id}}, -1)" class="btn btn-sm btn-primary btn-minus">
                         <i class="fa fa-minus"></i>
                       </button>
                     </div>
@@ -155,7 +153,7 @@
                       value="{{x.quantile}}"
                     />
                     <div class="input-group-btn">
-                      <button onclick= "themQuantile({{x.id}})" class="btn btn-sm btn-primary btn-plus">
+                      <button onclick= "tangQuantile({{x.id}}, 1)" class="btn btn-sm btn-primary btn-plus">
                         <i class="fa fa-plus"></i>
                       </button>
                     </div>
@@ -163,7 +161,7 @@
                 </td>
                 <td class="align-middle"> {{x.products.productsPrice}} đ</td>
                 <td class="align-middle">
-                  <button class="btn btn-sm btn-primary">
+                  <button  onclick= "tangQuantile({{x.id}}, 0)" class="btn btn-sm btn-primary">
                     <i class="fa fa-times"></i>
                   </button>
                 </td>

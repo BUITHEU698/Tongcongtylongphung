@@ -294,14 +294,20 @@ class cart(View):
                    'cartItemModel':  CartItemModel.objects.all(),
                    }
         return render(request, 'cart.html', context)
-        def post(self, request):
-            print("hihihi")
-            if request.method == "POST" :
-                print("hahaha")
-                IdCartItemModel = request.POST['id']
-                myCartItem =   CartItemModel.objects.get(id= IdCartItemModel)
-                myCartItem.quantile =  myCartItem.quantile +1
+    def post(self, request):
+        if request.method == "POST" :
+            IdCartItemModel = request.POST['id']
+            myCartItem =   CartItemModel.objects.get(id= IdCartItemModel)
+            tg = request.POST['tg']
+            if int(tg) == 0:
+                print("da xoa")
+                myCartItem.delete()
+                return redirect('app1:cart')
+            else:      
+                myCartItem.quantile =  myCartItem.quantile + int(tg)
                 myCartItem.save()
+                if myCartItem.quantile == 0:
+                     myCartItem.delete()
                 return redirect('app1:cart')
               
             
