@@ -15,7 +15,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 # --------------index-------------
 global  USER 
-USER = 1
+USER= 1
 class userLogin (View):
     def get(self, request):
         template = loginForm
@@ -30,6 +30,7 @@ class userLogin (View):
            
             if  user.count() ==1 :
                 for item in user:         
+                    global  USER 
                     USER = item
                 context = {
                     'USER': USER
@@ -39,6 +40,7 @@ class userLogin (View):
                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
         
       
+
 def forgetPass(request):
     template = loader.get_template('forgot-password.html')
     return HttpResponse(template.render())
@@ -65,7 +67,7 @@ def sitemap(request):
 
 
 # --------------cart-------------
-# @decorators.login_required(login_url='/userLogin/')
+
 
 
 # --------------checkout-------------
