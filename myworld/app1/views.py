@@ -222,16 +222,6 @@ class blog3(View):
         return render(request, 'blog3.html', context)
 
 
-class blog4(View):
-    def get(self, request):
-        context = {
-            'listPortfolio': PortfolioModel.objects.all(),
-            'listUser': UserModel.objects.all(),
-            'timeNow': datetime.now(),
-            'USER': USER
-        }
-
-        return render(request, 'blog4.html', context)
 
 
 def blogDetail(request, id):

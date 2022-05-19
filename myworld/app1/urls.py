@@ -13,10 +13,11 @@ urlpatterns = [
     path('shop', views.shop.as_view(), name="shop"),
     path('detailProduct /<int:id>', views.detailProduct.as_view(), name="detailProduct"),
     path('<int:id>', views.blogDetail, name="blogDetail"),
+    path('blog', views.blog.as_view(), name="blog"),
     path('blog1', views.blog1.as_view(), name="blog1"),
     path('blog2', views.blog2.as_view(), name="blog2"),
     path('blog3', views.blog3.as_view(), name="blog3"),
-    path('blog4', views.blog4.as_view(), name="blog4"),
+
     path('userLogin', views.userLogin.as_view(), name="userLogin"),
     path('logout', views.logoutUser, name="logout"),
     path('register', views.register.as_view(), name="register"),
