@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime
 # --------------index-------------
 
 
@@ -21,6 +22,7 @@ class index(View):
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
             'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
         }
         return render(request, 'index.html', context)
 
@@ -50,7 +52,11 @@ def checkout(request):
 
 class contact(View):
     def get(self, request):
-        context = {'cf': contactForm}
+        
+        context = {'cf': contactForm,
+                    'listPortfolio': PortfolioModel.objects.all(),
+                   
+                   }
         return render(request, 'contact.html', context)
 
     def post(self, request):
@@ -65,10 +71,14 @@ class contact(View):
                                        subject=cf.cleaned_data['subject'], message=cf.cleaned_data['message'])
                 # luu thong tin vaao model
                 save_cf.save()
-                return HttpResponse("save success")
+                return render(request, 'thanks.html')
         else:
             return HttpResponse("not POST")
 
+
+def thanks(request):
+    template = loader.get_template('thanks.html')
+    return HttpResponse(template.render())
 # --------------shop-------------
 
 
@@ -77,16 +87,22 @@ class shop(View):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
         }
+       
         return render(request, 'shop.html', context)
 
 
 # --------------detail-------------
 
 
-def detail(request):
-    template = loader.get_template('detail.html')
-    return HttpResponse(template.render())
+class detailProduct(View):
+    def get(self, request, id):
+        context = {
+            'myProduct':  ProductsModel.objects.get(id=id),
+        }
+        return render(request, 'detail.html', context)
 
 # --------------blog-------------
 

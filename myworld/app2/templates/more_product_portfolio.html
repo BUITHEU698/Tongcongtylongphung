@@ -15,7 +15,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Long phụng</div>
+        <div class="sidebar-brand-text mx-3">Long phụng</div>
       </a>
 
       <!-- Divider -->
@@ -99,9 +99,7 @@
             <h6 class="collapse-header">Quản lý đơn hàng:</h6>
             <a class="collapse-item" href="#">Danh sách đơn hàng</a>
             <a class="collapse-item" href="#">Đơn hàng nháp</a>
-            <a class="collapse-item" href="#"
-              >Đơn hàng chưa hoàn thành</a
-            >
+            <a class="collapse-item" href="#">Đơn hàng chưa hoàn thành</a>
           </div>
         </div>
       </li>
@@ -135,9 +133,8 @@
             <h6 class="collapse-header">Khuyến mãi:</h6>
             <a class="collapse-item" href="#">Mã khuyến mãi</a>
             <a class="collapse-item" href="#">Chương trình khuyến mãi</a>
-  
+
             <div class="collapse-divider"></div>
-           
           </div>
         </div>
       </li>
@@ -156,7 +153,6 @@
       </li>
 
       <!-- Nav Item - Tables -->
-
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />
@@ -228,7 +224,6 @@
                   <div class="input-group">
                     <input
                       type="text"
-                    
                       class="form-control bg-light border-0 small"
                       placeholder="Search for..."
                       aria-label="Search"
@@ -425,7 +420,7 @@
                 >
                 <img
                   class="img-profile rounded-circle"
-                  src="../media/img/favicon.ico" 
+                  src="../media/img/favicon.ico"
                 />
               </a>
               <!-- Dropdown - User Information -->
@@ -516,63 +511,26 @@
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                      Trạng thái
+                      Trạng Thái
                     </h6>
                   </div>
                   <div class="card-body">
-                    <div class="form-check">
+                    <label for="meeting_time" class="form-label"
+                      >Ngày Hiển Thị</label
+                    >
+                    <div class="card card-body">
                       <input
-                        class="form-check-input"
-                        type="radio"
-                        name="portfolioPub"
-                        id="exampleRadios2"
-                        value="1"
-                        checked
+                        type="datetime-local"
+                        id="meeting_time"
+                        name="portfolioTimePub"
+                        min="{{timeNow}}"
+                        max="2026-06-14T00:00"
+                        value="{{timeNow}}"
+                        required
                       />
-                      <label class="form-check-label" for="exampleRadios2">
-                        Hiển Thị
-                      </label>
-                      <br />
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                      
-                        name="portfolioPub"
-                        id="exampleRadios2"
-                        value="2"
-                      />
-                      <label class="form-check-label" for="exampleRadios2">
-                        Ẩn
-                      </label>
-                    </div>
-
-                    <p>
-                      <a
-                        class="link-danger"
-                        data-bs-toggle="collapse"
-                        href="#collapseExample"
-                        role="button"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-                      >
-                        Đặt lịch hiển thị
-                      </a>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                      <div class="card card-body">
-                        <input
-                          required
-                          type="datetime-local"
-                          id="meeting-time"
-                          name="portfolioTimePub"
-                          min="2018-06-07T00:00"
-                          max="2026-06-14T00:00"
-                        />
-                      </div>
                     </div>
                   </div>
                 </div>
-                {% comment %} {{cf.portfolioImg}} {% endcomment %}
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
@@ -593,85 +551,27 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-              >
-                Xóa
+              <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
+                  Close
               </button>
-              <div
-                class="modal fade"
-                id="exampleModalCenter"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
+              <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn chắc chắn muốn xóa sản phẩm
-                      </h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn lưu thay đổi</h5>
+                    
                     </div>
                     <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Quay lại
-                      </button>
-                      <button type="button" class="btn btn-danger">Xóa</button>
+                      <a type="button"  href="{% url 'app2:more_product_portfolio' %}" class="btn btn-secondary" >Bỏ qua </a>
+                      <button type="submit" class="btn btn-primary" >Lưu</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-toggle="modal"
-                data-target="#exampleModalCen"
-              >
-                Close
+              </div>   
+              <button type="submit" class="btn btn-primary">
+                Lưu
               </button>
-              <div
-                class="modal fade"
-                id="exampleModalCen"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn có muốn lưu thay đổi
-                      </h5>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Bỏ qua
-                      </button>
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        data-dismiss="modal"
-                      >
-                        Lưu
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Lưu</button>
+             
             </div>
           </form>
         </div>

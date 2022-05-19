@@ -111,7 +111,7 @@
       <hr class="sidebar-divider" />
 
       <!-- Heading -->
-      <div class="sidebar-heading">Khac</div>
+      <div class="sidebar-heading">Khác</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -162,7 +162,6 @@
       </li>
 
       <!-- Nav Item - Tables -->
-  
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />
@@ -495,7 +494,7 @@
                       type="text"
                       class="form-control"
                       name="portfolioName"
-                      value ="{{myPortfolio.portfolioName}}"
+                      value="{{myPortfolio.portfolioName}}"
                       placeholder=""
                       data-validation-required-message="Vui lòng nhập tên danh mục"
                       required="required"
@@ -511,224 +510,80 @@
                       name="portfolioBody"
                       data-validation-required-message="Vui lo lòng nhập tên danh mục"
                       required="required"
-                    >{{myPortfolio.portfolioBody}}</textarea>
+                    >{{myPortfolio.portfolioBody}}</textarea
+                    >
                   </div>
                 </div>
-
-                <!-- Brand Buttons -->
-                {% comment %}
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Xem trước kết quả tìm kiếm
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    Xin hãy nhập Tiêu đề và Mô tả để xem trước kết quả tìm kiếm
-                    của danh mục này
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom01" class="form-label"
-                      >Tên danh mục</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationCustom01"
-                      value=""
-                      placeholder="Nhập tên danh mục"
-                      required
-                    />
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom02" class="form-label"
-                      >Mô tả</label
-                    >
-
-                    <textarea
-                      class="form-control"
-                      id="exampleFormControlTextarea1"
-                      value=""
-                      placeholder="Nhập mô tả"
-                      required
-                    ></textarea>
-                  </div>
-                  <div class="card-body">
-                    <label for="validationCustom01" class="form-label"
-                      >Đường dẫn</label
-                    >
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="validationCustom01"
-                      value=""
-                      placeholder="Nhập đường dẫn tìm kiếm danh mục ..."
-                      required
-                    />
-                  </div>
-                </div>
-                {% endcomment %}
               </div>
               <div class="col-lg-4">
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                      Trạng thái
+                      Trạng Thái
                     </h6>
                   </div>
                   <div class="card-body">
-                    {% comment %}
-                    <div class="form-check">
+                    <label for="meeting_time" class="form-label"
+                      >Ngày Hiển Thị</label
+                    >
+                    <div class="card card-body">
                       <input
-                        class="form-check-input"
-                        type="radio"
-                        name="portfolioPub"
-                        id="exampleRadios2"
-                        value="option2"
+                        type="datetime-local"
+                        id="meeting_time"
+                        name="portfolioTimePub"
+                        value = "{{myPortfolioTimePub}}"
+                        min="{{myPortfolioTimePub}}"
+                        max="2026-06-14T00:00"
+                        required
                       />
-                      <label class="form-check-label" for="exampleRadios2">
-                        Hiển Thị
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="portfolioPub"
-                        id="exampleRadios2"
-                        value="option2"
-                      />
-                      <label class="form-check-label" for="exampleRadios2">
-                        Ẩn
-                      </label>
-                    </div>
-                    {% endcomment %} {{cp.portfolioPub}}<br />
-                    <p>
-                      <a
-                        class="link-danger"
-                        data-bs-toggle="collapse"
-                        href="#collapseExample"
-                        role="button"
-                        aria-expanded="false"
-                        aria-controls="collapseExample"
-                      >
-                        Đặt lịch hiển thị
-                      </a>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                      <div class="card card-body">
-                        <input
-                          type="datetime-local"
-                          id="meeting-time"
-                          name="portfolioTimePub"
-                          value ="{{myPortfolio.portfolioTimePub}}"
-                          min="2018-06-07T00:00"
-                          max="2026-06-14T00:00"
-                        />
-                      </div>
                     </div>
                   </div>
-                </div>
-                {% comment %} {{cf.portfolioImg}} {% endcomment %}
+                </div> 
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      Ảnh danh mục
-                    </h6>
+                      <h6 class="m-0 font-weight-bold text-primary">
+                      Ảnh sản phẩm
+                      </h6>
                   </div>
+
                   <div class="card-body">
-                    <label for="formFile" class="form-label">Upload Ảnh</label>
-                    <input
-                      class="form-control"
-                      name="portfolioImg"
-                      validation ="{{myPortfolio.portfolioImg}}"
-                      type="file"
-                      id="formFile"
-                    />
+                    <labelfor="formFile" class="form-label">Ảnh đã chọn: <a href="/media/{{myPortfolio.portfolioImg}}">{{myPortfolio.portfolioImg}}</a></label>
+                    <img
+                    style="height: 100px"
+                    src="/media/{{myPortfolio.portfolioImg}}"
+                    class="rounded d-block"
+                    alt="..."
+                  />
+                    <br>
+                    <label for="formFile" class="form-label">Upload Ảnh mới: </label>
+                    <input class="form-control" name ="portfolioImg" type="file"  id="formFile" /> 
                   </div>
                 </div>
+              
               </div>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-danger"
-                data-toggle="modal"
-                data-target="#exampleModalCenter"
-              >
-                Xóa
+            
+              <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
+                  Close
               </button>
-              <div
-                class="modal fade"
-                id="exampleModalCenter"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
+              <div class="modal fade" id="exampleModalCen" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn chắc chắn muốn xóa sản phẩm
-                      </h5>
+                      <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn lưu thay đổi</h5>
+                    
                     </div>
                     <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Quay lại
-                      </button>
-                      <button type="button" class="btn btn-danger">Xóa</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua </button>
+                      <button type="submit" class="btn btn-primary"  data-dismiss="modal">Lưu</button>
                     </div>
                   </div>
                 </div>
-              </div>
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-toggle="modal"
-                data-target="#exampleModalCen"
-              >
-                Close
+              </div>   
+              <button type="submit" class="btn btn-primary">
+                Lưu
               </button>
-              <div
-                class="modal fade"
-                id="exampleModalCen"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">
-                        Bạn có muốn lưu thay đổi
-                      </h5>
-                    </div>
-                    <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Bỏ qua
-                      </button>
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                        data-dismiss="modal"
-                      >
-                        Lưu
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
           </form>
         </div>

@@ -5,6 +5,7 @@ from pyexpat import model
 from django.db import models
 from django.urls import reverse
 from matplotlib.style import use
+from django.utils import timezone
 
 # Create your models here.
 
@@ -18,8 +19,8 @@ class PortfolioModel(models.Model):
     ]
     portfolioName = models.CharField('Tên danh sách',max_length=200, blank= False, null = False)
     portfolioBody = models.TextField('Mô tả danh sách',blank= False, null = False)
-    portfolioPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
-    portfolioTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False )
+    # portfolioPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
+    portfolioTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, default=timezone.now)
     portfolioImg = models.FileField()
     
     def __str__(self):
@@ -38,8 +39,8 @@ class ProductsModel(models.Model):
     productsPrice = models.FloatField('Giá bán', default= 0)
     productsPriceOther = models.FloatField('Giá so sánh', default= 0)
     inventory = models.FloatField('Hàng tồn kho', default= 0)
-    productsPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
-    productsTimePub = models.DateTimeField('Thời gian hiển thị', blank= False, null = False )
+    # productsPub = models.CharField('Hiển thị', max_length=250,  default="1", choices=CHOICES, blank= False, null = False)
+    productsTimePub = models.DateTimeField('Thời gian hiển thị', blank= False,  default=timezone.now  )
     portfolioModel = models.ForeignKey(PortfolioModel, on_delete= models.CASCADE)
     weight = models.FloatField('Khối lượng sản phẩm', default= 0)
     def __str__(self):

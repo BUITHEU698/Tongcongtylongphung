@@ -587,65 +587,26 @@
                   </div>
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary">
-                        Trạng thái
-                      </h6>
+                        <h6 class="m-0 font-weight-bold text-primary">
+                        Trạng Thái
+                        </h6>
                     </div>
-                    <div class="card-body">
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          checked
-                          name="productsPub"
-                          id="exampleRadios2"
-                          value="1"
-                        />
-                        <label class="form-check-label" for="exampleRadios2">
-                          Hiển Thị
-                        </label>
-                        <br />
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="productsPub"
-                          id="exampleRadios2"
-                          value="2"
-                        />
-                        <label class="form-check-label" for="exampleRadios2">
-                          Ẩn
-                        </label>
-                      </div>
-                     
-                      <p>
-                        <a
-                          class="link-danger"
-                          data-bs-toggle="collapse"
-                          href="#collapseExample"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="collapseExample"
-                        >
-                          Đặt lịch hiển thị
-                        </a>
-                      </p>
-                      <div class="collapse" id="collapseExample">
-                      <div class="card card-body">
-                          <input
-                            type="datetime-local"
-                            id="meeting-time"
-                            name="productsTimePub"
-                            min="2018-06-07T00:00"
-                            max="2026-06-14T00:00"
-                            required
-                          />
-                        </div> 
-                        
-                      </div>
+                    <div class="card-body">                         
+                            <label for="meeting_time" class="form-label">Ngày Hiển Thị</label>
+                              <div class="card card-body">
+                                  <input
+                                    type="datetime-local"
+                                    id="meeting_time"
+                                    name="productsTimePub"
+                                    min="{{timeNow}}"
+                                    max="2026-06-14T00:00"
+                                    value="{{timeNow}}"
+                                    required
+                                    
+                                  />
+                                </div> 
                     </div>
-                  </div>
-                    
-
+                </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">
@@ -656,7 +617,7 @@
                             <label for="inputCity" class="form-label">Chọn danh mục phù hợp</label>
                             <select class="form-select" name= "portfolioModel" id="autoSizingSelect">
                               {% for x in listPortfolio %}
-                                <option value="{{x.id}}">{{x.id}}.{{x.portfolioName}}</option>
+                                <option value="{{x.id}}">{{x.portfolioName}}</option>
                                 
                               {% endfor %}
                             </select>
@@ -687,23 +648,6 @@
             </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger  " data-toggle="modal" data-target="#exampleModalCenter">
-                Xóa
-           </button>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn chắc chắn muốn xóa sản phẩm</h5>
-                  
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
-                    <button type="button" class="btn  btn-danger">Xóa</button>
-                  </div>
-                </div>
-              </div>
-            </div>
             <button type="button" class="btn btn-secondary  " data-toggle="modal" data-target="#exampleModalCen">
                 Close
             </button>
@@ -715,8 +659,8 @@
                   
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Bỏ qua </button>
-                    <button type="submit" class="btn btn-primary"  data-dismiss="modal">Lưu</button>
+                    <a type="button"  href="{% url 'app2:more_products' %}" class="btn btn-secondary" >Bỏ qua </a>
+                    <button type="submit" class="btn btn-primary" >Lưu</button>
                   </div>
                 </div>
               </div>
@@ -724,6 +668,7 @@
             <button type="submit" class="btn btn-primary">
               Lưu
             </button>
+           
           </div>
           </form>
         </div>

@@ -135,7 +135,7 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Mã khuyến mãi:</h6>
+            <h6 class="collapse-header">Mã   mãi:</h6>
             <a class="collapse-item" href="#">Chương trình khuyến mãi</a>
             <div class="collapse-divider"></div>
           </div>
@@ -557,8 +557,9 @@
                         <th>Giá Tham Chiếu</th>
                         <th>Tồn kho</th>
                         <th>Ngày đăng</th>
-                        <th>Danh mục sản phẩm</th>
+                        <th>Danh mục</th>
                         <th>Cân nặng</th>
+                        <th>Tình trạng</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -569,7 +570,7 @@
                           <input
                             type="checkbox"
                             name="CheckBox"
-                            value="checkbox1"
+                            value="{{x.id}}"
                           />
                         </td>
                         <td><a  href="{% url 'app2:updata_product'  x.id %}"> {{x.productsName}}</td>
@@ -587,6 +588,15 @@
                         <td>{{x.productsTimePub}}</td>
                         <td>{{x.portfolioModel}}</td>
                         <td>{{x.weight}}</td>
+                        <td>
+                          {% if timeNow.date > x.productsTimePub.date  %}
+                            Hiện
+                          {% elif  timeNow.date == x.productsTimePub.date and timeNow.time >= x.productsTimePub.time  %}
+                            Hiện
+                          {% else %}
+                            Ẩn
+                          {% endif %}
+                      </td>
                       </tr>
                       {% endfor %}
                     </tbody>

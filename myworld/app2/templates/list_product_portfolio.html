@@ -25,7 +25,7 @@
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a
+          <span>Tổng quan</span></a
         >
       </li>
 
@@ -87,7 +87,7 @@
           aria-controls="collapseUtilities"
         >
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Khác</span>
+          <span>Đơn hàng</span>
         </a>
         <div
           id="collapseUtilities"
@@ -111,7 +111,7 @@
       <hr class="sidebar-divider" />
 
       <!-- Heading -->
-      <div class="sidebar-heading">Addons</div>
+      <div class="sidebar-heading">Khác</div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -483,7 +483,10 @@
               </h6>
             </div>
             <div class="card-body">
-              <form name="form">
+              <form name="form"  action="{% url 'app2:list_product_portfolio' %} "
+              enctype="multipart/form-data"
+              method="post">
+                {% csrf_token %}
                 <div class="table-responsive table-striped table table-hover">
                   <table
                     class="table table-bordered"
@@ -539,7 +542,7 @@
                                   >
                                     Quay lại
                                   </button>
-                                  <button type="button" class="btn btn-danger">
+                                  <button type="submit" class="btn btn-danger">
                                     Xóa
                                   </button>
                                 </div>
@@ -549,9 +552,9 @@
                         </th>
                         <th>Tên sản phẩm</th>
                         <th>Hình ảnh</th>
-                        <th>Số lượng</th>
                         <th>Ngày đăng</th>
                         <th>Tình trạng</th>
+                       
                       </tr>
                     </thead>
                     <tbody>
@@ -562,10 +565,10 @@
                             <input
                               type="checkbox"
                               name="CheckBox"
-                              value="checkbox1"
+                              value="{{x.id}}"
                             />
                           </td>
-                          <td>  <a  href="{% url 'app2:updata_product_portfolio'  x.id %}">{{x.portfolioName}} </a></td>
+                          <td>  <a href="{% url 'app2:updata_product_portfolio'  x.id %}">{{x.portfolioName}} </a></td>
                           <td>
                             <img
                               style="height: 100px"
@@ -574,12 +577,21 @@
                               alt="..."
                             />
                           </td>
-                          <td>37</td>
+                        
                           <td>{{x.portfolioTimePub}}</td>
-
-                          <td>{{x.portfolioPub}}</td>
-                        </tr>
-                    
+                          <td>
+                            {% if timeNow.date > x.portfolioTimePub.date %}
+                              Hiện
+                            {% elif  timeNow.date == x.portfolioTimePub.date and timeNow.time >= x.portfolioTimePub.time  %}
+                              Hiện
+                            {% else %}
+                              Ẩn
+                            {% endif %}
+                        </td>
+                            
+                  
+                          
+                          </td>
                       {% endfor %}
                     </tbody>
                   </table>
