@@ -12,6 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime
 # --------------index-------------
 
 
@@ -21,6 +22,7 @@ class index(View):
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
             'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
         }
         return render(request, 'index.html', context)
 
@@ -85,16 +87,22 @@ class shop(View):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
+            'listUser': UserModel.objects.all(),
+            'timeNow' : datetime.now(),
         }
+       
         return render(request, 'shop.html', context)
 
 
 # --------------detail-------------
 
 
-def detail(request):
-    template = loader.get_template('detail.html')
-    return HttpResponse(template.render())
+class detailProduct(View):
+    def get(self, request, id):
+        context = {
+            'myProduct':  ProductsModel.objects.get(id=id),
+        }
+        return render(request, 'detail.html', context)
 
 # --------------blog-------------
 
