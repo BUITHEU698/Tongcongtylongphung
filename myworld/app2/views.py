@@ -9,7 +9,7 @@ from .models import PortfolioModel
 from .models import ProductsModel
 from django.views import View
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, decorators
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,23 +39,25 @@ def forgetPass(request):
 
 
 # --------------index-------------
-
-
+@decorators.login_required(login_url='app2:login')
 def index(request):
     template = loader.get_template('index2.html')
     return HttpResponse(template.render())
 
 
+
 # --------------blank.html-------------
 
-
+@decorators.login_required(login_url='app2:login')
 def blank(request):
     template = loader.get_template('blank.html')
     return HttpResponse(template.render())
 
 
-# --------------products-------------
-class more_products(View):
+# --------------products-------------\
+
+class more_products(LoginRequiredMixin, View):
+    login_url='app2:login'
     def get(self, request):
         context = {'cp': ProductsForm,
                    'listPortfolio': PortfolioModel.objects.all(),
@@ -75,7 +77,8 @@ class more_products(View):
             return HttpResponse("not POST")
 
 
-class list_products(View):
+class list_products(LoginRequiredMixin, View):
+    login_url='app2:login'
     def get(self, request):
         context = {
             'list_products': ProductsModel.objects.all(),
@@ -91,7 +94,8 @@ class list_products(View):
                 delete.delete()
         return HttpResponseRedirect(reverse('app2:list_products'))
 
-class updata_product(View):
+class updata_product(LoginRequiredMixin, View):
+    login_url='app2:login'
     def get(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
@@ -121,7 +125,8 @@ class updata_product(View):
         return render(request, 'update_products.html', context)
 
 # --------------portfolio-------------
-class updata_product_portfolio(View):
+class updata_product_portfolio(LoginRequiredMixin, View):
+    login_url='app2:login'
     def get(self, request, id):
         context = {
             'myPortfolio':  PortfolioModel.objects.get(id=id),
@@ -145,7 +150,8 @@ class updata_product_portfolio(View):
         return render(request, 'updata_product_portfolio.html', context)
 
 
-class more_product_portfolio(View):
+class more_product_portfolio(LoginRequiredMixin, View):
+    login_url='app2:login'
     def get(self, request):
         context = {'cf': PortfolioForm,
                    'timeNow' : datetime.now().strftime('%Y-%m-%dT%H:%M')  }
@@ -163,7 +169,8 @@ class more_product_portfolio(View):
             return HttpResponse("not POST")
 
 
-class list_product_portfolio(View):
+class list_product_portfolio(LoginRequiredMixin, View):
+    login_url='app2:login'
     def get(self, request):     
         context = {
             'listProducts': ProductsModel.objects.all(),
