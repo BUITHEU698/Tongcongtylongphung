@@ -66,8 +66,8 @@
           id="navbarCollapse"
         >
           <div class="navbar-nav mr-auto py-0">
-            <a href="{% url 'app1:index' %}" class="nav-item nav-link">Trang chủ</a>
-            <a href="{% url 'app1:shop' %}" class="nav-item nav-link">Cửa hàng</a>
+            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> {{USER.userName}}</a>
+            <a href="{% url 'app1:register' %}"class="nav-item nav-link">Đăng xuất</a>
           
 
             <div class="nav-item dropdown">

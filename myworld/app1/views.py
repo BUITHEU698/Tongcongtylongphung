@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import UserForm, contactForm, loginForm
-from .models import UserModel, contactModel, postBlog
+from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel
 from app2.models import ProductsModel, PortfolioModel
 from app2.forms import PortfolioForm, ProductsForm
 from django.views import View
@@ -15,14 +15,44 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 # --------------index-------------
 
+class userLogin (View):
+    def get(self, request):
+        template = loginForm
+        return render(request, 'userlogin.html', {'userLogin': template})
 
-class index(View):
+    def post(self, request):
+        if request.method == "POST":
+            userName = request.POST['userName']
+            password = request.POST['password']
+        
+            user = UserModel.objects.filter(userName=userName,password =password ).values()
+           
+            if  user.count() ==1 :
+                for item in user:         
+                    global  USER 
+                    USER = item
+                context = {
+                    'USER': USER
+                }
+                return render(request, 'index.html', context)
+            else:
+                return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
+        
+      
+
+def forgetPass(request):
+    template = loader.get_template('forgot-password.html')
+    return HttpResponse(template.render())
+
+class index(LoginRequiredMixin, View):
+    login_url='app1:userLogin'
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
             'listUser': UserModel.objects.all(),
             'timeNow' : datetime.now(),
+             'USER': USER
         }
         return render(request, 'index.html', context)
 
@@ -55,7 +85,7 @@ class contact(View):
         
         context = {'cf': contactForm,
                     'listPortfolio': PortfolioModel.objects.all(),
-                   
+                    'USER': USER
                    }
         return render(request, 'contact.html', context)
 
@@ -89,6 +119,7 @@ class shop(View):
             'listproducts': ProductsModel.objects.all(),
             'listUser': UserModel.objects.all(),
             'timeNow' : datetime.now(),
+            'USER': USER
         }
        
         return render(request, 'shop.html', context)
@@ -101,6 +132,7 @@ class detailProduct(View):
     def get(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
+            'USER': USER
         }
         return render(request, 'detail.html', context)
 
@@ -152,7 +184,8 @@ def logoutUser(request):
     
 class register(View):
     def get(self, request):
-        context = {'register': UserForm,}
+        context = {'register': UserForm,
+                   'USER': USER}
         return render(request, 'register.html', context)
 
     def post(self, request):
@@ -166,30 +199,18 @@ class register(View):
         else:
             return HttpResponse("not POST")
 
-class userLogin (View):
+class cart(View):
     def get(self, request):
-        template = loginForm
-        return render(request, 'userlogin.html', {'userLogin': template})
+        context = {'CartModel': CartModel,
+                    'listPortfolio': PortfolioModel.objects.all(),
+                    'listproducts': ProductsModel.objects.all(),
+                    'listUser': UserModel.objects.all(),
+                    'timeNow' : datetime.now(),
+                    'USER': USER}
+       
+        return render(request, 'cart.html', context)
 
-    def post(self, request):
-        if request.method == "POST":
-            userName = request.POST['userName']
-            password = request.POST['password']
-        
-            user = UserModel.objects.filter(userName=userName,password =password ).values()
-            context = {
-                    'user': user.count()
-                   }
-            if  user.count() ==1 :
-                return redirect('app1:index')
-            else:
-                return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
-        
-      
 
-def forgetPass(request):
-    template = loader.get_template('forgot-password.html')
-    return HttpResponse(template.render())
 
 
 

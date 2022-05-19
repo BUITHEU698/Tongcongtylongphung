@@ -10,7 +10,7 @@
         href="#navbar-vertical"
         style="height: 65px; margin-top: -1px; padding: 0 30px"
       >
-        <h6 class="m-0">Danh mục sản phẩm</h6>
+        <h6 class="m-0">Danh mục sản phẩm </h6>
         <i class="fa fa-angle-down text-dark"></i>
       </a>
       <nav
@@ -32,7 +32,7 @@
         <a href="" class="text-decoration-none d-block d-lg-none">
           <h1 class="m-0 display-5 font-weight-semi-bold">
             <span class="text-primary font-weight-bold border px-3 mr-1">LP</span
-            >Long Phụng
+            >Long Phụng 
           </h1>
         </a>
         <button
@@ -89,8 +89,8 @@
             >
           </div>
           <div class="navbar-nav ml-auto py-0">
-            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link">Đăng nhập</a>
-            <a href="{% url 'app1:register' %}"class="nav-item nav-link">Đăng ký</a>
+            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> {{USER.userName}}</a>
+            <a href="{% url 'app1:register' %}"class="nav-item nav-link">Đăng xuất</a>
           </div>
         </div>
       </nav>
