@@ -14,8 +14,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 # --------------index-------------
-global  USER 
-USER= 1
+global USER
+USER = -1
+
+
 class userLogin (View):
     def get(self, request):
         template = loginForm
@@ -25,12 +27,13 @@ class userLogin (View):
         if request.method == "POST":
             userName = request.POST['userName']
             password = request.POST['password']
-        
-            user = UserModel.objects.filter(userName=userName,password =password ).values()
-           
-            if  user.count() ==1 :
-                for item in user:         
-                    global  USER 
+
+            user = UserModel.objects.filter(
+                userName=userName, password=password).values()
+
+            if user.count() == 1:
+                for item in user:
+                    global USER
                     USER = item
                 context = {
                     'USER': USER
@@ -38,22 +41,23 @@ class userLogin (View):
                 return render(request, 'index.html', context)
             else:
                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
-        
-      
+
 
 def forgetPass(request):
     template = loader.get_template('forgot-password.html')
     return HttpResponse(template.render())
 
+
 class index(LoginRequiredMixin, View):
-    login_url='app1:userLogin'
+    login_url = 'app1:userLogin'
+
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
-             'USER': USER
+            'timeNow': datetime.now(),
+            'USER': USER
         }
         return render(request, 'index.html', context)
 
@@ -69,7 +73,6 @@ def sitemap(request):
 # --------------cart-------------
 
 
-
 # --------------checkout-------------
 def checkout(request):
     template = loader.get_template('checkout.html')
@@ -80,10 +83,10 @@ def checkout(request):
 
 class contact(View):
     def get(self, request):
-        
+
         context = {'cf': contactForm,
-                    'listPortfolio': PortfolioModel.objects.all(),
-                    'USER': USER
+                   'listPortfolio': PortfolioModel.objects.all(),
+                   'USER': USER
                    }
         return render(request, 'contact.html', context)
 
@@ -116,10 +119,10 @@ class shop(View):
             'listPortfolio': PortfolioModel.objects.all(),
             'listproducts': ProductsModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
             'USER': USER
         }
-       
+
         return render(request, 'shop.html', context)
 
 
@@ -136,67 +139,72 @@ class detailProduct(View):
 
 # --------------blog-------------
 
+
 class blog(View):
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
             'USER': USER
         }
-       
+
         return render(request, 'blog.html', context)
-    
+
+
 class blog1(View):
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
             'USER': USER
         }
-       
+
         return render(request, 'blog1.html', context)
-    
+
+
 class blog2(View):
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
             'USER': USER
         }
-       
+
         return render(request, 'blog2.html', context)
+
 
 class blog3(View):
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
             'USER': USER
         }
-       
+
         return render(request, 'blog3.html', context)
+
 
 class blog4(View):
     def get(self, request):
         context = {
             'listPortfolio': PortfolioModel.objects.all(),
             'listUser': UserModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
             'USER': USER
         }
-       
+
         return render(request, 'blog4.html', context)
+
+
 def blogDetail(request, id):
     template = postBlog.objects.get(id=id)
     return render(request, 'blogDetail.html', {'blogDetail': template})
 
 
-    
-    
 # --------------logOut-------------
 
 
@@ -205,8 +213,6 @@ def logoutUser(request):
     return redirect('app2:login')
 
 
-
-    
 class register(View):
     def get(self, request):
         context = {'register': UserForm,
@@ -224,18 +230,45 @@ class register(View):
         else:
             return HttpResponse("not POST")
 
+
 class cart(View):
     def get(self, request):
         context = {'CartModel': CartModel,
-                    'listPortfolio': PortfolioModel.objects.all(),
-                    'listproducts': ProductsModel.objects.all(),
-                    'listUser': UserModel.objects.all(),
-                    'timeNow' : datetime.now(),
-                    'USER': USER}
-       
+                   'listPortfolio': PortfolioModel.objects.all(),
+                   'listproducts': ProductsModel.objects.all(),
+                   'listUser': UserModel.objects.all(),
+                   'timeNow': datetime.now(),
+                   'USER': USER}
+
         return render(request, 'cart.html', context)
 
 
-
-
-
+class cart(View):
+    def get(self, request):
+        cartModel = CartModel.objects.all().values()
+        for item in cartModel:
+            if item["user_id"] == USER['id']:
+                print(item["user_id"])
+                print('hahaha')
+                print(USER['id'])
+                context = {'CartModel':  CartModel.objects.all(),
+                           'listPortfolio': PortfolioModel.objects.all(),
+                           'listproducts': ProductsModel.objects.all(),
+                           'listUser': UserModel.objects.all(),
+                           'timeNow': datetime.now(),
+                           'USER': USER,
+                           'myCart':  item
+                           }
+                return render(request, 'cart.html', context)
+        f = CartModel(user_id = USER['id'])
+        f.save()
+        context = {'CartModel':  CartModel.objects.all(),
+                   'listPortfolio': PortfolioModel.objects.all(),
+                   'listproducts': ProductsModel.objects.all(),
+                   'listUser': UserModel.objects.all(),
+                   'timeNow': datetime.now(),
+                   'USER': USER,
+                   'myCart':  f,
+                   'CartItemModel':  CartItemModel.objects.all(),
+                   }
+        return render(request, 'cart.html', context)
