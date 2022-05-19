@@ -18,21 +18,31 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
       rel="stylesheet"
     />
-    
 
     <!-- Libraries Stylesheet -->
-    {% comment %} <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" /> {% endcomment %}
-    <link href="{% static  'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet" />
+    {% comment %}
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+    {% endcomment %}
+    <link
+      href="{% static  'lib/owlcarousel/assets/owl.carousel.min.css' %}"
+      rel="stylesheet"
+    />
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{% static  'css/style.css' %}" rel="stylesheet" />
-    <link href="{% static  'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet" />
+    <link
+      href="{% static  'vendor/datatables/dataTables.bootstrap4.min.css' %}"
+      rel="stylesheet"
+    />
     <link href="{% static  '../../../' %}" rel="stylesheet" />
   </head>
 
@@ -125,7 +135,8 @@
             </h1>
           </a>
           <p>
-            Văn hóa thuốc lào đã có từ thuở xa xưa và lưu truyền từ đời này qua đời khác.
+            Văn hóa thuốc lào đã có từ thuở xa xưa và lưu truyền từ đời này qua
+            đời khác.
           </p>
 
           <p class="mb-2">
@@ -159,8 +170,7 @@
                 <a class="text-dark mb-2" href="{% url 'app1:shop' %}"
                   ><i class="fa fa-angle-right mr-2"></i>Cửa hàng</a
                 >
-             
-                
+
                 <a class="text-dark mb-2" href="{% url 'app1:cart' %}"
                   ><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a
                 >
@@ -181,7 +191,7 @@
                 <a class="text-dark mb-2" href="{% url 'app1:shop' %}"
                   ><i class="fa fa-angle-right mr-2"></i>Our Shop</a
                 >
-               
+
                 <a class="text-dark mb-2" href="{% url 'app1:index' %}"
                   ><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a
                 >
@@ -225,51 +235,64 @@
           </div>
         </div>
       </div>
-      {% comment %}
-      <div class="row border-top border-light mx-xl-5 py-4">
-        <div class="col-md-6 px-xl-0">
-          <p class="mb-md-0 text-center text-md-left text-dark">
-            &copy;
-            <a class="text-dark font-weight-semi-bold" href="#"
-              >Your Site Name</a
-            >. All Rights Reserved. Designed by
-            <a
-              class="text-dark font-weight-semi-bold"
-              href="https://htmlcodex.com"
-              >HTML Codex</a
-            >
-          </p>
-        </div>
-        <div class="col-md-6 px-xl-0 text-center text-md-right">
-          <img class="img-fluid" src="img/payments.png" alt="" />
-        </div>
-      </div>
-      {% endcomment %}
+     
     </div>
     <!-- Footer End -->
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-primary back-to-top"
-      ><i class="fa fa-angle-double-up"></i
-    ></a>
+    <a href="#" class="btn btn-primary back-to-top">
+      <i class="fa fa-angle-double-up"></i>
+    </a>
+    <script>
+      $(document).ready(function (){
 
+      });
+
+      function addCart(idp, idc) {
+        num = $("#quantile").val()
+        if(!num){
+          num = 1
+        }
+        
+        $.post( '', {'cart':idc, 'products':idp, 'quantile':num,'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+          
+        });
+      
+      }
+      function themQuantile(idtc) {
+        num = $("#quantile").val()
+        if(!num){
+          num = 1
+        }
+        $.post( '/cart', {'id':idtc, 'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
+          
+        });
+      
+      }
+    </script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    {% comment %} <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script> {% endcomment %}
+    {% comment %}
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    {% endcomment %}
     <script src="{% static  'lib/easing/easing.min.js' %}"></script>
     <script src="{% static  'lib/owlcarousel/owl.carousel.min.js' %}"></script>
 
     <!-- Contact Javascript File -->
-    {% comment %} <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script> {% endcomment %}
+    {% comment %}
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+    {% endcomment %}
 
     <script src="{% static  'mail/jqBootstrapValidation.min.js' %}"></script>
     <script src="{% static  'mail/contact.js' %}"></script>
 
     <!-- Template Javascript -->
-    {% comment %} <script src="js/main.js"></script> {% endcomment %}
+    {% comment %}
+    <script src="js/main.js"></script>
+    {% endcomment %}
     <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static  'js/demo/chart-pie-demo.js' %}"></script>
     <script src=" {% static 'js/demo/datatables-demo.js' %} "></script>

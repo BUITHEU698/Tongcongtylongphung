@@ -90,7 +90,7 @@
           </div>
           <div class="navbar-nav ml-auto py-0">
             <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> {{USER.userName}}</a>
-            <a href="{% url 'app1:register' %}"class="nav-item nav-link">Đăng xuất</a>
+            <a href="{% url 'app1:userLogin' %}"class="nav-item nav-link">Đăng xuất</a>
           </div>
         </div>
       </nav>
@@ -314,7 +314,7 @@
 
         {% for x in listproducts %}
         {% if  timeNow.date > x.productsTimePub.date %}
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                 <div class="card product-item border-0 mb-4">
                   <div
                     class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"

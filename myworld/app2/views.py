@@ -190,7 +190,7 @@ class list_product_portfolio(LoginRequiredMixin, View):
 # --------------charts-------------
 
 def cards(request):
-    template = loader.get_template('cards.html')
+    template = loader.get_template('card2.html')
     return HttpResponse(template.render())
 
 

@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserModel
+from .models import UserModel,CartItemModel
 
 # --------------contact-------------
 class contactForm(forms.Form):
@@ -20,6 +20,11 @@ class UserForm (forms.ModelForm):
         'resetpassword': forms.PasswordInput()
             }
         
+class CartItemForm (forms.ModelForm):
+    class Meta:
+        model = CartItemModel
+        fields = {'cart','products','quantile'}
+       
 
 # # --------------memberForm-------------
 

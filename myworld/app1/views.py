@@ -3,7 +3,7 @@ from audioop import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .forms import UserForm, contactForm, loginForm
+from .forms import UserForm, contactForm, loginForm, CartItemForm
 from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel
 from app2.models import ProductsModel, PortfolioModel
 from app2.forms import PortfolioForm, ProductsForm
@@ -22,7 +22,6 @@ class userLogin (View):
     def get(self, request):
         template = loginForm
         return render(request, 'userlogin.html', {'userLogin': template})
-
     def post(self, request):
         if request.method == "POST":
             userName = request.POST['userName']
@@ -38,7 +37,8 @@ class userLogin (View):
                 context = {
                     'USER': USER
                 }
-                return render(request, 'index.html', context)
+                return redirect('app1:index')
+                # return render(request, 'index.html', context)
             else:
                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
@@ -48,18 +48,52 @@ def forgetPass(request):
     return HttpResponse(template.render())
 
 
-class index(LoginRequiredMixin, View):
-    login_url = 'app1:userLogin'
-
+class index( View):
     def get(self, request):
-        context = {
-            'listPortfolio': PortfolioModel.objects.all(),
-            'listproducts': ProductsModel.objects.all(),
-            'listUser': UserModel.objects.all(),
-            'timeNow': datetime.now(),
-            'USER': USER
-        }
+        cartModel = CartModel.objects.all().values()
+        for item in cartModel:
+            if item["user_id"] == USER['id']:
+                context = {
+                    'cartItemModel':  CartItemModel.objects.all(),
+                    'listPortfolio': PortfolioModel.objects.all(),
+                    'listproducts': ProductsModel.objects.all(),
+                    'listUser': UserModel.objects.all(),
+                    'timeNow': datetime.now(),
+                    'myCart':  item,
+                    'USER': USER
+                }
+                return render(request, 'index.html', context)
+        f = CartModel(user_id = USER['id'])
+        f.save()
+        context = {'cartItemModel':  CartItemModel.objects.all(),
+                    'listPortfolio': PortfolioModel.objects.all(),
+                    'listproducts': ProductsModel.objects.all(),
+                    'listUser': UserModel.objects.all(),
+                    'timeNow': datetime.now(),
+                    'myCart':  item,
+                    'USER': USER
+                   }
         return render(request, 'index.html', context)
+    def post(self, request):
+        cartItemModel =  CartItemModel.objects.all()
+        if request.method == "POST" :
+            cart = request.POST['cart']
+            products = request.POST['products']
+            quantile = request.POST['quantile']
+            listCartItem = CartItemModel.objects.filter(products_id= products).values()
+            if  listCartItem.count() > 0:       
+                myCartItem =   CartItemModel.objects.get(id= listCartItem[0]['id'])
+                myCartItem.quantile =  myCartItem.quantile + int(quantile)
+                myCartItem.save()
+                return render(request, 'index.html')
+            else:
+                cartItem = CartItemModel(cart_id = cart ,products_id = products,quantile = quantile  )
+                cartItem.save()
+            return render(request, 'index.html')
+        else: 
+            return HttpResponse("no save success")
+            
+        
 
 
 # --------------index-------------
@@ -210,7 +244,7 @@ def blogDetail(request, id):
 
 def logoutUser(request):
     logout(request)
-    return redirect('app2:login')
+    return redirect('app1:login')
 
 
 class register(View):
@@ -231,16 +265,6 @@ class register(View):
             return HttpResponse("not POST")
 
 
-class cart(View):
-    def get(self, request):
-        context = {'CartModel': CartModel,
-                   'listPortfolio': PortfolioModel.objects.all(),
-                   'listproducts': ProductsModel.objects.all(),
-                   'listUser': UserModel.objects.all(),
-                   'timeNow': datetime.now(),
-                   'USER': USER}
-
-        return render(request, 'cart.html', context)
 
 
 class cart(View):
@@ -248,16 +272,14 @@ class cart(View):
         cartModel = CartModel.objects.all().values()
         for item in cartModel:
             if item["user_id"] == USER['id']:
-                print(item["user_id"])
-                print('hahaha')
-                print(USER['id'])
                 context = {'CartModel':  CartModel.objects.all(),
                            'listPortfolio': PortfolioModel.objects.all(),
                            'listproducts': ProductsModel.objects.all(),
                            'listUser': UserModel.objects.all(),
                            'timeNow': datetime.now(),
                            'USER': USER,
-                           'myCart':  item
+                           'myCart':  item,
+                           'cartItemModel':  CartItemModel.objects.all(),
                            }
                 return render(request, 'cart.html', context)
         f = CartModel(user_id = USER['id'])
@@ -269,6 +291,17 @@ class cart(View):
                    'timeNow': datetime.now(),
                    'USER': USER,
                    'myCart':  f,
-                   'CartItemModel':  CartItemModel.objects.all(),
+                   'cartItemModel':  CartItemModel.objects.all(),
                    }
         return render(request, 'cart.html', context)
+        def post(self, request):
+            print("hihihi")
+            if request.method == "POST" :
+                print("hahaha")
+                IdCartItemModel = request.POST['id']
+                myCartItem =   CartItemModel.objects.get(id= IdCartItemModel)
+                myCartItem.quantile =  myCartItem.quantile +1
+                myCartItem.save()
+                return redirect('app1:cart')
+              
+            
