@@ -94,7 +94,11 @@
 
 <!-- Checkout Start -->
 <div class="container-fluid pt-5">
-  <form action="{% url 'app1:checkout' %} " method="post">
+  <form
+    action="{% url 'app1:checkout' %} "
+    enctype="multipart/form-data"
+    method="post"
+  >
     {% csrf_token %}
     <div class="row px-xl-5">
       <div class="col-lg-8">
@@ -106,7 +110,7 @@
               <input
                 class="form-control"
                 type="text"
-                name ="ShipAddress"
+                name="ShipAddress"
                 placeholder="Địa chỉ ..."
               />
             </div>
@@ -132,7 +136,6 @@
                   <div class="custom-control custom-radio">
                     <input
                       type="radio"
-                     
                       class="custom-control-input"
                       name="pay"
                       id="paypal"

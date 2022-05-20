@@ -3,8 +3,8 @@ from audioop import reverse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .forms import UserForm, contactForm, loginForm, CartItemForm
-from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel
+from .forms import UserForm, contactForm, loginForm, CartItemForm, OrderForm
+from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel, OrderModel
 from app2.models import ProductsModel, PortfolioModel
 from app2.forms import PortfolioForm, ProductsForm
 from django.views import View
@@ -132,6 +132,7 @@ class checkout(View):
                 tongCong = tongTien + tienVanChuyen
                 context = {'CartModel':  CartModel.objects.all(),
                            'tongTien': tongTien,
+                           'cf': contactForm,
                            'tienVanChuyen': tienVanChuyen,
                            'tongCong': tongCong,
                            'listPortfolio': PortfolioModel.objects.all(),
@@ -148,30 +149,32 @@ class checkout(View):
 
     def post(self, request):
         if request.method == "POST":
-            cartModel = CartModel.objects.all().values()
-            for item in cartModel:
-                if item["user_id"] == USER['id']:
-                    print(item["user_id"])
-                    print('hihihi')
-                    print(USER['id'])
-                    context = {'CartModel':  CartModel.objects.all(),
-                               'USER': USER,
-                               'myCart':  item,
-                               'cartItemModel':  CartItemModel.objects.all(),
-                               'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
-                               }
-                    cart = item['id']
-                    ShipAddress = request.POST['ShipAddress']
-                    order_description = request.POST['order_description']
-                    pay = request.POST['pay']
-                    save_cf = OrderModel(username=cart, ShipAddress=ShipAddress,
-                                         order_description=order_description, pay=pay)
-                    save_cf.save()
-                    return render(request, 'checkout.html')
-                else:
-                    return HttpResponse("not saver")
-        else:
-            return HttpResponse("not POST")
+            cartModel = CartModel.objects.filter(user_id = USER['id']).values()
+            print(cartModel[0]['id'])
+            print('hihihi')
+            cf = OrderForm(request.POST)
+            save_cf = OrderModel(cart=cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
+                                    order_description= cf.cleaned_data ['oder_description'], pay= cf.cleaned_data ['pay'])
+            save_cf.save()
+            return render(request, 'checkout.html')
+            # context = {'CartModel':  CartModel.objects.all(),
+            #             'USER': USER,
+            #             'myCart':  item,
+            #             'cartItemModel':  CartItemModel.objects.all(),
+            #             'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
+            #             }
+            # cart = item['id']
+            # ShipAddress = request.POST['ShipAddress']
+            # order_description = request.POST['order_description']
+            # pay = request.POST['pay']
+            # save_cf = OrderModel(username=cart, ShipAddress=ShipAddress,
+            #                         order_description=order_description, pay=pay)
+            # save_cf.save()
+           
+        # else:
+        #     return HttpResponse("not saver")
+        # else:
+        #     return HttpResponse("not POST")
 # --------------contact-------------
 
 
