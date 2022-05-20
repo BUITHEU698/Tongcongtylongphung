@@ -8,6 +8,14 @@ class contactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea)
 
+
+class OrderForm(forms.Form):
+    cart = forms.CharField(max_length=30)
+    ShipAddress = forms.EmailField(max_length=30)
+    order_description = forms.CharField(max_length=100)
+    pay = forms.CharField(widget=forms.Textarea)
+    
+    
 class OrderForm (forms.ModelForm):
      class Meta:
         model = OrderModel
