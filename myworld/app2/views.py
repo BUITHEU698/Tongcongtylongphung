@@ -45,7 +45,6 @@ def index(request):
     return HttpResponse(template.render())
 
 
-
 # --------------blank.html-------------
 
 @decorators.login_required(login_url='app2:login')
@@ -57,11 +56,12 @@ def blank(request):
 # --------------products-------------\
 
 class more_products(LoginRequiredMixin, View):
-    login_url='app2:login'
+    login_url = 'app2:login'
+
     def get(self, request):
         context = {'cp': ProductsForm,
                    'listPortfolio': PortfolioModel.objects.all(),
-                   'timeNow' : datetime.now().strftime('%Y-%m-%dT%H:%M')   
+                   'timeNow': datetime.now().strftime('%Y-%m-%dT%H:%M')
                    }
         return render(request, 'more_products.html', context)
 
@@ -78,14 +78,16 @@ class more_products(LoginRequiredMixin, View):
 
 
 class list_products(LoginRequiredMixin, View):
-    login_url='app2:login'
+    login_url = 'app2:login'
+
     def get(self, request):
         context = {
             'list_products': ProductsModel.objects.all(),
-            'timeNow' : datetime.now(),
-            
+            'timeNow': datetime.now(),
+
         }
         return render(request, 'list_products.html', context)
+
     def post(self, request):
         if request.method == "POST":
             CheckBox = request.POST.getlist('CheckBox')
@@ -94,18 +96,20 @@ class list_products(LoginRequiredMixin, View):
                 delete.delete()
         return HttpResponseRedirect(reverse('app2:list_products'))
 
+
 class updata_product(LoginRequiredMixin, View):
-    login_url='app2:login'
+    login_url = 'app2:login'
+
     def get(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
             'listPortfolio': PortfolioModel.objects.all(),
-            'myProductsTimePub' :  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')   
+            'myProductsTimePub':  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')
         }
         return render(request, 'update_products.html', context)
-    
+
     def post(self, request, id):
-        myProduct =   ProductsModel.objects.get(id=id)
+        myProduct = ProductsModel.objects.get(id=id)
         if request.method == "POST":
             myProduct.productsName = request.POST['productsName']
             myProduct.productsBody = request.POST['productsBody']
@@ -120,22 +124,25 @@ class updata_product(LoginRequiredMixin, View):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
             'listPortfolio': PortfolioModel.objects.all(),
-             'myProductsTimePub' :  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')   
+            'myProductsTimePub':  ProductsModel.objects.get(id=id).productsTimePub.strftime('%Y-%m-%dT%H:%M')
         }
         return render(request, 'update_products.html', context)
 
 # --------------portfolio-------------
+
+
 class updata_product_portfolio(LoginRequiredMixin, View):
-    login_url='app2:login'
+    login_url = 'app2:login'
+
     def get(self, request, id):
         context = {
             'myPortfolio':  PortfolioModel.objects.get(id=id),
-            'myPortfolioTimePub' :  PortfolioModel.objects.get(id=id).portfolioTimePub.strftime('%Y-%m-%dT%H:%M')      
+            'myPortfolioTimePub':  PortfolioModel.objects.get(id=id).portfolioTimePub.strftime('%Y-%m-%dT%H:%M')
         }
         return render(request, 'updata_product_portfolio.html', context)
 
     def post(self, request, id):
-        myPortfolio =   PortfolioModel.objects.get(id=id)
+        myPortfolio = PortfolioModel.objects.get(id=id)
         if request.method == "POST":
             myPortfolio.portfolioName = request.POST['portfolioName']
             myPortfolio.portfolioBody = request.POST['portfolioBody']
@@ -143,18 +150,19 @@ class updata_product_portfolio(LoginRequiredMixin, View):
             myPortfolio.portfolioTimePub = request.POST['portfolioTimePub']
             myPortfolio.save()
         context = {
-            'myPortfolio':  PortfolioModel.objects.get(id=id),      
+            'myPortfolio':  PortfolioModel.objects.get(id=id),
             'listPortfolio': PortfolioModel.objects.all(),
-            'myPortfolioTimePub' :  PortfolioModel.objects.get(id=id).portfolioTimePub.strftime('%Y-%m-%dT%H:%M')      
+            'myPortfolioTimePub':  PortfolioModel.objects.get(id=id).portfolioTimePub.strftime('%Y-%m-%dT%H:%M')
         }
         return render(request, 'updata_product_portfolio.html', context)
 
 
 class more_product_portfolio(LoginRequiredMixin, View):
-    login_url='app2:login'
+    login_url = 'app2:login'
+
     def get(self, request):
         context = {'cf': PortfolioForm,
-                   'timeNow' : datetime.now().strftime('%Y-%m-%dT%H:%M')  }
+                   'timeNow': datetime.now().strftime('%Y-%m-%dT%H:%M')}
         return render(request, 'more_product_portfolio.html', context)
 
     def post(self, request):
@@ -170,24 +178,27 @@ class more_product_portfolio(LoginRequiredMixin, View):
 
 
 class list_product_portfolio(LoginRequiredMixin, View):
-    login_url='app2:login'
-    def get(self, request):     
+    login_url = 'app2:login'
+
+    def get(self, request):
         context = {
             'listProducts': ProductsModel.objects.all(),
             'listPortfolio': PortfolioModel.objects.all(),
-            'timeNow' : datetime.now(),
+            'timeNow': datetime.now(),
         }
-    
+
         return render(request, 'list_product_portfolio.html', context)
+
     def post(self, request):
-            if request.method == "POST":
-                CheckBox = request.POST.getlist('CheckBox')
-                for item in CheckBox:
-                    delete = PortfolioModel.objects.get(id=item)
-                    delete.delete()
-            return HttpResponseRedirect(reverse('app2:list_product_portfolio'))
+        if request.method == "POST":
+            CheckBox = request.POST.getlist('CheckBox')
+            for item in CheckBox:
+                delete = PortfolioModel.objects.get(id=item)
+                delete.delete()
+        return HttpResponseRedirect(reverse('app2:list_product_portfolio'))
 
 # --------------charts-------------
+
 
 def cards(request):
     template = loader.get_template('card2.html')

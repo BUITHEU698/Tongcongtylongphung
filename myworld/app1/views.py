@@ -22,6 +22,7 @@ class userLogin (View):
     def get(self, request):
         template = loginForm
         return render(request, 'userlogin.html', {'userLogin': template})
+
     def post(self, request):
         if request.method == "POST":
             userName = request.POST['userName']
@@ -48,7 +49,7 @@ def forgetPass(request):
     return HttpResponse(template.render())
 
 
-class index( View):
+class index(View):
     def get(self, request):
         cartModel = CartModel.objects.all().values()
         for item in cartModel:
@@ -63,37 +64,39 @@ class index( View):
                     'USER': USER
                 }
                 return render(request, 'index.html', context)
-        f = CartModel(user_id = USER['id'])
+        f = CartModel(user_id=USER['id'])
         f.save()
         context = {'cartItemModel':  CartItemModel.objects.all(),
-                    'listPortfolio': PortfolioModel.objects.all(),
-                    'listproducts': ProductsModel.objects.all(),
-                    'listUser': UserModel.objects.all(),
-                    'timeNow': datetime.now(),
-                    'myCart':  item,
-                    'USER': USER
+                   'listPortfolio': PortfolioModel.objects.all(),
+                   'listproducts': ProductsModel.objects.all(),
+                   'listUser': UserModel.objects.all(),
+                   'timeNow': datetime.now(),
+                   'myCart':  item,
+                   'USER': USER
                    }
         return render(request, 'index.html', context)
+
     def post(self, request):
-        cartItemModel =  CartItemModel.objects.all()
-        if request.method == "POST" :
+        cartItemModel = CartItemModel.objects.all()
+        if request.method == "POST":
             cart = request.POST['cart']
             products = request.POST['products']
             quantile = request.POST['quantile']
-            listCartItem = CartItemModel.objects.filter(products_id= products).values()
-            if  listCartItem.count() > 0:       
-                myCartItem =   CartItemModel.objects.get(id= listCartItem[0]['id'])
-                myCartItem.quantile =  myCartItem.quantile + int(quantile)
+            listCartItem = CartItemModel.objects.filter(
+                products_id=products).values()
+            if listCartItem.count() > 0:
+                myCartItem = CartItemModel.objects.get(
+                    id=listCartItem[0]['id'])
+                myCartItem.quantile = myCartItem.quantile + int(quantile)
                 myCartItem.save()
                 return render(request, 'index.html')
             else:
-                cartItem = CartItemModel(cart_id = cart ,products_id = products,quantile = quantile  )
+                cartItem = CartItemModel(
+                    cart_id=cart, products_id=products, quantile=quantile)
                 cartItem.save()
             return render(request, 'index.html')
-        else: 
+        else:
             return HttpResponse("no save success")
-            
-        
 
 
 # --------------index-------------
@@ -107,13 +110,70 @@ def sitemap(request):
 # --------------cart-------------
 
 
-# --------------checkout-------------
-def checkout(request):
-    template = loader.get_template('checkout.html')
-    return HttpResponse(template.render())
+# --------------checkout----------
 
 
+class checkout(View):
+    def get(self, request):
+        cartModel = CartModel.objects.all().values()
+        for item in cartModel:
+            if item["user_id"] == USER['id']:
+                tongTien = 0
+                tienVanChuyen = 0
+                listCartItem = CartItemModel.objects.filter(
+                    cart_id=item["id"]).values()
+                for i in listCartItem:
+                    productCart = ProductsModel.objects.filter(
+                        id=i['products_id']).values()
+                    tongTien = productCart[0]['productsPrice'] * \
+                        i['quantile'] + tongTien
+                    tienVanChuyen = productCart[0]['weight'] + tienVanChuyen
+                tienVanChuyen = tienVanChuyen*10000
+                tongCong = tongTien + tienVanChuyen
+                context = {'CartModel':  CartModel.objects.all(),
+                           'tongTien': tongTien,
+                           'tienVanChuyen': tienVanChuyen,
+                           'tongCong': tongCong,
+                           'listPortfolio': PortfolioModel.objects.all(),
+                           'listproducts': ProductsModel.objects.all(),
+                           'listUser': UserModel.objects.all(),
+                           'timeNow': datetime.now(),
+                           'USER': USER,
+                           'myCart':  item,
+                           'cartItemModel':  CartItemModel.objects.all(),
+                           'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
+                           }
+
+                return render(request, 'checkout.html', context)
+
+    def post(self, request):
+        if request.method == "POST":
+            cartModel = CartModel.objects.all().values()
+            for item in cartModel:
+                if item["user_id"] == USER['id']:
+                    print(item["user_id"])
+                    print('hihihi')
+                    print(USER['id'])
+                    context = {'CartModel':  CartModel.objects.all(),
+                               'USER': USER,
+                               'myCart':  item,
+                               'cartItemModel':  CartItemModel.objects.all(),
+                               'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
+                               }
+                    cart = item['id']
+                    ShipAddress = request.POST['ShipAddress']
+                    order_description = request.POST['order_description']
+                    pay = request.POST['pay']
+                    save_cf = OrderModel(username=cart, ShipAddress=ShipAddress,
+                                         order_description=order_description, pay=pay)
+                    save_cf.save()
+                    return render(request, 'checkout.html')
+                else:
+                    return HttpResponse("not saver")
+        else:
+            return HttpResponse("not POST")
 # --------------contact-------------
+
 
 class contact(View):
     def get(self, request):
@@ -222,8 +282,6 @@ class blog3(View):
         return render(request, 'blog3.html', context)
 
 
-
-
 def blogDetail(request, id):
     template = postBlog.objects.get(id=id)
     return render(request, 'blogDetail.html', {'blogDetail': template})
@@ -255,15 +313,27 @@ class register(View):
             return HttpResponse("not POST")
 
 
-
-
 class cart(View):
     def get(self, request):
         cartModel = CartModel.objects.all().values()
         for item in cartModel:
             if item["user_id"] == USER['id']:
+                tongTien = 0
+                tienVanChuyen = 0
+                listCartItem = CartItemModel.objects.filter(
+                    cart_id=item["id"]).values()
+                for i in listCartItem:
+                    productCart = ProductsModel.objects.filter(
+                        id=i['products_id']).values()
+                    tongTien = productCart[0]['productsPrice'] * \
+                        i['quantile'] + tongTien
+                    tienVanChuyen = productCart[0]['weight'] + tienVanChuyen
+                tienVanChuyen = tienVanChuyen*10000
+                tongCong = tongTien + tienVanChuyen
                 context = {'CartModel':  CartModel.objects.all(),
-                           'tongTien': 0,
+                           'tongTien': tongTien,
+                           'tienVanChuyen': tienVanChuyen,
+                           'tongCong': tongCong,
                            'listPortfolio': PortfolioModel.objects.all(),
                            'listproducts': ProductsModel.objects.all(),
                            'listUser': UserModel.objects.all(),
@@ -271,9 +341,11 @@ class cart(View):
                            'USER': USER,
                            'myCart':  item,
                            'cartItemModel':  CartItemModel.objects.all(),
+                           'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
                            }
+
                 return render(request, 'cart.html', context)
-        f = CartModel(user_id = USER['id'])
+        f = CartModel(user_id=USER['id'])
         f.save()
         context = {'CartModel':  CartModel.objects.all(),
                    'listPortfolio': PortfolioModel.objects.all(),
@@ -283,22 +355,22 @@ class cart(View):
                    'USER': USER,
                    'myCart':  f,
                    'cartItemModel':  CartItemModel.objects.all(),
+                   'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
                    }
         return render(request, 'cart.html', context)
+
     def post(self, request):
-        if request.method == "POST" :
+        if request.method == "POST":
             IdCartItemModel = request.POST['id']
-            myCartItem =   CartItemModel.objects.get(id= IdCartItemModel)
+            myCartItem = CartItemModel.objects.get(id=IdCartItemModel)
             tg = request.POST['tg']
             if int(tg) == 0:
                 print("da xoa")
                 myCartItem.delete()
                 return redirect('app1:cart')
-            else:      
-                myCartItem.quantile =  myCartItem.quantile + int(tg)
+            else:
+                myCartItem.quantile = myCartItem.quantile + int(tg)
                 myCartItem.save()
                 if myCartItem.quantile == 0:
-                     myCartItem.delete()
+                    myCartItem.delete()
                 return redirect('app1:cart')
-              
-            

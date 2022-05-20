@@ -54,8 +54,7 @@ class CartItemModel (models.Model):
 
 
 class OrderModel (models.Model):
-    user = models.ForeignKey(UserModel, on_delete= models.CASCADE)
     cart = models.ForeignKey(CartModel, on_delete= models.CASCADE)
     ShipAddress = models.CharField('Địa chỉ ship', max_length= 255)
     order_description = models.TextField(default='')
-    completed = models.BooleanField(default= False)
+    pay = models.CharField('Phương Thức Thanh Toán', max_length= 255)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserModel,CartItemModel
+from .models import UserModel,CartItemModel, OrderModel
 
 # --------------contact-------------
 class contactForm(forms.Form):
@@ -8,7 +8,11 @@ class contactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea)
 
-
+class OrderForm (forms.ModelForm):
+     class Meta:
+        model = OrderModel
+        fields = {'cart','ShipAddress','order_description','pay'}
+     
 
 
 class UserForm (forms.ModelForm):
