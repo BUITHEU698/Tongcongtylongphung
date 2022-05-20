@@ -151,9 +151,10 @@ class checkout(View):
         if request.method == "POST":
             cartModel = CartModel.objects.filter(user_id = USER['id']).values()
             cf = OrderForm(request.POST)
-            save_cf = OrderModel(cart_id = cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
-                                    order_description= cf.cleaned_data ['oder_description'], pay= cf.cleaned_data ['pay'])
-            save_cf.save()
+            print(cf)
+            # save_cf = OrderModel(cart_id = cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
+            #                         order_description= cf.cleaned_data ['oder_description'], pay= cf.cleaned_data ['pay'])
+            # save_cf.save()
             return render(request, 'checkout.html')
             # context = {'CartModel':  CartModel.objects.all(),
             #             'USER': USER,
