@@ -11,13 +11,16 @@
 
     <!-- Favicon -->
     <link href="{% static '../media/img/favicon.ico' %}" rel="icon" />
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+   
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -236,14 +239,13 @@
         </div>
       </div>
     </div>
-    <!-- Footer End -->
-
-    <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top">
       <i class="fa fa-angle-double-up"></i>
     </a>
     <script>
-      $(document).ready(function () {});
+      $(document).ready(function () {
+
+      });
 
       function addCart(idp, idc) {
         num = $("#quantile").val();
@@ -264,8 +266,10 @@
       }
       function tangQuantile(idtc, tg) {
         num = $("#quantile").val();
+      
         if (!num) {
           num = 1;
+          $("#quantile").val() = num + tg;
         }
         $.post(
           "/cart",
@@ -275,15 +279,15 @@
       }
     </script>
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-    {% comment %} <script src="{% static 'js/main.js' %}"></script>
+   
+    {% comment %}
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static  'js/demo/chart-pie-demo.js' %}"></script>
     <script src=" {% static 'js/demo/datatables-demo.js' %} "></script>
     <script src=" {% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %} "></script>
-    <script src="{% static  'vendor/chart.js/Chart.min.js' %}"></script> {% endcomment %}
+    <script src="{% static  'vendor/chart.js/Chart.min.js' %}"></script>
+    {% endcomment %}
   </body>
 </html>
