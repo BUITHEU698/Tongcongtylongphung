@@ -107,6 +107,7 @@
               type="text"
               class="form-control"
               name="username"
+              value ="{{USER.userName}}"
               placeholder="Tên bạn"
               required="required"
               data-validation-required-message="Please enter your name"
@@ -118,6 +119,7 @@
               type="email"
               name="email"
               class="form-control"
+              value = "{{USER.email}}"
               placeholder="Email của bạn"
               required="required"
               data-validation-required-message="Please enter your email"
@@ -126,7 +128,7 @@
           </div>
           <div class="control-group">
             <input
-              type="text"
+              type="text" style="text-transform: uppercase;"
               name="subject"
               class="form-control"
               placeholder="Chủ Đề"

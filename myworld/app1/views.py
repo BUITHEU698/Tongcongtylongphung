@@ -43,6 +43,31 @@ class userLogin (View):
             else:
                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
+class userLogin1 (View):
+    def get(self, request):
+        template = loginForm
+        return render(request, 'userlogin1.html', {'userLogin1': template})
+
+    def post(self, request):
+        if request.method == "POST":
+            userName = request.POST['userName']
+            password = request.POST['password']
+
+            user = UserModel.objects.filter(
+                userName=userName, password=password).values()
+
+            if user.count() == 1:
+                for item in user:
+                    global USER
+                    USER = item
+                context = {
+                    'USER': USER
+                }
+                return redirect('app1:index')
+                # return render(request, 'index.html', context)
+            else:
+                return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
+
 
 def forgetPass(request):
     template = loader.get_template('forgot-password.html')
@@ -152,29 +177,8 @@ class checkout(View):
             cartModel = CartModel.objects.filter(user_id = USER['id']).values()
             cf = OrderForm(request.POST)
             print(cf)
-            # save_cf = OrderModel(cart_id = cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
-            #                         order_description= cf.cleaned_data ['oder_description'], pay= cf.cleaned_data ['pay'])
-            # save_cf.save()
             return render(request, 'checkout.html')
-            # context = {'CartModel':  CartModel.objects.all(),
-            #             'USER': USER,
-            #             'myCart':  item,
-            #             'cartItemModel':  CartItemModel.objects.all(),
-            #             'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
-            #             }
-            # cart = item['id']
-            # ShipAddress = request.POST['ShipAddress']
-            # order_description = request.POST['order_description']
-            # pay = request.POST['pay']
-            # save_cf = OrderModel(username=cart, ShipAddress=ShipAddress,
-            #                         order_description=order_description, pay=pay)
-            # save_cf.save()
-           
-        # else:
-        #     return HttpResponse("not saver")
-        # else:
-        #     return HttpResponse("not POST")
-# --------------contact-------------
+       
 
 
 class contact(View):
@@ -309,6 +313,24 @@ class register(View):
             if f.is_valid():
                 f.save()
                 return redirect('app1:userLogin')
+            else:
+                return HttpResponse("no save success")
+        else:
+            return HttpResponse("not POST")
+        
+        
+class register1(View):
+    def get(self, request):
+        context = {'register1': UserForm,
+                   'USER': USER}
+        return render(request, 'register1.html', context)
+
+    def post(self, request):
+        if request.method == "POST":
+            f = UserForm(request.POST)
+            if f.is_valid():
+                f.save()
+                return redirect('app1:userLogin1')
             else:
                 return HttpResponse("no save success")
         else:
