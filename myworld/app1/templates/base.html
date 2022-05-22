@@ -269,13 +269,15 @@
       
         if (!num) {
           num = 1;
-          $("#quantile").val() = num + tg;
+         
         }
         $.post(
           "/cart",
           { id: idtc, tg: tg, csrfmiddlewaretoken: "{{csrf_token}}" },
           function (data) {}
         );
+        num2 = num + int(tg);
+        $("#quantile").val(num2) ;
       }
     </script>
     <!-- JavaScript Libraries -->
