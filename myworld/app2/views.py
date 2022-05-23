@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
-from .forms import memberForm
 from .forms import loginForm
 from .forms import PortfolioForm
 from .forms import ProductsForm
