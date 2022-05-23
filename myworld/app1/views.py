@@ -24,7 +24,7 @@ class userLogin (View):
         template = loginForm
         thongbao = 'None'
         return render(request, 'userlogin.html', {'userLogin': template,
-          'thongbao':'None'})
+          'thongbao':thongbao})
 
     def post(self, request):
         if request.method == "POST":
@@ -63,7 +63,13 @@ class index(View):
         cartModel = CartModel.objects.all().values()
         if USER == -1:
             USER2 = USER
-            context = {'USER2': USER2, }
+            context = { 'USER': USER,
+                        'listPortfolio': PortfolioModel.objects.all(),
+                        'listproducts': ProductsModel.objects.all(),
+                        'listUser': UserModel.objects.all(),
+                        'timeNow': datetime.now(),
+                   
+                       }
             return render(request, 'index.html', context)
         else:
             for item in cartModel:
@@ -163,32 +169,18 @@ class checkout(View):
 
     def post(self, request):
         if request.method == "POST":
-            cartModel = CartModel.objects.filter(user_id=USER['id']).values()
-            cf = OrderForm(request.POST)
-            print(cf)
-            # save_cf = OrderModel(cart_id = cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
-            #                         order_description= cf.cleaned_data ['oder_description'], pay= cf.cleaned_data ['pay'])
-            # save_cf.save()
-            return render(request, 'checkout.html')
-            # context = {'CartModel':  CartModel.objects.all(),
-            #             'USER': USER,
-            #             'myCart':  item,
-            #             'cartItemModel':  CartItemModel.objects.all(),
-            #             'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
-            #             }
-            # cart = item['id']
-            # ShipAddress = request.POST['ShipAddress']
-            # order_description = request.POST['order_description']
-            # pay = request.POST['pay']
-            # save_cf = OrderModel(username=cart, ShipAddress=ShipAddress,
-            #                         order_description=order_description, pay=pay)
-            # save_cf.save()
-
-        # else:
-        #     return HttpResponse("not saver")
-        # else:
-        #     return HttpResponse("not POST")
-# --------------contact-------------
+            if USER == -1:
+                context = { 'USER' : USER}
+                return render(request, 'userLogin.html', context)
+            else:
+                
+                cartModel = CartModel.objects.filter(user_id=USER['id']).values()
+                cf = OrderForm(request.POST)
+                print(cf)
+                # save_cf = OrderModel(cart_id = cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
+                #                         order_description= cf.cleaned_data ['oder_description'], pay= cf.cleaned_data ['pay'])
+                # save_cf.save()
+                return render(request, 'checkout.html')
 
 
 class contact(View):
@@ -239,7 +231,7 @@ class shop(View):
 # --------------detail-------------
 
 
-class detailProduct(View):
+class detailProduct(View): 
     def get(self, request, id):
         context = {
             'myProduct':  ProductsModel.objects.get(id=id),
@@ -400,14 +392,15 @@ class register(View):
 #                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
 
+
 class cart(View):
     def get(self, request):
+        cartModel = CartModel.objects.all().values()
         if USER == -1:
-            USER2 = USER
-            context = {'USER2': USER2, }
-            return render(request, 'index.html', context)
+            context = { 'USER' : USER}
+            # return render(request, 'userLogin.html', context)
+            return redirect('app1:userLogin')
         else:
-            cartModel = CartModel.objects.all().values()
             for item in cartModel:
                 if item["user_id"] == USER['id']:
                     tongTien = 0
