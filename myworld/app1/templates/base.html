@@ -99,7 +99,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Search for products"
+                placeholder="Nhập tên sản phẩm cần tìm "
               />
               <div class="input-group-append">
                 <span class="input-group-text bg-transparent text-primary">
@@ -109,6 +109,7 @@
             </div>
           </form>
         </div>
+        {% if USER == -1 %}
         <div class="col-lg-3 col-6 text-right">
           <a href="" class="btn border">
             <i class="fas fa-heart text-primary"></i>
@@ -119,6 +120,19 @@
             <span class="badge">0</span>
           </a>
         </div>
+        {% else %}
+        <div class="col-lg-3 col-6 text-right">
+          <a href="" class="btn border">
+            <i class="fas fa-heart text-primary"></i>
+            <span class="badge">0</span>
+          </a>
+          <a href="{% url 'app1:cart' %}" class="btn border">
+            <i class="fas fa-shopping-cart text-primary"></i>
+            <span class="badge">{{tonglistCartItem}}</span>
+          </a>
+        </div>
+        {% endif %}
+        
       </div>
     </div>
     <!-- Topbar End -->
