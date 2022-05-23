@@ -62,18 +62,24 @@
               >Liên hệ</a
             >
           </div>
+          {% if USER == -1  %}
+          <div class="navbar-nav ml-auto py-0">
+            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> Đăng nhập</a>
+            <a href="{% url 'app1:register' %}"class="nav-item nav-link">Đăng ký</a>
+          </div>
+          
+          {% else %}
           <div class="navbar-nav ml-auto py-0">
             <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> {{USER.userName}}</a>
             <a href="{% url 'app1:userLogin' %}"class="nav-item nav-link">Đăng xuất</a>
           </div>
+          {% endif %}
         </div>
       </nav>
     </div>
   </div>
 </div>
 <!-- Navbar End -->
-
-<!-- Page Header Start -->
 <div class="container-fluid bg-secondary mb-5">
   <div
     class="d-flex flex-column align-items-center justify-content-center"
@@ -87,9 +93,12 @@
     </div>
   </div>
 </div>
-<!-- Page Header End -->
+<!-- Page Header Start -->
+{% if  USER2 == -1   %}
+  <button>Đănh nhập</button>
+{% else %}
 
-<!-- Cart Start -->
+{% comment %}
 <div class="container-fluid pt-5">
   <div class="row px-xl-5">
     <div class="col-lg-8 table-responsive mb-5">
@@ -111,7 +120,7 @@
                   <img src="/media/{{x.products.productsImg}}" alt="" style="width: 50px" />
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{x.products.productsName}}
                 </td>
-                <td id = "productsPrice" class="align-middle  text-center"> {{x.products.productsPrice}}  đ</td>
+                <td class="align-middle  text-center"> {{x.products.productsPrice}}  đ</td>
                 <td class="align-middle  text-center">
                   <div class="input-group quantity mx-auto" style="width: 100px">
                     <div class="input-group-btn">
@@ -133,7 +142,7 @@
                     </div>
                   </div>
                 </td>
-                <td  id="tongcong" class="align-middle  text-center"> {{x.products.productsPrice}} đ</td>
+                <td class="align-middle  text-center"> {{x.products.productsPrice}} đ</td>
                 <td class="align-middle  text-center">
                   <button  onclick= "tangQuantile({{x.id}}, 0)" class="btn btn-sm btn-primary">
                     <i class="fa fa-times"></i>
@@ -173,7 +182,13 @@
     </div>
   </div>
   
-</div>
+</div> {% endcomment %}
+{% endif %}
+
+<!-- Page Header End -->
+
+<!-- Cart Start -->
+
 
 <!-- Cart End -->
 

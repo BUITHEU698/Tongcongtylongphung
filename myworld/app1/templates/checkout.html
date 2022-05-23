@@ -61,14 +61,18 @@
               >Liên hệ</a
             >
           </div>
+          {% if USER2 == -1  %}
           <div class="navbar-nav ml-auto py-0">
-            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link">
-              {{USER.userName}}</a
-            >
-            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"
-              >Đăng xuất</a
-            >
+            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> Đăng nhập</a>
+            <a href="{% url 'app1:register' %}"class="nav-item nav-link">Đăng ký</a>
           </div>
+          
+          {% else %}
+          <div class="navbar-nav ml-auto py-0">
+            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link"> {{USER.userName}}</a>
+            <a href="{% url 'app1:userLogin' %}"class="nav-item nav-link">Đăng xuất</a>
+          </div>
+          {% endif %}
         </div>
       </nav>
     </div>

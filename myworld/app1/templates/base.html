@@ -13,7 +13,7 @@
     <link href="{% static '../media/img/favicon.ico' %}" rel="icon" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
+   
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -243,13 +243,16 @@
       <i class="fa fa-angle-double-up"></i>
     </a>
     <script>
-      $(document).ready(function () {});
+      $(document).ready(function () {
+
+      });
 
       function addCart(idp, idc) {
         num = $("#quantile").val();
         if (!num) {
           num = 1;
         }
+
         $.post(
           "",
           {
@@ -263,8 +266,10 @@
       }
       function tangQuantile(idtc, tg) {
         num = $("#quantile").val();
+      
         if (!num) {
           num = 1;
+          $("#quantile").val() = num + tg;
         }
         $.post(
           "/cart",
@@ -273,9 +278,8 @@
         );
       }
     </script>
-
     <!-- JavaScript Libraries -->
-
+   
     {% comment %}
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>

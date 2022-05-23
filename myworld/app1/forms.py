@@ -1,7 +1,6 @@
 from django import forms
 from .models import UserModel,CartItemModel, OrderModel
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+
 # --------------contact-------------
 class contactForm(forms.Form):
     username = forms.CharField(max_length=30)
@@ -15,8 +14,6 @@ class OrderForm (forms.ModelForm):
         fields = {'cart','ShipAddress','order_description','pay'}
    
 
-    
-    
 class UserForm (forms.ModelForm):
     class Meta:
         model = UserModel

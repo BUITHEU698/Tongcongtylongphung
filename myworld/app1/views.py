@@ -20,17 +20,21 @@ USER = -1
 
 class userLogin (View):
     def get(self, request):
+        USER = -1
         template = loginForm
-        return render(request, 'userlogin.html', {'userLogin': template})
+        thongbao = 'None'
+        return render(request, 'userlogin.html', {'userLogin': template,
+          'thongbao':'None'})
 
     def post(self, request):
         if request.method == "POST":
+            thongbao = 'None'
             userName = request.POST['userName']
             password = request.POST['password']
 
             user = UserModel.objects.filter(
                 userName=userName, password=password).values()
-
+            print(user)
             if user.count() == 1:
                 for item in user:
                     global USER
@@ -41,7 +45,12 @@ class userLogin (View):
                 return redirect('app1:index')
                 # return render(request, 'index.html', context)
             else:
-                return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
+                thongbao = "Mật khẩu hoặc tài khoản không đúng"
+                context = {'thongbao': thongbao,
+                           'password': password,
+                           'userName': userName,
+                           }
+                return render(request, 'userlogin.html', context)
 
 
 def forgetPass(request):
@@ -52,29 +61,34 @@ def forgetPass(request):
 class index(View):
     def get(self, request):
         cartModel = CartModel.objects.all().values()
-        for item in cartModel:
-            if item["user_id"] == USER['id']:
-                context = {
-                    'cartItemModel':  CartItemModel.objects.all(),
+        if USER == -1:
+            USER2 = USER
+            context = {'USER2': USER2, }
+            return render(request, 'index.html', context)
+        else:
+            for item in cartModel:
+                if item["user_id"] == USER['id']:
+                    context = {
+                        'cartItemModel':  CartItemModel.objects.all(),
+                        'listPortfolio': PortfolioModel.objects.all(),
+                        'listproducts': ProductsModel.objects.all(),
+                        'listUser': UserModel.objects.all(),
+                        'timeNow': datetime.now(),
+                        'myCart':  item,
+                        'USER': USER
+                    }
+                    return render(request, 'index.html', context)
+            f = CartModel(user_id=USER['id'])
+            f.save()
+            context = {'cartItemModel':  CartItemModel.objects.all(),
                     'listPortfolio': PortfolioModel.objects.all(),
                     'listproducts': ProductsModel.objects.all(),
                     'listUser': UserModel.objects.all(),
                     'timeNow': datetime.now(),
                     'myCart':  item,
                     'USER': USER
-                }
-                return render(request, 'index.html', context)
-        f = CartModel(user_id=USER['id'])
-        f.save()
-        context = {'cartItemModel':  CartItemModel.objects.all(),
-                   'listPortfolio': PortfolioModel.objects.all(),
-                   'listproducts': ProductsModel.objects.all(),
-                   'listUser': UserModel.objects.all(),
-                   'timeNow': datetime.now(),
-                   'myCart':  item,
-                   'USER': USER
-                   }
-        return render(request, 'index.html', context)
+                    }
+            return render(request, 'index.html', context)
 
     def post(self, request):
         cartItemModel = CartItemModel.objects.all()
@@ -149,7 +163,7 @@ class checkout(View):
 
     def post(self, request):
         if request.method == "POST":
-            cartModel = CartModel.objects.filter(user_id = USER['id']).values()
+            cartModel = CartModel.objects.filter(user_id=USER['id']).values()
             cf = OrderForm(request.POST)
             print(cf)
             # save_cf = OrderModel(cart_id = cartModel[0]['id'], ShipAddress=cf.cleaned_data['ShipAddress'],
@@ -169,7 +183,7 @@ class checkout(View):
             # save_cf = OrderModel(username=cart, ShipAddress=ShipAddress,
             #                         order_description=order_description, pay=pay)
             # save_cf.save()
-           
+
         # else:
         #     return HttpResponse("not saver")
         # else:
@@ -299,69 +313,143 @@ def logoutUser(request):
 
 class register(View):
     def get(self, request):
+        thongbao = 'None'
         context = {'register': UserForm,
-                   'USER': USER}
+                   'USER': USER,
+                   'thongbao': thongbao}
         return render(request, 'register.html', context)
 
     def post(self, request):
         if request.method == "POST":
-            f = UserForm(request.POST)
-            if f.is_valid():
-                f.save()
-                return redirect('app1:userLogin')
+            thongbao = 'None'
+            userName = request.POST['userName']
+            password = request.POST['password']
+            email = request.POST['email']
+            phoneNumber = request.POST['phoneNumber']
+            resetpassword = request.POST['resetpassword']
+            user = UserModel.objects.filter(userName=userName).values()
+            if user.count() == 1:
+                thongbao = "Tên tài khoản đã tồn tại. Mời nhập lại tên"
+                context = {'thongbao': thongbao,
+                           'email': email,
+                           'phoneNumber': phoneNumber,
+                           'password': password,
+                           'resetpassword': resetpassword,
+                           'userName': userName,
+                           }
+                return render(request, 'register.html', context)
+            elif password != resetpassword:
+                thongbao = "Mật khẩu không không trùng khớp. Mời kiểm tra và nhập lại"
+                context = {'thongbao': thongbao,
+                           'email': email,
+                           'phoneNumber': phoneNumber,
+                           'password': password,
+                           'resetpassword': resetpassword,
+                           'userName': userName,
+                           }
+                return render(request, 'register.html', context)
+            elif len(phoneNumber) < 10 or len(phoneNumber) >= 12:
+                thongbao = "Độ dài số điện thoại không hợp lệ"
+                context = {'thongbao': thongbao,
+                           'email': email,
+                           'phoneNumber': phoneNumber,
+                           'password': password,
+                           'resetpassword': resetpassword,
+                           'userName': userName,
+                           }
+                return render(request, 'register.html', context)
+            elif phoneNumber.isdigit() == 0:
+                thongbao = "Số điện thoại không bao gồm chữ cái"
+                context = {'thongbao': thongbao,
+                           'email': email,
+                           'phoneNumber': phoneNumber,
+                           'password': password,
+                           'resetpassword': resetpassword,
+                           'userName': userName,
+                           }
+                return render(request, 'register.html', context)
             else:
-                return HttpResponse("no save success")
+                f = UserForm(request.POST)
+                if f.is_valid():
+                    f.save()
+                    print('haha')
+                    print(f)
+                    print('hihihi')
+                    return redirect('app1:userLogin')
+                else:
+                    return HttpResponse("no save success")
         else:
             return HttpResponse("not POST")
 
+# userName = request.POST['userName']
+#             password = request.POST['password']
 
+#             user = UserModel.objects.filter(
+#                 userName=userName, password=password).values()
+#             print(user)
+#             if user.count() == 1:
+#                 for item in user:
+#                     global USER
+#                     USER = item
+#                 context = {
+#                     'USER': USER
+#                 }
+#                 return redirect('app1:index')
+#                 # return render(request, 'index.html', context)
+#             else:
+#                 return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
 
 class cart(View):
     def get(self, request):
-        cartModel = CartModel.objects.all().values()
-        for item in cartModel:
-            if item["user_id"] == USER['id']:
-                tongTien = 0
-                tienVanChuyen = 0
-                listCartItem = CartItemModel.objects.filter(
-                    cart_id=item["id"]).values()
-                for i in listCartItem:
-                    productCart = ProductsModel.objects.filter(
-                        id=i['products_id']).values()
-                    tongTien = productCart[0]['productsPrice'] * \
-                        i['quantile'] + tongTien
-                    tienVanChuyen = productCart[0]['weight'] + tienVanChuyen
-                tienVanChuyen = tienVanChuyen*10000
-                tongCong = tongTien + tienVanChuyen
-                context = {'CartModel':  CartModel.objects.all(),
-                           'tongTien': tongTien,
-                           'tienVanChuyen': tienVanChuyen,
-                           'tongCong': tongCong,
-                           'listPortfolio': PortfolioModel.objects.all(),
-                           'listproducts': ProductsModel.objects.all(),
-                           'listUser': UserModel.objects.all(),
-                           'timeNow': datetime.now(),
-                           'USER': USER,
-                           'myCart':  item,
-                           'cartItemModel':  CartItemModel.objects.all(),
-                           'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
-                           }
+        if USER == -1:
+            USER2 = USER
+            context = {'USER2': USER2, }
+            return render(request, 'index.html', context)
+        else:
+            cartModel = CartModel.objects.all().values()
+            for item in cartModel:
+                if item["user_id"] == USER['id']:
+                    tongTien = 0
+                    tienVanChuyen = 0
+                    listCartItem = CartItemModel.objects.filter(
+                        cart_id=item["id"]).values()
+                    for i in listCartItem:
+                        productCart = ProductsModel.objects.filter(
+                            id=i['products_id']).values()
+                        tongTien = productCart[0]['productsPrice'] * \
+                            i['quantile'] + tongTien
+                        tienVanChuyen = productCart[0]['weight'] + tienVanChuyen
+                    tienVanChuyen = tienVanChuyen*10000
+                    tongCong = tongTien + tienVanChuyen
+                    context = {'CartModel':  CartModel.objects.all(),
+                            'tongTien': tongTien,
+                            'tienVanChuyen': tienVanChuyen,
+                            'tongCong': tongCong,
+                            'listPortfolio': PortfolioModel.objects.all(),
+                            'listproducts': ProductsModel.objects.all(),
+                            'listUser': UserModel.objects.all(),
+                            'timeNow': datetime.now(),
+                            'USER': USER,
+                            'myCart':  item,
+                            'cartItemModel':  CartItemModel.objects.all(),
+                            'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
+                            }
 
-                return render(request, 'cart.html', context)
-        f = CartModel(user_id=USER['id'])
-        f.save()
-        context = {'CartModel':  CartModel.objects.all(),
-                   'listPortfolio': PortfolioModel.objects.all(),
-                   'listproducts': ProductsModel.objects.all(),
-                   'listUser': UserModel.objects.all(),
-                   'timeNow': datetime.now(),
-                   'USER': USER,
-                   'myCart':  f,
-                   'cartItemModel':  CartItemModel.objects.all(),
-                   'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
-                   }
-        return render(request, 'cart.html', context)
+                    return render(request, 'cart.html', context)
+            f = CartModel(user_id=USER['id'])
+            f.save()
+            context = {'CartModel':  CartModel.objects.all(),
+                    'listPortfolio': PortfolioModel.objects.all(),
+                    'listproducts': ProductsModel.objects.all(),
+                    'listUser': UserModel.objects.all(),
+                    'timeNow': datetime.now(),
+                    'USER': USER,
+                    'myCart':  f,
+                    'cartItemModel':  CartItemModel.objects.all(),
+                    'listCartItem': CartItemModel.objects.filter(cart_id=item["id"])
+                    }
+            return render(request, 'cart.html', context)
 
     def post(self, request):
         if request.method == "POST":
