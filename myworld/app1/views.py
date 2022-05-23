@@ -297,33 +297,15 @@ def logoutUser(request):
     return redirect('app1:login')
 
 
-# class register(View):
-#     def get(self, request):
-#         context = {'register': UserForm,
-#                    'USER': USER}
-#         return render(request, 'register.html', context)
-
-#     def post(self, request):
-#         if request.method == "POST":
-#             f = UserForm(request.POST)
-#             if f.is_valid():
-#                 f.save()
-#                 return redirect('app1:userLogin')
-#             else:
-#                 return HttpResponse("no save success")
-#         else:
-#             return HttpResponse("not POST")
-
-
 class register(View):
     def get(self, request):
-        context = {'register': MemberForm,
+        context = {'register': UserForm,
                    'USER': USER}
         return render(request, 'register.html', context)
 
     def post(self, request):
         if request.method == "POST":
-            f = MemberForm(request.POST)
+            f = UserForm(request.POST)
             if f.is_valid():
                 f.save()
                 return redirect('app1:userLogin')
@@ -331,6 +313,9 @@ class register(View):
                 return HttpResponse("no save success")
         else:
             return HttpResponse("not POST")
+
+
+
 
 class cart(View):
     def get(self, request):
