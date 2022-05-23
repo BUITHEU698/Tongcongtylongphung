@@ -25,11 +25,11 @@
     />
 
     <!-- Custom styles for this template-->
-
+  <link href="{% static  'css/style.css' %}" rel="stylesheet" />
     <link href="{% static  'css/sb-admin-2.css' %}" rel="stylesheet" />
   </head>
 
-  <body class="bg-gradient-primary">
+  <body  style= "background-color: #D19C97">
     <div class="container">
       <!-- Outer Row -->
       <div class="row justify-content-center">
@@ -38,12 +38,13 @@
             <div class="card-body p-0">
               <!-- Nested Row within Card Body -->
               <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                <div class="col-lg-6">
+                <div class="col-lg-5 d-none d-lg-block bg-login-image"></div>
+                <div class="col-lg-7">
                   <div class="p-5">
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">
-                        Long Phụng xin chào bạn!
+                        Long Phụng xin chào bạn! <br>
+                        <a href="{% url 'app1:index' %}">Bỏ qua đăng nhập và xem sản phẩm</a>
                       </h1>
                     </div>
                     <form

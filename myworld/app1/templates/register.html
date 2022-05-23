@@ -27,7 +27,7 @@
     <link href="{% static  'css/sb-admin-2.css' %}" rel="stylesheet" />
   </head>
 
-  <body class="bg-gradient-primary">
+  <body style= "background-color: #D19C97">
     <div class="container">
       <div class="card o-hidden border-0 shadow-lg my-5">
         <div class="card-body p-0">
@@ -37,7 +37,11 @@
             <div class="col-lg-7">
               <div class="p-5">
                 <div class="text-center">
-                  <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản mơi!</h1>
+                  <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản mơi!
+                    <br>
+                    <a href="{% url 'app1:index' %}">Bỏ qua đăng ký và xem sản phẩm</a>
+                  </h1>
+                 
                 </div>
                 <form
                   class="user"
