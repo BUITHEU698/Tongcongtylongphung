@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import UserForm, contactForm, loginForm, CartItemForm, OrderForm
-from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel, OrderModel, CartItemModel
+from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel, OrderModel1, CartItemModel
 from app2.models import ProductsModel, PortfolioModel
 from app2.forms import PortfolioForm, ProductsForm
 from django.views import View
@@ -201,7 +201,7 @@ class checkout(View):
             ShipAddress = request.POST['ShipAddress']
             order_description = request.POST['order_description']
             pay = request.POST['pay']
-            OrderItem = OrderModel(
+            OrderItem = OrderModel1(
                 user_id=USER['id'],
                 listProducts=listProducts,
                 listQuantile=listQuantile,

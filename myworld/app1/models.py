@@ -53,7 +53,7 @@ class CartItemModel (models.Model):
 
 
 
-class OrderModel (models.Model):
+class OrderModel1 (models.Model):
     user = models.ForeignKey(UserModel, on_delete= models.CASCADE)
     listProducts =  models.CharField('ID cac san pham da mua', default= '', max_length= 10000)
     listQuantile =  models.CharField('So luong cac san pham da mua', default= '', max_length= 10000)
