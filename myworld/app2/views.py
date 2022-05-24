@@ -44,8 +44,8 @@ def index(request):
 # --------------blank.html-------------
 
 @decorators.login_required(login_url='app2:login')
-def blank(request):
-    template = loader.get_template('blank.html')
+def forgetPass(request):
+    template = loader.get_template('forgetPass.html')
     return HttpResponse(template.render())
 
 
@@ -114,7 +114,7 @@ class updata_product(LoginRequiredMixin, View):
             myProduct.productsPriceOther = request.POST['productsPriceOther']
             myProduct.inventory = request.POST['inventory']
             myProduct.productsTimePub = request.POST['productsTimePub']
-            # myProduct.portfolioModel = request.POST['portfolioModel']
+            myProduct.portfolioModel_id = request.POST['portfolioModel']
             myProduct.weight = request.POST['weight']
             myProduct.save()
         context = {

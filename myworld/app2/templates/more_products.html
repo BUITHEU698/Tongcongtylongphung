@@ -97,69 +97,18 @@
           aria-labelledby="headingUtilities"
           data-parent="#accordionSidebar"
         >
-          <div class="bg-white py-2 collapse-inner rounded">
-         
-            <a class="collapse-item active" href="{% url 'app2:orderMenu' %}" href="#">Danh sach đơn hàng</a>
-            <a class="collapse-item" href="#">Danh sách liên hệ</a>
-            <a class="collapse-item" href="#"
-              >Đơn hàng chưa hoàn tất</a
-            >
-           
-          </div>
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{% url 'app2:orderMenu' %}">Danh Sách Đơn Hàng</a>
+          <a class="collapse-item" href="#">Danh Sách Liên Hệ</a>
+          <a class="collapse-item" href="{% url 'app2:userMenu'  %}"
+            >Danh sánh khách hàng</a
+          >
+        </div>
         </div>
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider" />
-
-      <!-- Heading -->
-      <div class="sidebar-heading">Khác</div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapsePages"
-          aria-expanded="true"
-          aria-controls="collapsePages"
-        >
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Khuyến mãi</span>
-        </a>
-        <div
-          id="collapsePages"
-          class="collapse"
-          aria-labelledby="headingPages"
-          data-parent="#accordionSidebar"
-        >
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Khuyến mãi:</h6>
-            <a class="collapse-item" href="#">Mã khuyến mãi</a>
-            <a class="collapse-item" href="#">Chương trình khuyến mãi</a>
-           
-            <div class="collapse-divider"></div>
-           
-          </div>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Khách hàng</span></a
-        >
-      </li>
-  
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Thống kê</span></a
-        >
-      </li>
-
-
-
+   
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block" />
