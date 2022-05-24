@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
-from app1.models import OrderModel
+from app1.models import OrderModel, UserModel, CartModel
 
 
 class loginUser (View):
@@ -32,8 +32,6 @@ class loginUser (View):
 
         else:
             return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
-
-
 
 
 # --------------index-------------
@@ -202,14 +200,44 @@ class orderMenu(LoginRequiredMixin, View):
     login_url = 'app2:login'
 
     def get(self, request):
+        orderMenu = OrderModel.objects.all()
+
         context = {
-            'listProducts': ProductsModel.objects.all(),
-            'listPortfolio': PortfolioModel.objects.all(),
+            'listUser': UserModel.objects.all(),
             'timeNow': datetime.now(),
-            'orderModel': OrderModel
+            'orderMenu': orderMenu
         }
 
         return render(request, 'orderMenu.html', context)
 
 # --------------utilities_animation-------------
 
+
+class userMenu(LoginRequiredMixin, View):
+    login_url = 'app2:login'
+
+    def get(self, request):
+        orderMenu = OrderModel.objects.all().values()
+        listUser = UserModel.objects.all().values()
+        a = []
+        soLuong = 0
+        sotien = 0
+        for item in listUser:
+            CartUser = CartModel.objects.filter(user_id=item['id']).values()
+            listOrderUser = OrderModel.objects.filter(
+                cart_id=CartUser[0]['id']).values()     
+            for item2 in listOrderUser:
+                soLuong = soLuong + 1
+                sotien = sotien + item2['tongCong']
+            a.append({'id': int(item['id']),  'soLuong': int(soLuong), 'sotien': int(sotien)})
+
+            print(a)
+
+        context = {
+            'listUser': UserModel.objects.all(),
+            'timeNow': datetime.now(),
+            'a': a,
+            'orderMenu': orderMenu
+        }
+
+        return render(request, 'userMenu.html', context)

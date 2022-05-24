@@ -18,6 +18,7 @@ urlpatterns = [
       
     path('list_product_portfolio', views.list_product_portfolio.as_view(), name="list_product_portfolio"),
     path('orderMenu', views.orderMenu.as_view(), name="orderMenu"),
+    path('userMenu', views.userMenu.as_view(), name="userMenu"),
 
 
 ]
