@@ -3,7 +3,9 @@ import email
 from pyexpat import model
 from venv import create
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
+from django.utils import timezone
 from django.urls import reverse
 from matplotlib.style import use
 from numpy import quantile
@@ -63,9 +65,11 @@ class CartItemModel (models.Model):
 
 
 class OrderModel (models.Model):
-    cart = models.ForeignKey(CartModel, on_delete=models.CASCADE),
+    cart = models.ForeignKey(CartModel, on_delete=models.CASCADE)
     ShipAddress = models.CharField('Địa chỉ ship', max_length=255)
     order_description = models.TextField(default='')
-    tongCong = models.IntegerField('Tong tien hoa don', default=0)
     pay = models.CharField('Phương Thức Thanh Toán', max_length=255)
-    # listProductsQuantile = ArrayField(ArrayField(models.IntegerField()))
+    tongCong = models.IntegerField('Tong tien hoa don', default=0)
+    oderTime = models.DateTimeField('Thời gian mua', blank= False,  default=timezone.now  )
+   
+
