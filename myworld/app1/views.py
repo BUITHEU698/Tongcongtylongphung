@@ -193,7 +193,7 @@ class checkout(View):
                 tongTien = 0
                 tienVanChuyen = 0
                 cartModel = CartModel.objects.filter(
-                    user_id=USER['id']).values()
+                    user_id = USER['id']).values()
                 listCartItem = CartItemModel.objects.filter(
                     cart_id=cartModel[0]['id']).values()
                 for i in listCartItem:
@@ -217,9 +217,10 @@ class checkout(View):
                     oderTime=oderTime,
 
                 )
-                
+
                 OrderItem.save()
                 return redirect('app1:menuOrder')
+
 
 class menuOrder(View):
     def get(self, request):
