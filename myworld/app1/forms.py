@@ -11,7 +11,7 @@ class contactForm(forms.Form):
 class OrderForm (forms.ModelForm):
      class Meta:
         model = OrderModel
-        fields = {'cart','ShipAddress','order_description','pay'}
+        fields = {'user','ShipAddress','order_description','pay'}
    
 
 class UserForm (forms.ModelForm):

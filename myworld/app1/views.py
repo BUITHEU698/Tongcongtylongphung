@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import UserForm, contactForm, loginForm, CartItemForm, OrderForm
-from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel, OrderModel
+from .models import UserModel, contactModel, postBlog, CartModel, CartItemModel, OrderModel, CartItemModel
 from app2.models import ProductsModel, PortfolioModel
 from app2.forms import PortfolioForm, ProductsForm
 from django.views import View
@@ -167,7 +167,7 @@ class checkout(View):
                            'tienVanChuyen': tienVanChuyen,
                            'tongCong': tongCong,
                            'tonglistCartItem': len(CartItemModel.objects.filter(
-                           cart_id=USER['id']).values()),
+                               cart_id=USER['id']).values()),
                            'listPortfolio': PortfolioModel.objects.all(),
                            'listproducts': ProductsModel.objects.all(),
                            'listUser': UserModel.objects.all(),
@@ -181,17 +181,51 @@ class checkout(View):
                 return render(request, 'checkout.html', context)
 
     def post(self, request):
+
         if request.method == "POST":
-            if USER == -1:
-                context = {'USER': USER}
-                return render(request, 'userLogin.html', context)
-            else:
-                context = {'USER': USER}
-                cartModel = CartModel.objects.filter(
-                    user_id=USER['id']).values()
-                cf = OrderForm(request.POST)
-                print(cf)
-                return render(request, 'checkout.html')
+            # if USER == -1:
+            #     context = {'USER': USER}
+            #     return render(request, 'menuOrder.html', context)
+            # else:
+
+            context = {'USER': USER}
+            cartModel = CartModel.objects.filter(user_id=USER['id']).values()
+            listCartItem = CartItemModel.objects.filter(
+                cart_id=cartModel[0]['id']).values()
+            listProducts = ''
+            listQuantile = ''
+            for i in listCartItem:
+                listQuantile = listQuantile + i["products_id"] + " "
+
+            print(cartModel[0]['id'])
+            ShipAddress = request.POST['ShipAddress']
+            order_description = request.POST['order_description']
+            pay = request.POST['pay']
+            OrderItem = OrderModel(
+                user_id=USER['id'],
+                listProducts=listProducts,
+                listQuantile=listQuantile,
+                ShipAddress=ShipAddress,
+                order_description=order_description,
+                pay=pay)
+
+            OrderItem.save()
+            print(OrderItem)
+            return render(request, 'menuOrder.html', context)
+
+
+class menuOrder(View):
+    def get(self, request):
+        if USER == -1:
+            context = {
+                'USER': USER
+            }
+            return render(request, 'menuOrder.html', context)
+        else:
+            context = {
+                'USER': USER
+            }
+            return render(request, 'menuOrder.html', context)
 
 
 class contact(View):
@@ -244,9 +278,9 @@ class thanks(View):
 
 
 class shop(View):
-    
+
     def get(self, request):
-        if USER == -1 :        
+        if USER == -1:
             context = {
                 'listPortfolio': PortfolioModel.objects.all(),
                 'listproducts': ProductsModel.objects.all(),
@@ -266,14 +300,14 @@ class shop(View):
                     cart_id=USER['id']).values())
             }
             return render(request, 'shop.html', context)
-            
+
 
 # --------------detail-------------
 
 
 class detailProduct(View):
     def get(self, request, id):
-        if USER == -1 :  
+        if USER == -1:
             context = {
                 'myProduct':  ProductsModel.objects.get(id=id),
                 'USER': USER
@@ -284,16 +318,16 @@ class detailProduct(View):
                 'myProduct':  ProductsModel.objects.get(id=id),
                 'USER': USER,
                 'tonglistCartItem': len(CartItemModel.objects.filter(
-                           cart_id=USER['id']).values()),
+                    cart_id=USER['id']).values()),
             }
             return render(request, 'detail.html', context)
 # --------------blog-------------
 
 
 class blog(View):
-    
+
     def get(self, request):
-        if USER == -1 :
+        if USER == -1:
             context = {
                 'listPortfolio': PortfolioModel.objects.all(),
                 'listUser': UserModel.objects.all(),
@@ -308,13 +342,14 @@ class blog(View):
                 'timeNow': datetime.now(),
                 'USER': USER,
                 'tonglistCartItem': len(CartItemModel.objects.filter(
-                           cart_id=USER['id']).values()),
+                    cart_id=USER['id']).values()),
             }
             return render(request, 'blog.html', context)
 
+
 class blog1(View):
     def get(self, request):
-        if USER == -1 :
+        if USER == -1:
             context = {
                 'listPortfolio': PortfolioModel.objects.all(),
                 'listUser': UserModel.objects.all(),
@@ -329,14 +364,14 @@ class blog1(View):
                 'timeNow': datetime.now(),
                 'USER': USER,
                 'tonglistCartItem': len(CartItemModel.objects.filter(
-                           cart_id=USER['id']).values()),
+                    cart_id=USER['id']).values()),
             }
             return render(request, 'blog1.html', context)
 
 
 class blog2(View):
     def get(self, request):
-        if USER == -1 :
+        if USER == -1:
             context = {
                 'listPortfolio': PortfolioModel.objects.all(),
                 'listUser': UserModel.objects.all(),
@@ -351,14 +386,14 @@ class blog2(View):
                 'timeNow': datetime.now(),
                 'USER': USER,
                 'tonglistCartItem': len(CartItemModel.objects.filter(
-                           cart_id=USER['id']).values()),
+                    cart_id=USER['id']).values()),
             }
             return render(request, 'blog2.html', context)
 
 
 class blog3(View):
-   def get(self, request):
-        if USER == -1 :
+    def get(self, request):
+        if USER == -1:
             context = {
                 'listPortfolio': PortfolioModel.objects.all(),
                 'listUser': UserModel.objects.all(),
@@ -373,14 +408,14 @@ class blog3(View):
                 'timeNow': datetime.now(),
                 'USER': USER,
                 'tonglistCartItem': len(CartItemModel.objects.filter(
-                           cart_id=USER['id']).values()),
+                    cart_id=USER['id']).values()),
             }
             return render(request, 'blog3.html', context)
+
 
 def blogDetail(request, id):
     template = postBlog.objects.get(id=id)
     return render(request, 'blogDetail.html', {'blogDetail': template})
-
 
 
 class register(View):
@@ -452,7 +487,6 @@ class register(View):
                     return HttpResponse("no save success")
         else:
             return HttpResponse("not POST")
-
 
 
 class cart(View):
