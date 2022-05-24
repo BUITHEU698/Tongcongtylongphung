@@ -53,8 +53,11 @@ class CartItemModel (models.Model):
 
 
 
-class OrderModel (models.Model):
-    cart = models.ForeignKey(CartModel, on_delete= models.CASCADE)
+class OrderModel1 (models.Model):
+    user = models.ForeignKey(UserModel, on_delete= models.CASCADE)
+    listProducts =  models.CharField('ID cac san pham da mua', default= '', max_length= 10000)
+    listQuantile =  models.CharField('So luong cac san pham da mua', default= '', max_length= 10000)
     ShipAddress = models.CharField('Địa chỉ ship', max_length= 255)
     order_description = models.TextField(default='')
+    tongTien = models.IntegerField('Tong tien hoa don', default=0)
     pay = models.CharField('Phương Thức Thanh Toán', max_length= 255)

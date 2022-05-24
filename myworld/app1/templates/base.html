@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head >
+  <head>
     <meta charset="utf-8" />
     <title>Thuốc Lào Long Phụng</title>
     {% load static %}
@@ -11,18 +11,21 @@
 
     <!-- Favicon -->
     <link href="{% static '../media/img/favicon.ico' %}" rel="icon" />
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+   
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
@@ -33,9 +36,6 @@
     {% comment %}
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
     {% endcomment %}
-    <link href="{% static  'css/owl.css' %}" rel="stylesheet" />
-    <link href="{% static  'css/flex-slider.css' %}" rel="stylesheet" />
-    <link href="{% static  'css/templatemo-stand-blog.css' %}" rel="stylesheet" />
     <link
       href="{% static  'lib/owlcarousel/assets/owl.carousel.min.css' %}"
       rel="stylesheet"
@@ -99,7 +99,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="Search for products"
+                placeholder="Nhập tên sản phẩm cần tìm "
               />
               <div class="input-group-append">
                 <span class="input-group-text bg-transparent text-primary">
@@ -109,8 +109,9 @@
             </div>
           </form>
         </div>
+        {% if USER == -1 %}
         <div class="col-lg-3 col-6 text-right">
-          <a href="{% url 'app1:checkout' %}" class="btn border">
+          <a href="" class="btn border">
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">0</span>
           </a>
@@ -119,6 +120,19 @@
             <span class="badge">0</span>
           </a>
         </div>
+        {% else %}
+        <div class="col-lg-3 col-6 text-right">
+          <a href="" class="btn border">
+            <i class="fas fa-heart text-primary"></i>
+            <span class="badge">0</span>
+          </a>
+          <a href="{% url 'app1:cart' %}" class="btn border">
+            <i class="fas fa-shopping-cart text-primary"></i>
+            <span class="badge">{{tonglistCartItem}}</span>
+          </a>
+        </div>
+        {% endif %}
+        
       </div>
     </div>
     <!-- Topbar End -->
@@ -238,92 +252,56 @@
           </div>
         </div>
       </div>
-     
     </div>
-    <!-- Footer End -->
-
-    <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top">
       <i class="fa fa-angle-double-up"></i>
     </a>
     <script>
-      $(document).ready(function (){
+      $(document).ready(function () {
 
       });
 
       function addCart(idp, idc) {
-        num = $("#quantile").val()
-        if(!num){
-          num = 1
+        num = $("#quantile").val();
+        if (!num) {
+          num = 1;
         }
-        
-        $.post( '', {'cart':idc, 'products':idp, 'quantile':num,'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-          
-        });
-      
+
+        $.post(
+          "",
+          {
+            cart: idc,
+            products: idp,
+            quantile: num,
+            csrfmiddlewaretoken: "{{csrf_token}}",
+          },
+          function (data) {}
+        );
       }
       function tangQuantile(idtc, tg) {
-        num = $("#quantile").val()
-        if(!num){
-          num = 1
-        }
-        $.post( '/cart', {'id':idtc,'tg' : tg,  'csrfmiddlewaretoken':'{{csrf_token}}'}, function(data){
-          
-        });
+        num = $("#quantile").val();
       
+        if (!num) {
+          num = 1;
+          $("#quantile").val() = num + tg;
+        }
+        $.post(
+          "/cart",
+          { id: idtc, tg: tg, csrfmiddlewaretoken: "{{csrf_token}}" },
+          function (data) {}
+        );
       }
-     
     </script>
-
     <!-- JavaScript Libraries -->
-
-    <script src=" {% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src=" {% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Additional Scripts -->
-
-    <script src="{% static 'assets/js/custom.js' %}"></script>
-    <script src=" {% static 'assets/js/owl.js'  %}"></script>
-    <script src=" {% static  'assets/js/slick.js'  %}"></script>
-    <script src=" {% static 'assets/js/isotope.js'  %}"></script>
-    <script src=" {% static 'assets/js/accordions.js'  %}"></script>
-
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+   
     {% comment %}
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    {% endcomment %}
-    <script src="{% static  'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static  'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-
-    <!-- Contact Javascript File -->
-    {% comment %}
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-    {% endcomment %}
-
-    <script src="{% static  'mail/jqBootstrapValidation.min.js' %}"></script>
-    <script src="{% static  'mail/contact.js' %}"></script>
-
-    <!-- Template Javascript -->
-    {% comment %}
-    <script src="js/main.js"></script>
-    {% endcomment %}
+    <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static  'js/demo/chart-pie-demo.js' %}"></script>
     <script src=" {% static 'js/demo/datatables-demo.js' %} "></script>
     <script src=" {% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %} "></script>
     <script src="{% static  'vendor/chart.js/Chart.min.js' %}"></script>
+    {% endcomment %}
   </body>
 </html>

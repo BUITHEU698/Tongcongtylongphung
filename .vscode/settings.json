@@ -13,5 +13,9 @@
   },
   "emmet.includeLanguages": {
     "django-html": "html"
-  }
+  },
+  "python.analysis.extraPaths": [
+    "./myworld",
+    "./myworld"
+  ]
 }

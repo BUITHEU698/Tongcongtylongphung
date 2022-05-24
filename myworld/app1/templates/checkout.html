@@ -61,6 +61,17 @@
               >Liên hệ</a
             >
           </div>
+          {% if USER == -1 %}
+          <div class="navbar-nav ml-auto py-0">
+            <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link">
+              Đăng nhập</a
+            >
+            <a href="{% url 'app1:register' %}" class="nav-item nav-link"
+              >Đăng ký</a
+            >
+          </div>
+
+          {% else %}
           <div class="navbar-nav ml-auto py-0">
             <a href="{% url 'app1:userLogin' %}" class="nav-item nav-link">
               {{USER.userName}}</a
@@ -69,6 +80,7 @@
               >Đăng xuất</a
             >
           </div>
+          {% endif %}
         </div>
       </nav>
     </div>
@@ -105,19 +117,37 @@
         <div class="mb-4">
           <h4 class="font-weight-semi-bold mb-4">Thông tin nhận</h4>
           <div class="row">
-            <div class="col-md-12 form-group">
-              <label>Địa chỉ nhận hàng</label>
+            <div class="col-md-6 form-group">
+              <label>Tên </label>
               <input
                 class="form-control"
                 type="text"
-                name=" cf.ShipAddress"
+                placeholder="{{USER.userName}}"
+              />
+            </div>
+
+            <div class="col-md-6 form-group">
+              <label>Số điện thoại liên hệ</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="+{{USER.phoneNumber}}"
+              />
+            </div>
+            <div class="col-md-12 form-group">
+              <label>Địa chỉ nhận hàng</label>
+              <input
+                required
+                class="form-control"
+                type="text"
+                name="ShipAddress"
                 placeholder="Địa chỉ ..."
               />
             </div>
             <div class="col-md-12 form-group">
               <label>Lưu ý khi chuyển hàng</label>
               <textarea
-                name="cf.order_description"
+                name="order_description"
                 class="form-control"
                 rows="6"
                 placeholder="Thông Điệp ..."
@@ -137,7 +167,7 @@
                     <input
                       type="radio"
                       class="custom-control-input"
-                      name="cf.pay"
+                      name="pay"
                       id="paypal"
                       value="Thanh toán bằng ZaloPay"
                     />
@@ -151,7 +181,7 @@
                     <input
                       type="radio"
                       class="custom-control-input"
-                      name="cf.pay"
+                      name="pay"
                       id="directcheck"
                       value="Thanh toán bằng Momo"
                     />
@@ -165,7 +195,7 @@
                     <input
                       type="radio"
                       class="custom-control-input"
-                      name="cf.pay"
+                      name="pay"
                       value="Thanh toán khi nhận hàng"
                       checked
                       id="banktransfer"

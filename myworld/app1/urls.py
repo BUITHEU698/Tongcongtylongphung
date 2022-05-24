@@ -4,12 +4,12 @@ from .import views
 app_name = 'app1'
 
 urlpatterns = [
-    path('index', views.index.as_view(), name="index"),
+    path('', views.index.as_view(), name="index"),
     path('sitemap', views.sitemap, name="sitemap"),
     path('cart', views.cart.as_view(), name="cart"),
     path('checkout', views.checkout.as_view(), name="checkout"),
     path('contact', views.contact.as_view(), name="contact"),
-    path('thanks', views.thanks, name="thanks"),
+    path('thanks', views.thanks.as_view(), name="thanks"),
     path('shop', views.shop.as_view(), name="shop"),
     path('detailProduct /<int:id>', views.detailProduct.as_view(), name="detailProduct"),
     path('<int:id>', views.blogDetail, name="blogDetail"),
@@ -18,8 +18,7 @@ urlpatterns = [
     path('blog2', views.blog2.as_view(), name="blog2"),
     path('blog3', views.blog3.as_view(), name="blog3"),
 
-    path('', views.userLogin.as_view(), name="userLogin"),
-    path('logout', views.logoutUser, name="logout"),
+    path('userLogin', views.userLogin.as_view(), name="userLogin"),
     path('register', views.register.as_view(), name="register"),
     path('forgetPass', views.forgetPass, name="forgetPass"),
  
