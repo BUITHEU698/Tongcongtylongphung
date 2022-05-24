@@ -17,6 +17,7 @@ urlpatterns = [
     path('blog1', views.blog1.as_view(), name="blog1"),
     path('blog2', views.blog2.as_view(), name="blog2"),
     path('blog3', views.blog3.as_view(), name="blog3"),
+    path('menuOrder', views.menuOrder.as_view(), name="menuOrder"),
 
     path('userLogin', views.userLogin.as_view(), name="userLogin"),
     path('register', views.register.as_view(), name="register"),

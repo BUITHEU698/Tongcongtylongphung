@@ -111,7 +111,7 @@
         </div>
         {% if USER == -1 %}
         <div class="col-lg-3 col-6 text-right">
-          <a href="" class="btn border">
+          <a href="{% url 'app1:menuOrder' %}" class="btn border">
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">0</span>
           </a>
@@ -122,7 +122,7 @@
         </div>
         {% else %}
         <div class="col-lg-3 col-6 text-right">
-          <a href="" class="btn border">
+          <a href="{% url 'app1:menuOrder' %}"  class="btn border">
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">0</span>
           </a>

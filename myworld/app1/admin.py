@@ -7,7 +7,6 @@ from .models import CartItemModel
 from .models import OrderModel
 
 admin.site.register(contactModel)
-# Register your models here.
 admin.site.register(postBlog)
 admin.site.register(UserModel)
 admin.site.register(CartModel)
