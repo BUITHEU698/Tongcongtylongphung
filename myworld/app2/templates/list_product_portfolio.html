@@ -87,7 +87,7 @@
           aria-controls="collapseUtilities"
         >
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Đơn hàng</span>
+          <span>Quản Lý</span>
         </a>
         <div
           id="collapseUtilities"
@@ -96,9 +96,8 @@
           data-parent="#accordionSidebar"
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="{% url 'app2:orderMenu' %}">Danh Sách Đơn Hàng</a>
+            <a class="collapse-item" href="utilities-border.html">Danh Sách Liên Hệ</a>
             <a class="collapse-item" href="utilities-animation.html"
               >Animations</a
             >

@@ -87,19 +87,19 @@
           aria-controls="collapseUtilities"
         >
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Đơn hàng</span>
+          <span>Quản Lý</span>
         </a>
         <div
           id="collapseUtilities"
           class="collapse"
           aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar"
+          data-parent="#accordionSidebar" 
         >
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Quản lý đơn hàng:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html"
+       
+            <a class="collapse-item" href="{% url 'app2:orderMenu' %}">Danh Sách Đơn Hàng</a>
+            <a class="collapse-item" href="#">Danh Sách Liên Hệ</a>
+            <a class="collapse-item" href="#"
               >Animations</a
             >
             <a class="collapse-item" href="utilities-other.html">Other</a>

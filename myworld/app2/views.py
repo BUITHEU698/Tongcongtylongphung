@@ -14,6 +14,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
+from app1.models import OrderModel
 
 
 class loginUser (View):
@@ -33,9 +34,6 @@ class loginUser (View):
             return HttpResponse('Email hoặc mật khẩu của bạn không đúng')
 
 
-def forgetPass(request):
-    template = loader.get_template('forgot-password.html')
-    return HttpResponse(template.render())
 
 
 # --------------index-------------
@@ -200,46 +198,18 @@ class list_product_portfolio(LoginRequiredMixin, View):
 # --------------charts-------------
 
 
-def cards(request):
-    template = loader.get_template('card2.html')
-    return HttpResponse(template.render())
+class orderMenu(LoginRequiredMixin, View):
+    login_url = 'app2:login'
 
+    def get(self, request):
+        context = {
+            'listProducts': ProductsModel.objects.all(),
+            'listPortfolio': PortfolioModel.objects.all(),
+            'timeNow': datetime.now(),
+            'orderModel': OrderModel
+        }
 
-# --------------charts-------------
-def charts(request):
-    template = loader.get_template('charts.html')
-    return HttpResponse(template.render())
-# --------------tables-------------
-
-
-def tables(request):
-    template = loader.get_template('tables.html')
-    return HttpResponse(template.render())
+        return render(request, 'orderMenu.html', context)
 
 # --------------utilities_animation-------------
 
-
-def utilities_animation(request):
-    template = loader.get_template('utilities_animation.html')
-    return HttpResponse(template.render())
-
-# --------------utilities_border-------------
-
-
-def utilities_border(request):
-    template = loader.get_template('utilities_border.html')
-    return HttpResponse(template.render())
-
-# --------------utilities_color.html-------------
-
-
-def utilities_color(request):
-    template = loader.get_template('utilities_color.html')
-    return HttpResponse(template.render())
-
-# --------------utilities_other.html-------------
-
-
-def utilities_other(request):
-    template = loader.get_template('utilities_other.html')
-    return HttpResponse(template.render())

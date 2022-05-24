@@ -3,7 +3,6 @@ import email
 from pyexpat import model
 from venv import create
 from django.contrib.postgres.fields import ArrayField
-from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse

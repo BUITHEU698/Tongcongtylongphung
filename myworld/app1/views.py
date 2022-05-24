@@ -16,8 +16,9 @@ from datetime import datetime
 # --------------index-------------
 global USER
 USER = -1
-global tonglistCartItem 
+global tonglistCartItem
 tonglistCartItem = 0
+
 
 class userLogin (View):
     def get(self, request):
@@ -37,7 +38,6 @@ class userLogin (View):
 
             user = UserModel.objects.filter(
                 userName=userName, password=password).values()
-            print(user)
             if user.count() == 1:
                 for item in user:
                     global USER
@@ -192,37 +192,34 @@ class checkout(View):
                 context = {'USER': USER}
                 tongTien = 0
                 tienVanChuyen = 0
-                cartModel = CartModel.objects.filter(user_id= USER['id']).values()
+                cartModel = CartModel.objects.filter(
+                    user_id=USER['id']).values()
                 listCartItem = CartItemModel.objects.filter(
                     cart_id=cartModel[0]['id']).values()
-                listProductsQuantile =[]
                 for i in listCartItem:
                     productCart = ProductsModel.objects.filter(
                         id=i['products_id']).values()
-                    listProductsQuantile.append([i["products_id"], i["quantile"]])
                     tongTien = productCart[0]['productsPrice'] * \
                         i['quantile'] + tongTien
                     tienVanChuyen = productCart[0]['weight'] + tienVanChuyen
                 tienVanChuyen = tienVanChuyen*10
                 tongCong = tongTien + tienVanChuyen
-                print(cartModel[0]['id'])
                 ShipAddress = request.POST['ShipAddress']
-          
                 order_description = request.POST['order_description']
                 pay = request.POST['pay']
+                oderTime = datetime.now().strftime('%Y-%m-%dT%H:%M')
                 OrderItem = OrderModel(
-                    
-                    cart_id= cartModel[0]['id'],
-                    listProductsQuantile=listProductsQuantile,
-                    tongCong = tongCong,
+                    cart_id=cartModel[0]['id'],
                     ShipAddress=ShipAddress,
                     order_description=order_description,
-                    pay=pay)
-                print(OrderItem)
-                OrderItem.save()
-                print(OrderItem)
-                return render(request, 'menuOrder.html')
+                    pay=pay,
+                    tongCong=tongCong,
+                    oderTime=oderTime,
 
+                )
+                
+                OrderItem.save()
+                return redirect('app1:menuOrder')
 
 class menuOrder(View):
     def get(self, request):
@@ -236,12 +233,12 @@ class menuOrder(View):
             context = {
                 'USER': USER,
                 'tonglistCartItem': len(CartItemModel.objects.filter(
-                               cart_id=USER['id']).values()),
+                    cart_id=USER['id']).values()),
                 'listproducts': ProductsModel.objects.all().values(),
-                'OrderModel' : OrderModel.objects.all().values(),
-                'greeting' : 1
+                'OrderModel': OrderModel.objects.all().values(),
+                'greeting': 1
             }
-            
+
             return render(request, 'menuOrder.html', context)
 
 
@@ -496,9 +493,6 @@ class register(View):
                 f = UserForm(request.POST)
                 if f.is_valid():
                     f.save()
-                    print('haha')
-                    print(f)
-                    print('hihihi')
                     return redirect('app1:userLogin')
                 else:
                     return HttpResponse("no save success")
@@ -567,7 +561,6 @@ class cart(View):
             myCartItem = CartItemModel.objects.get(id=IdCartItemModel)
             tg = request.POST['tg']
             if int(tg) == 0:
-                print("da xoa")
                 myCartItem.delete()
                 return redirect('app1:cart')
             else:

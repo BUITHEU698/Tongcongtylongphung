@@ -95,25 +95,29 @@
         <tr class="text-center">
           <th>Sản Phẩm</th>
           <th>Tổng tiền</th>
+          <th>Phương thức thanh toán</th>
           <th>Tình trạng</th>
         </tr>
       </thead>
+
+    
       <tbody class="align-middle">
         {% for x in OrderModel %}
         <tr>
           <td class="align-middle">
-
-              {{x}}
               <img
-              src="/media/{{z.productsImg}}"
+              src="/media/imager_38779.jpg"
               alt=""
               style="width: 50px"
             />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{z.productsName}} 
+           &nbsp;&nbsp;&nbsp;{{x.oderTime}} 
            
           </td>
 
           <td class="align-middle text-center">{{x.tongCong}} đ</td>
+          <td class="align-middle">
+            {{x.pay}} 
+           </td>
           <td class="align-middle text-center">
             <div class="input-group quantity mx-auto" style="width: 100px">
               Đã giao
