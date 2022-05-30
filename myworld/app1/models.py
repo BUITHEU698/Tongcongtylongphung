@@ -12,6 +12,7 @@ from app2.models import ProductsModel
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.contrib.sites.models import Site
 
 class Snippet (models.Model):
     title = models.CharField(max_length=225)
