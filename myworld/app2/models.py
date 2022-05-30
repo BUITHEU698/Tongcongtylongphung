@@ -43,3 +43,5 @@ class ProductsModel(models.Model):
     weight = models.IntegerField('Khối lượng sản phẩm', default= 0)
     def __str__(self):
         return self.productsName
+    def get_absolute_url(self):
+        return "/detailProduct/%i" % self.id

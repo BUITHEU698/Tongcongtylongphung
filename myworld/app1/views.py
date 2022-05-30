@@ -337,7 +337,22 @@ class detailProduct(View):
             }
             return render(request, 'detail.html', context)
 # --------------blog-------------
-
+class detailPortfolio(View):
+    def get(self, request, id):
+        if USER == -1:
+            context = {
+                'myPortfolio':  PortfolioModel.objects.get(id=id),
+                'USER': USER
+            }
+            return render(request, 'detailPortfolio.html', context)
+        else:
+            context = {
+                'myPortfolio':  PortfolioModel.objects.get(id=id),
+                'USER': USER,
+                'tonglistCartItem': len(CartItemModel.objects.filter(
+                    cart_id=USER['id']).values()),
+            }
+            return render(request, 'detailPortfolio.html', context)
 
 class blog(View):
 

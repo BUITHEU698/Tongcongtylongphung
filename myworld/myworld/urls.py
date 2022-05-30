@@ -16,18 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from app1.sitemaps import StaticViewSitemap
+from app1.sitemaps import CheckoutSitemap
+from app1.sitemaps import ProductSitemap
 from django.conf import settings
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 sitemaps = {
-    'static': StaticViewSitemap
+    'CheckoutSitemap': CheckoutSitemap,
+    'ProductSitemap' : ProductSitemap,
+  
+    
 }
 
 urlpatterns = [
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},   name='django.contrib.sitemaps.views.sitemap'),
     path('', include('app1.urls')),
     path('ad/', include('app2.urls')),
     path('admin/', admin.site.urls),
+    
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

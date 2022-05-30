@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1.apps.App1Config',
     'app2.apps.App2Config',
+    
     # 'django_createsuperuser'
 ]
 SITE_ID=1
