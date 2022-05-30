@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-y#y%r#zucei!2+(vn6v=6($88wx81(kc@%i1&%ihmv&$w5)fhu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['thuoclaolongphung.tk']
 
 
 # Application definition
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     
     # 'django_createsuperuser'
 ]
-SITE_ID=5
+SITE_ID=4
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -90,7 +90,7 @@ DATABASES = {
         'HOST': 'localhost'
     }
 }
-
+CSRF_TRUSTED_ORIGINS = ['https://thuoclaolongphung.tk']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
