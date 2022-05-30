@@ -11,7 +11,15 @@ from numpy import quantile
 from app2.models import ProductsModel
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
+class Snippet (models.Model):
+    title = models.CharField(max_length=225)
+    slug = models.SlugField(blank = True, null = True)
+    body = models.TextField()
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save( *args, **kwargsr)
 # --------------contact-------------
 
 
