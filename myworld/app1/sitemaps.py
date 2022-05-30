@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 class CheckoutSitemap(Sitemap):
- 
+    priority = 0.5
     def items(self):
         return['app1:checkout',
                'app1:cart',
@@ -30,9 +30,11 @@ class CheckoutSitemap(Sitemap):
 
 
 class ProductSitemap(Sitemap):
+    priority = 0.5
     def items(self):
         return ProductsModel.objects.all()
     def lastmod(self, item):
         return timezone.now()
+
     # def lastmod(self, obj):
     #     return obj.productsName

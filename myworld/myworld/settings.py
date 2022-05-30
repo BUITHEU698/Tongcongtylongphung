@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django.contrib.contenttypes',
+    'django.contrib.flatpages',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     
     # 'django_createsuperuser'
 ]
-SITE_ID=1
+SITE_ID= 4
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
