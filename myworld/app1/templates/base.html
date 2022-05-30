@@ -6,14 +6,17 @@
     {% load static %}
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="Free HTML Templates" name="keywords" />
+    <meta
+      content="Thuốc Lào Long Phụng, Thuoc Lao Long Phung, Thuoclaolongphung, thuoclaolongphung, thuốc lào long phụng, THUOCLAOLONGPHUNG, THUỐC LÀO LONG PHỤNG, thuoosclaolongphung, THUOOSC LAO LONG PHUNG, thuốc lào long phụng, Thuốc Lào Long Phụng "
+      name="keywords"
+    />
     <meta content="Free HTML Templates" name="description" />
 
     <!-- Favicon -->
     <link href="{% static '../media/img/favicon.ico' %}" rel="icon" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-   
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -122,7 +125,7 @@
         </div>
         {% else %}
         <div class="col-lg-3 col-6 text-right">
-          <a href="{% url 'app1:menuOrder' %}"  class="btn border">
+          <a href="{% url 'app1:menuOrder' %}" class="btn border">
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">Oder Menu</span>
           </a>
@@ -132,7 +135,6 @@
           </a>
         </div>
         {% endif %}
-        
       </div>
     </div>
     <!-- Topbar End -->
@@ -280,7 +282,7 @@
       }
       function tangQuantile(idtc, tg) {
         num = $("#quantile").val();
-      
+
         if (!num) {
           num = 1;
           $("#quantile").val() = num + tg;
@@ -293,7 +295,7 @@
       }
     </script>
     <!-- JavaScript Libraries -->
-   
+
     {% comment %}
     <script src="{% static 'js/main.js' %}"></script>
     <script src="{% static  'js/demo/chart-area-demo.js' %}"></script>
